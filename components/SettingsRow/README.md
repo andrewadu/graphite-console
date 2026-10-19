@@ -1,0 +1,3 @@
+# SettingsRow
+
+The unit of every settings page: a row with the setting name in `body-medium`, a one-line `small` description in `muted-foreground`, and the control on the right (switch, select, button or value with Edit). Rows are 56px (two lines) inside a `card`, separated by `border` hairlines, grouped under a `title` with an optional group description. Dangerous settings (delete tenant, rotate all keys) live in a last group titled "Danger zone" whose card border is `destructive` and whose buttons are destructive outlines; each opens a Dialog. Changes apply on toggle for switches and on Save for everything else, stated per row. The consumer provides the rows; the system fixes the layout and the danger-zone rule.

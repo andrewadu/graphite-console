@@ -1,0 +1,34 @@
+<!-- @dsCard height=288 -->
+<div id="root" style="position:relative;width:960px;height:288px;background:var(--background);font-family:var(--font-sans);overflow:hidden">
+<!--
+derivation
+blocks: chart-2 slab 240x288 (bleeds top+right) · primary 224x136 · foreground 112x136 · accent 96x136; sides are space-8 multiples, corners radius-lg (6px); the one hue takes the biggest block because it is the only colour the UI owns
+arrangement: one tall slab with satellites, flush modular grid, gaps = space-4 (16px), all right of x=480
+pattern: geometric, modular, dense UI -> tiles cut by radius tokens, some merged two-wide; chosen because the README says "data first, chrome second" and every surface is a bordered grid of cells
+scales: tile 24px (space-6) at 48px pitch (space-6 x 2), rx radius-md (4px), 28 tiles in ground colour cut into the slab, two merged two-wide like table cells
+-->
+<style>
+.cv-hue{fill:var(--chart-2)}.cv-pri{fill:var(--primary)}.cv-ink{fill:var(--foreground)}.cv-tint{fill:var(--accent)}
+.cv-ground{fill:var(--background)}
+.cv-blk{rx:var(--radius-lg)}.cv-tile{rx:var(--radius-md)}
+</style>
+<svg width="960" height="288" viewBox="0 0 960 288" aria-hidden="true" style="position:absolute;inset:0">
+  <rect class="cv-hue cv-blk" x="720" y="-8" width="248" height="304"/>
+  <rect class="cv-pri cv-blk" x="480" y="0" width="224" height="136"/>
+  <rect class="cv-ink cv-blk" x="480" y="152" width="112" height="136"/>
+  <rect class="cv-tint cv-blk" x="608" y="152" width="96" height="136"/>
+  <g class="cv-ground">
+    <rect class="cv-tile" x="744" y="24" width="24" height="24"/><rect class="cv-tile" x="792" y="24" width="24" height="24"/><rect class="cv-tile" x="840" y="24" width="24" height="24"/><rect class="cv-tile" x="888" y="24" width="24" height="24"/>
+    <rect class="cv-tile" x="744" y="72" width="72" height="24"/><rect class="cv-tile" x="840" y="72" width="24" height="24"/><rect class="cv-tile" x="888" y="72" width="24" height="24"/>
+    <rect class="cv-tile" x="744" y="120" width="24" height="24"/><rect class="cv-tile" x="792" y="120" width="24" height="24"/><rect class="cv-tile" x="840" y="120" width="24" height="24"/><rect class="cv-tile" x="888" y="120" width="24" height="24"/>
+    <rect class="cv-tile" x="744" y="168" width="24" height="24"/><rect class="cv-tile" x="792" y="168" width="24" height="24"/><rect class="cv-tile" x="840" y="168" width="72" height="24"/>
+    <rect class="cv-tile" x="744" y="216" width="24" height="24"/><rect class="cv-tile" x="792" y="216" width="24" height="24"/><rect class="cv-tile" x="840" y="216" width="24" height="24"/><rect class="cv-tile" x="888" y="216" width="24" height="24"/>
+    <rect class="cv-tile" x="744" y="264" width="24" height="24"/><rect class="cv-tile" x="792" y="264" width="24" height="24"/><rect class="cv-tile" x="840" y="264" width="24" height="24"/><rect class="cv-tile" x="888" y="264" width="24" height="24"/>
+  </g>
+</svg>
+<div style="position:absolute;left:32px;bottom:32px;max-width:440px">
+  <div style="font:600 88px/.95 var(--font-sans);letter-spacing:-.02em;color:var(--foreground)">Graphite<br>Console</div>
+  <div style="margin-top:16px;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)">Quiet chrome for backoffice consoles: colour means status, not decoration.</div>
+</div>
+</div>
+<script>/* static */</script>

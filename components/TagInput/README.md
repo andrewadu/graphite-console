@@ -1,0 +1,3 @@
+# TagInput
+
+Multiple values in one field: email allowlists, labels, IP ranges, scopes. A TextField-shaped container that grows with its chips; each chip is `secondary` with a `border`, `radius-sm`, 24px tall, `small` text and a ✕; the caret sits after the last chip. Enter, comma or paste splits values; invalid ones (a malformed email) stay as chips outlined in `destructive` with the reason in the helper text, so the operator can fix rather than retype. Backspace on an empty caret selects the last chip before deleting it. Suggestions open as a DropdownMenu below. The consumer provides values, a validator and optional suggestions.

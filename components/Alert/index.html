@@ -1,0 +1,35 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Alert · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Feedback / Alert</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Alert</h1><p class="small muted">info, warning and destructive alerts</p>
+<div class="frame" style="min-height:230px"><div id="root" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.al{display:flex;gap:8px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px}
+.al svg{width:16px;height:16px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.al.info svg{color:var(--chart-2)}.al.warn svg{color:var(--warning)}.al.bad{background:color-mix(in srgb,var(--destructive) 10%,var(--card))}.al.bad svg{color:var(--destructive)}
+.al b{display:block;font:500 14px/20px var(--font-sans)}.al span{display:block;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)}
+.al .body{flex:1}
+.al button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer;white-space:nowrap}.al button:hover{background:var(--accent)}
+</style>
+<div class="al info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><div class="body"><b>Scheduled maintenance Saturday 02:00–03:00 GMT</b><span>The console stays available; background jobs are paused and resume automatically.</span></div><button>Details</button></div>
+<div class="al warn"><svg viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></svg><div class="body"><b>3 users have no 2FA enrolled</b><span>Tenant policy requires 2FA for Administrators. They will be prompted at next sign-in.</span></div><button>View users</button></div>
+<div class="al bad"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div class="body"><b>Audit log failed to load</b><span>The log service returned 503. Showing cached entries from 09:41.</span></div><button>Retry</button></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Inline, persistent messages that belong to the content: a maintenance notice at the top of a page, a warning on a form, an error above a table that failed to load. A `card` block with `border`, `radius-lg`, `space-3` padding, a 16px icon in the tone colour, `body-medium` title, `body` text in `muted-foreground`, optional ghost action. Tones: info (`chart-2`), success, warning, destructive. The ground stays `card` for every tone except destructive, which gets a 10% `destructive` tint so a failed load is unmistakable. No left border stripe. Alerts are not dismissible unless the condition is informational; a warning about a real state stays until the state changes.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.al{display:flex;gap:8px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px}
+.al svg{width:16px;height:16px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.al.info svg{color:var(--chart-2)}.al.warn svg{color:var(--warning)}.al.bad{background:color-mix(in srgb,var(--destructive) 10%,var(--card))}.al.bad svg{color:var(--destructive)}
+.al b{display:block;font:500 14px/20px var(--font-sans)}.al span{display:block;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)}
+.al .body{flex:1}
+.al button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer;white-space:nowrap}.al button:hover{background:var(--accent)}
+&lt;/style&gt;
+&lt;div class=&quot;al info&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 11v5M12 8h.01&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Scheduled maintenance Saturday 02:00–03:00 GMT&lt;/b&gt;&lt;span&gt;The console stays available; background jobs are paused and resume automatically.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;Details&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;al warn&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 3l10 18H2z&quot;/&gt;&lt;path d=&quot;M12 10v4M12 17h.01&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;3 users have no 2FA enrolled&lt;/b&gt;&lt;span&gt;Tenant policy requires 2FA for Administrators. They will be prompted at next sign-in.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;View users&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;al bad&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 8v5M12 16h.01&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Audit log failed to load&lt;/b&gt;&lt;span&gt;The log service returned 503. Showing cached entries from 09:41.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;Retry&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

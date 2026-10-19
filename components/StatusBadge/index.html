@@ -1,0 +1,61 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>StatusBadge · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / StatusBadge</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">StatusBadge</h1><p class="small muted">dot form and tinted form, five tones</p>
+<div class="frame" style="min-height:110px"><div id="root" style="padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.b{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:var(--radius-sm);font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--foreground)}
+.dot{width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.ok .dot{background:var(--success)}.warn .dot{background:var(--warning)}.bad .dot{background:var(--destructive)}.info .dot{background:var(--chart-2)}
+.tint{border:1px solid var(--border);background:var(--secondary)}
+.tint.ok{background:color-mix(in srgb,var(--success) 14%,var(--background));color:var(--success);border-color:transparent}
+.tint.warn{background:color-mix(in srgb,var(--warning) 22%,var(--background));color:var(--foreground);border-color:transparent}
+.tint.bad{background:color-mix(in srgb,var(--destructive) 14%,var(--background));color:var(--destructive);border-color:transparent}
+.tint.info{background:color-mix(in srgb,var(--chart-2) 14%,var(--background));color:var(--chart-2);border-color:transparent}
+</style>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<span class="b"><span class="dot"></span>Draft</span>
+<span class="b ok"><span class="dot"></span>Active</span>
+<span class="b warn"><span class="dot"></span>Pending review</span>
+<span class="b bad"><span class="dot"></span>Suspended</span>
+<span class="b info"><span class="dot"></span>Syncing</span>
+</div>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<span class="b tint">Draft</span>
+<span class="b tint ok">Active</span>
+<span class="b tint warn">Pending review</span>
+<span class="b tint bad">Suspended</span>
+<span class="b tint info">Syncing</span>
+</div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A small state label for tables, headers and detail panes: a status dot plus text, or a tinted chip. Five tones map to tokens: neutral (`muted` / `foreground`), success, warning, destructive, and info (`chart-2`). Text is `label` style, 12px, in `foreground` for the dot form; the tinted form uses the tone colour at 14% over the ground with the tone colour as text, except warning, whose text stays `foreground` because amber fails contrast. `radius-sm`, padding `space-1` by `space-2`, height 20px. The consumer provides the label and tone; it never invents a sixth tone.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.b{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:var(--radius-sm);font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--foreground)}
+.dot{width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.ok .dot{background:var(--success)}.warn .dot{background:var(--warning)}.bad .dot{background:var(--destructive)}.info .dot{background:var(--chart-2)}
+.tint{border:1px solid var(--border);background:var(--secondary)}
+.tint.ok{background:color-mix(in srgb,var(--success) 14%,var(--background));color:var(--success);border-color:transparent}
+.tint.warn{background:color-mix(in srgb,var(--warning) 22%,var(--background));color:var(--foreground);border-color:transparent}
+.tint.bad{background:color-mix(in srgb,var(--destructive) 14%,var(--background));color:var(--destructive);border-color:transparent}
+.tint.info{background:color-mix(in srgb,var(--chart-2) 14%,var(--background));color:var(--chart-2);border-color:transparent}
+&lt;/style&gt;
+&lt;div style=&quot;display:flex;gap:12px;flex-wrap:wrap&quot;&gt;
+&lt;span class=&quot;b&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Draft&lt;/span&gt;
+&lt;span class=&quot;b ok&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Active&lt;/span&gt;
+&lt;span class=&quot;b warn&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Pending review&lt;/span&gt;
+&lt;span class=&quot;b bad&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Suspended&lt;/span&gt;
+&lt;span class=&quot;b info&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Syncing&lt;/span&gt;
+&lt;/div&gt;
+&lt;div style=&quot;display:flex;gap:12px;flex-wrap:wrap&quot;&gt;
+&lt;span class=&quot;b tint&quot;&gt;Draft&lt;/span&gt;
+&lt;span class=&quot;b tint ok&quot;&gt;Active&lt;/span&gt;
+&lt;span class=&quot;b tint warn&quot;&gt;Pending review&lt;/span&gt;
+&lt;span class=&quot;b tint bad&quot;&gt;Suspended&lt;/span&gt;
+&lt;span class=&quot;b tint info&quot;&gt;Syncing&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

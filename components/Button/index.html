@@ -1,0 +1,61 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Button · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Actions / Button</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Button</h1><p class="small muted">primary, secondary, ghost, destructive; default and small</p>
+<div class="frame" style="min-height:120px"><div id="root" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.btn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.btn.sm{height:28px;padding:0 8px;font-size:13px}
+.primary{background:var(--primary);color:var(--primary-foreground)}
+.secondary{background:var(--secondary);color:var(--secondary-foreground);border-color:var(--border)}
+.ghost{background:transparent;color:var(--foreground)}.ghost:hover{background:var(--accent)}
+.destructive{background:var(--destructive);color:var(--destructive-foreground)}
+.btn[disabled]{background:var(--muted);color:var(--muted-foreground);border-color:transparent;cursor:not-allowed}
+svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75}
+</style>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn primary"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Add user</button>
+<button class="btn secondary">Export CSV</button>
+<button class="btn ghost">Filters</button>
+<button class="btn destructive">Suspend user</button>
+<button class="btn primary" disabled>Saving…</button>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn sm primary">Apply</button>
+<button class="btn sm secondary">Cancel</button>
+<button class="btn sm ghost"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Columns</button>
+<button class="btn sm destructive">Revoke key</button>
+</div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Actions in a console, sized for mouse and keyboard, never a pill. Four variants: primary (one per view), secondary, ghost (toolbars, table rows) and destructive. Heights 32px default and 28px small; label in `body-medium`; icon 16px with a `space-1` gap. The consumer provides the label, an optional leading icon and the handler; the system fixes padding (`space-2` by `space-3`), `radius-md`, the `ring` focus style and the disabled state (`muted` fill, `muted-foreground` text, no pointer). In dark, destructive text is `destructive-foreground` (ink) over `destructive`, not white.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.btn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.btn.sm{height:28px;padding:0 8px;font-size:13px}
+.primary{background:var(--primary);color:var(--primary-foreground)}
+.secondary{background:var(--secondary);color:var(--secondary-foreground);border-color:var(--border)}
+.ghost{background:transparent;color:var(--foreground)}.ghost:hover{background:var(--accent)}
+.destructive{background:var(--destructive);color:var(--destructive-foreground)}
+.btn[disabled]{background:var(--muted);color:var(--muted-foreground);border-color:transparent;cursor:not-allowed}
+svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75}
+&lt;/style&gt;
+&lt;div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;&gt;
+&lt;button class=&quot;btn primary&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 5v14M5 12h14&quot;/&gt;&lt;/svg&gt;Add user&lt;/button&gt;
+&lt;button class=&quot;btn secondary&quot;&gt;Export CSV&lt;/button&gt;
+&lt;button class=&quot;btn ghost&quot;&gt;Filters&lt;/button&gt;
+&lt;button class=&quot;btn destructive&quot;&gt;Suspend user&lt;/button&gt;
+&lt;button class=&quot;btn primary&quot; disabled&gt;Saving…&lt;/button&gt;
+&lt;/div&gt;
+&lt;div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;&gt;
+&lt;button class=&quot;btn sm primary&quot;&gt;Apply&lt;/button&gt;
+&lt;button class=&quot;btn sm secondary&quot;&gt;Cancel&lt;/button&gt;
+&lt;button class=&quot;btn sm ghost&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;Columns&lt;/button&gt;
+&lt;button class=&quot;btn sm destructive&quot;&gt;Revoke key&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

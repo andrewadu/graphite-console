@@ -1,0 +1,31 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>ProgressBar · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Feedback / ProgressBar</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">ProgressBar</h1><p class="small muted">job progress; quota at 83%; quota at 97%</p>
+<div class="frame" style="min-height:150px"><div id="root" style="padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.p{display:flex;flex-direction:column;gap:6px}
+.p .l{display:flex;justify-content:space-between}.p .l span:last-child{font:400 13px/20px var(--font-mono);color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+.tr{height:4px;background:var(--muted);border-radius:9999px;overflow:hidden}.tr i{display:block;height:100%;background:var(--primary)}
+.tr.warn i{background:var(--warning)}.tr.bad i{background:var(--destructive)}
+</style>
+<div class="p"><div class="l"><span>Importing users-october.csv</span><span>64% · 7,936 / 12,400</span></div><div class="tr"><i style="width:64%"></i></div></div>
+<div class="p"><div class="l"><span>API requests this month</span><span>83% · 830K / 1M</span></div><div class="tr warn"><i style="width:83%"></i></div></div>
+<div class="p"><div class="l"><span>Storage</span><span style="color:var(--destructive)">97% · 48.5 / 50 GB</span></div><div class="tr bad"><i style="width:97%"></i></div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Determinate progress for imports, exports, migrations and quota usage. A 4px track in `muted` with `radius-full`, fill in `primary`; 8px tall when it is the main content of a card. A label row above: what is happening in `body` on the left, the figure in `mono` on the right (64% · 7,936 / 12,400). Quota bars switch the fill to `warning` past 80% and `destructive` past 95%, with the percentage stated in text so colour is not the only signal. Indeterminate progress is a 30%-wide `primary` segment sweeping the track; use it only under 10s, then show a count. The consumer provides value, max and the label.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.p{display:flex;flex-direction:column;gap:6px}
+.p .l{display:flex;justify-content:space-between}.p .l span:last-child{font:400 13px/20px var(--font-mono);color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+.tr{height:4px;background:var(--muted);border-radius:9999px;overflow:hidden}.tr i{display:block;height:100%;background:var(--primary)}
+.tr.warn i{background:var(--warning)}.tr.bad i{background:var(--destructive)}
+&lt;/style&gt;
+&lt;div class=&quot;p&quot;&gt;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;Importing users-october.csv&lt;/span&gt;&lt;span&gt;64% · 7,936 / 12,400&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tr&quot;&gt;&lt;i style=&quot;width:64%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;p&quot;&gt;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;API requests this month&lt;/span&gt;&lt;span&gt;83% · 830K / 1M&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tr warn&quot;&gt;&lt;i style=&quot;width:83%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;p&quot;&gt;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;Storage&lt;/span&gt;&lt;span style=&quot;color:var(--destructive)&quot;&gt;97% · 48.5 / 50 GB&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tr bad&quot;&gt;&lt;i style=&quot;width:97%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

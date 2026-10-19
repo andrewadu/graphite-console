@@ -1,0 +1,3 @@
+# PageHeader
+
+The top of every console view: a breadcrumb trail, the page title in `display`, an optional `small` description in `muted-foreground`, and the view's actions on the right (one primary, the rest secondary or ghost). Breadcrumb items are `small` in `muted-foreground` separated by a `/` in `border`-strength grey; the current page is omitted from the trail because the title says it. `space-8` above, `space-6` below, then content. On an object page (a single user) the title is the object's name with a StatusBadge beside it and the ID in `mono` under it. The consumer provides trail, title, description, badge and actions.

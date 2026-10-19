@@ -1,0 +1,3 @@
+# Combobox
+
+A searchable select for long lists: tenants, users, countries, roles with descriptions. The trigger matches TextField (32px, `input` border, chevron in `muted-foreground`); open, it shows a search row and a `popover` list of 32px options with the label in `body`, an optional `small` description in `muted-foreground`, and a check on the selected one; the highlighted option is `accent`. Results filter as you type and show "No matches" as a quiet row, never an empty box. Multi-select shows chips in the trigger like TagInput. Lists over ~200 items are fetched as the operator types, with a Skeleton row while loading. The consumer provides options, value and the fetcher.

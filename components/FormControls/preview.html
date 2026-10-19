@@ -1,0 +1,30 @@
+<!-- @dsCard group="Forms" height=170 subtitle="checkboxes, radios, switches, select" -->
+<div id="root" style="padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.col{display:flex;flex-direction:column;gap:12px}
+.h{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.row{display:flex;gap:8px;align-items:flex-start}
+.row small{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+input[type=checkbox],input[type=radio]{width:16px;height:16px;margin:2px 0;accent-color:var(--primary)}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--muted);flex:none;margin-top:1px}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:9999px;background:var(--card);border:1px solid var(--border);box-sizing:border-box}
+.sw.on{background:var(--primary)}.sw.on::after{left:16px;border-color:transparent}
+select{height:32px;width:100%;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+</style>
+<div class="col"><span class="h">PERMISSIONS</span>
+<label class="row"><input type="checkbox" checked><span>Read users</span></label>
+<label class="row"><input type="checkbox" checked><span>Edit users<small>Includes role changes.</small></span></label>
+<label class="row"><input type="checkbox"><span>Delete users</span></label></div>
+<div class="col"><span class="h">ENVIRONMENT</span>
+<label class="row"><input type="radio" name="e" checked><span>Production</span></label>
+<label class="row"><input type="radio" name="e"><span>Staging</span></label>
+<label class="row"><input type="radio" name="e" disabled><span style="color:var(--muted-foreground)">Sandbox (disabled)</span></label></div>
+<div class="col"><span class="h">NOTIFICATIONS</span>
+<div class="row"><span class="sw on"></span><span>Email on failed jobs</span></div>
+<div class="row"><span class="sw"></span><span>Weekly digest</span></div>
+<div class="row"><span class="sw on"></span><span>Require 2FA<small>Applies at next sign-in.</small></span></div></div>
+<div class="col"><span class="h">ROLE</span>
+<select><option>Administrator</option><option>Operator</option><option>Auditor</option></select>
+<select disabled><option>Read-only (locked)</option></select></div>
+</div>
+<script>/* static */</script>

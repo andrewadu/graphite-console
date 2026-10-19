@@ -1,0 +1,19 @@
+<!-- @dsCard group="Forms" height=240 subtitle="dropzone with queued, uploading and failed files" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.dz{border:2px dashed var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.dz svg{width:20px;height:20px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75}
+.dz b{font-weight:500}.dz small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md)}
+.f svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75;flex:none}
+.f .n{flex:1;display:flex;flex-direction:column;gap:2px}.f .n small{font:400 12px/14px var(--font-sans);color:var(--muted-foreground)}
+.pb{width:120px;height:4px;background:var(--muted);border-radius:2px;overflow:hidden}.pb i{display:block;height:100%;background:var(--primary)}
+.ok{color:var(--success);font:500 12px/16px var(--font-sans)}.bad{color:var(--destructive);font:400 13px/18px var(--font-sans)}
+.gh{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.gh:hover{background:var(--accent)}
+</style>
+<div class="dz"><svg viewBox="0 0 24 24"><path d="M12 16V4M6 10l6-6 6 6"/><path d="M4 20h16"/></svg><b>Drop files or browse</b><small>CSV or XLSX up to 20 MB · one file per import</small></div>
+<div class="f"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg><div class="n">users-october.csv<small>1.8 MB · 12,400 rows</small></div><span class="ok">✓ Validated</span></div>
+<div class="f"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg><div class="n">kyc-batch-07.xlsx<small>9.2 MB · uploading 64%</small></div><span class="pb"><i style="width:64%"></i></span></div>
+<div class="f"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg><div class="n">export (1).csv<small>31 MB</small></div><span class="bad">Exceeds 20 MB limit</span><button class="gh">Remove</button></div>
+</div>
+<script>/* static */</script>

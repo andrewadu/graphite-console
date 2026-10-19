@@ -1,0 +1,61 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>DataTable · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / DataTable</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">DataTable</h1><p class="small muted">users table with selection, status, amounts and row actions</p>
+<div class="frame" style="min-height:230px"><div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.tbl{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--card);overflow:hidden;font:400 14px/20px var(--font-sans)}
+.tbl th{background:var(--secondary);color:var(--muted-foreground);font:500 12px/16px var(--font-sans);letter-spacing:.02em;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover td{background:var(--muted)}
+.tbl tr.sel td{background:var(--accent)}
+.num{text-align:right;font-family:var(--font-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.id{font-family:var(--font-mono);font-size:13px;color:var(--muted-foreground)}
+.b{display:inline-flex;align-items:center;gap:6px;font:500 12px/16px var(--font-sans)}
+.dot{width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.ok .dot{background:var(--success)}.warn .dot{background:var(--warning)}.bad .dot{background:var(--destructive)}
+.ghost{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.ghost:hover{background:var(--accent)}
+input[type=checkbox]{width:14px;height:14px;accent-color:var(--primary);margin:0}
+</style>
+<table class="tbl">
+<thead><tr><th style="width:32px"><input type="checkbox"></th><th>User</th><th>ID</th><th>Role</th><th>Status</th><th class="num">Logins (30d)</th><th></th></tr></thead>
+<tbody>
+<tr><td><input type="checkbox"></td><td>Ama Mensah</td><td class="id">usr_8f3a92c1</td><td>Administrator</td><td><span class="b ok"><span class="dot"></span>Active</span></td><td class="num">1,204</td><td><button class="ghost">Edit</button></td></tr>
+<tr class="sel"><td><input type="checkbox" checked></td><td>Kofi Boateng</td><td class="id">usr_2d71e0aa</td><td>Operator</td><td><span class="b warn"><span class="dot"></span>Pending review</span></td><td class="num">87</td><td><button class="ghost">Edit</button></td></tr>
+<tr><td><input type="checkbox"></td><td>Esi Owusu</td><td class="id">usr_c40b5d17</td><td>Auditor</td><td><span class="b bad"><span class="dot"></span>Suspended</span></td><td class="num">0</td><td><button class="ghost">Edit</button></td></tr>
+<tr><td><input type="checkbox"></td><td>Yaw Darko</td><td class="id">usr_91ee73f8</td><td>Operator</td><td><span class="b"><span class="dot"></span>Invited</span></td><td class="num">—</td><td><button class="ghost">Edit</button></td></tr>
+</tbody>
+</table>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>The workhorse of a console: a bordered `card` with a `secondary` header row, `label`-style column headers in `muted-foreground`, `body` cells (13px `small` in dense mode), hairline `border` rules between rows and `muted` on hover. Numbers are `mono` with tabular figures and right-aligned; IDs are `mono`; status cells use StatusBadge; the last column holds row actions as ghost buttons. Row height is 40px (32px dense). Selection is a checkbox in the first column; a selected row gets `accent`. The consumer provides columns, rows, sort state and actions; the system fixes density, alignment and every colour. Sticky headers and horizontal scroll are the consumer&#x27;s layout concern; the table itself never wraps cells.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.tbl{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--card);overflow:hidden;font:400 14px/20px var(--font-sans)}
+.tbl th{background:var(--secondary);color:var(--muted-foreground);font:500 12px/16px var(--font-sans);letter-spacing:.02em;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover td{background:var(--muted)}
+.tbl tr.sel td{background:var(--accent)}
+.num{text-align:right;font-family:var(--font-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.id{font-family:var(--font-mono);font-size:13px;color:var(--muted-foreground)}
+.b{display:inline-flex;align-items:center;gap:6px;font:500 12px/16px var(--font-sans)}
+.dot{width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.ok .dot{background:var(--success)}.warn .dot{background:var(--warning)}.bad .dot{background:var(--destructive)}
+.ghost{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.ghost:hover{background:var(--accent)}
+input[type=checkbox]{width:14px;height:14px;accent-color:var(--primary);margin:0}
+&lt;/style&gt;
+&lt;table class=&quot;tbl&quot;&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;width:32px&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/th&gt;&lt;th&gt;User&lt;/th&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Logins (30d)&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;Ama Mensah&lt;/td&gt;&lt;td class=&quot;id&quot;&gt;usr_8f3a92c1&lt;/td&gt;&lt;td&gt;Administrator&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;b ok&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Active&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;1,204&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ghost&quot;&gt;Edit&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr class=&quot;sel&quot;&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot; checked&gt;&lt;/td&gt;&lt;td&gt;Kofi Boateng&lt;/td&gt;&lt;td class=&quot;id&quot;&gt;usr_2d71e0aa&lt;/td&gt;&lt;td&gt;Operator&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;b warn&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Pending review&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;87&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ghost&quot;&gt;Edit&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;Esi Owusu&lt;/td&gt;&lt;td class=&quot;id&quot;&gt;usr_c40b5d17&lt;/td&gt;&lt;td&gt;Auditor&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;b bad&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Suspended&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ghost&quot;&gt;Edit&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;Yaw Darko&lt;/td&gt;&lt;td class=&quot;id&quot;&gt;usr_91ee73f8&lt;/td&gt;&lt;td&gt;Operator&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;b&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Invited&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;—&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ghost&quot;&gt;Edit&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

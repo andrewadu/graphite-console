@@ -1,0 +1,3 @@
+# Banner
+
+A full-width strip above the page header for environment and global state: "Sandbox environment", "Read-only mode during migration", "Impersonating Ama Mensah". 36px tall, `small` text centred or left with a 16px icon, an optional ghost action on the right, no radius. Tones: neutral (`secondary` ground), warning (`warning` at 22% over the ground, `foreground` text), destructive (`destructive` at 12%, `destructive` text), and impersonation, which is always the warning tone with an "Exit" action because acting as another user is the most dangerous normal thing an admin does. Only one banner at a time; the most severe wins. The consumer provides tone, text and action.

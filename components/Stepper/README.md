@@ -1,0 +1,3 @@
+# Stepper
+
+Progress through a multi-step setup (new tenant, API integration, bulk import): a horizontal rail of numbered 24px discs joined by 1px `border` lines. Done steps show a check on a `primary` disc; the current step is a `primary` disc with the number and its label in `body-medium` `foreground`; upcoming steps are `secondary` discs with `muted-foreground` labels. An optional `small` description sits under each label. On narrow widths it collapses to "Step 2 of 4 · Permissions" with a 4px progress bar. Steps are not clickable forward; done steps are. The consumer provides labels, descriptions and the current index. Never more than six steps; split the flow otherwise.

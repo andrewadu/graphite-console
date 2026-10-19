@@ -1,0 +1,13 @@
+<!-- @dsCard group="Data display" height=70 subtitle="table footer: summary, page size, prev/next" -->
+<div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.pg{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.pg .r{display:flex;align-items:center;gap:8px}
+.pg select{height:28px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 13px/20px var(--font-sans)}
+.pg button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.pg button:hover{background:var(--accent)}
+.pg button[disabled]{color:var(--muted-foreground);cursor:not-allowed;background:transparent}
+.pg .cur{height:28px;padding:0 10px;display:inline-grid;place-items:center;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--foreground);font:500 13px/20px var(--font-sans);font-variant-numeric:tabular-nums}
+</style>
+<div class="pg"><div class="r"><span>Showing 26–50 of 1,204</span><select><option>25 rows</option><option>50 rows</option><option>100 rows</option></select></div><div class="r"><button>‹ Previous</button><span class="cur">2 / 49</span><button>Next ›</button></div></div>
+</div>
+<script>/* static */</script>

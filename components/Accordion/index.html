@@ -1,0 +1,49 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Accordion · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Navigation / Accordion</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Accordion</h1><p class="small muted">settings groups with summaries; one open</p>
+<div class="frame" style="min-height:220px"><div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.ac{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.h{display:flex;align-items:center;gap:12px;height:40px;padding:0 16px;border-top:1px solid var(--border);cursor:pointer}
+.ac .h:first-child{border-top:0}
+.h b{font-weight:500}.h small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);flex:1}
+.h svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:2}
+.h.on svg{transform:rotate(180deg)}
+.c{padding:4px 16px 16px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center;color:var(--muted-foreground);font-size:13px}
+.c b{font-weight:400;font-size:14px;color:var(--foreground);display:block}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--primary)}.sw::after{content:"";position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:9999px;background:var(--card)}
+.sw.off{background:var(--muted)}.sw.off::after{left:2px;border:1px solid var(--border);box-sizing:border-box}
+</style>
+<div class="ac">
+<div class="h on"><b>Security</b><small>2FA required · 30-day sessions</small><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+<div class="c"><div><b>Require 2FA for administrators</b>Applies at next sign-in.</div><span class="sw"></span><div><b>Session lifetime</b>Sign out idle sessions after 30 days.</div><span style="color:var(--foreground)">30 days ▾</span><div><b>IP allowlist</b>Restrict console access to listed ranges.</div><span class="sw off"></span></div>
+<div class="h"><b>Notifications</b><small>Email on failed jobs · weekly digest off</small><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+<div class="h"><b>Billing</b><small>Invoice monthly · GHS</small><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+</div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Collapsible sections for long settings pages and detail panes: each header is a 40px row with the title in `body-medium`, an optional `small` summary in `muted-foreground` (the current value, so a closed section still informs), and a chevron in `muted-foreground` that rotates when open; a `border` hairline separates sections. Content pads `space-4` and sits on the same ground as the header. Several sections may be open at once; the first is open by default. Use it for settings groups (Security, Notifications, Billing), never to hide primary content or a table. The consumer provides items and open state.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.ac{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.h{display:flex;align-items:center;gap:12px;height:40px;padding:0 16px;border-top:1px solid var(--border);cursor:pointer}
+.ac .h:first-child{border-top:0}
+.h b{font-weight:500}.h small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);flex:1}
+.h svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:2}
+.h.on svg{transform:rotate(180deg)}
+.c{padding:4px 16px 16px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center;color:var(--muted-foreground);font-size:13px}
+.c b{font-weight:400;font-size:14px;color:var(--foreground);display:block}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--primary)}.sw::after{content:&quot;&quot;;position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:9999px;background:var(--card)}
+.sw.off{background:var(--muted)}.sw.off::after{left:2px;border:1px solid var(--border);box-sizing:border-box}
+&lt;/style&gt;
+&lt;div class=&quot;ac&quot;&gt;
+&lt;div class=&quot;h on&quot;&gt;&lt;b&gt;Security&lt;/b&gt;&lt;small&gt;2FA required · 30-day sessions&lt;/small&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 9l6 6 6-6&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;c&quot;&gt;&lt;div&gt;&lt;b&gt;Require 2FA for administrators&lt;/b&gt;Applies at next sign-in.&lt;/div&gt;&lt;span class=&quot;sw&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;b&gt;Session lifetime&lt;/b&gt;Sign out idle sessions after 30 days.&lt;/div&gt;&lt;span style=&quot;color:var(--foreground)&quot;&gt;30 days ▾&lt;/span&gt;&lt;div&gt;&lt;b&gt;IP allowlist&lt;/b&gt;Restrict console access to listed ranges.&lt;/div&gt;&lt;span class=&quot;sw off&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;h&quot;&gt;&lt;b&gt;Notifications&lt;/b&gt;&lt;small&gt;Email on failed jobs · weekly digest off&lt;/small&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 9l6 6 6-6&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;h&quot;&gt;&lt;b&gt;Billing&lt;/b&gt;&lt;small&gt;Invoice monthly · GHS&lt;/small&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 9l6 6 6-6&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

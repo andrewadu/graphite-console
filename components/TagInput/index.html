@@ -1,0 +1,37 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>TagInput · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Forms / TagInput</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">TagInput</h1><p class="small muted">allowlist with one invalid entry</p>
+<div class="frame" style="min-height:130px"><div id="root" style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.box{display:flex;flex-wrap:wrap;gap:4px;min-height:32px;padding:3px 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);align-items:center}
+.c{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 6px;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-sm);font:400 13px/18px var(--font-sans)}
+.c.bad{border-color:var(--destructive);color:var(--destructive)}
+.c .x{color:var(--muted-foreground);cursor:pointer}
+.caret{width:1px;height:16px;background:var(--foreground)}
+.hint{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}.hint.bad{color:var(--destructive)}
+</style>
+<div class="f"><label>Admin email allowlist</label><div class="box"><span class="c">ama@graphite.co<span class="x">✕</span></span><span class="c">kofi@graphite.co<span class="x">✕</span></span><span class="c bad">esi@graphite<span class="x">✕</span></span><span class="caret"></span></div><span class="hint bad">"esi@graphite" is not a valid email address.</span></div>
+<div class="f"><label>Allowed IP ranges</label><div class="box"><span class="c" style="font-family:var(--font-mono);font-size:12px">41.66.192.0/22<span class="x">✕</span></span><span class="c" style="font-family:var(--font-mono);font-size:12px">196.49.0.0/16<span class="x">✕</span></span><span class="caret"></span></div><span class="hint">CIDR notation. Press Enter or comma to add.</span></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Multiple values in one field: email allowlists, labels, IP ranges, scopes. A TextField-shaped container that grows with its chips; each chip is `secondary` with a `border`, `radius-sm`, 24px tall, `small` text and a ✕; the caret sits after the last chip. Enter, comma or paste splits values; invalid ones (a malformed email) stay as chips outlined in `destructive` with the reason in the helper text, so the operator can fix rather than retype. Backspace on an empty caret selects the last chip before deleting it. Suggestions open as a DropdownMenu below. The consumer provides values, a validator and optional suggestions.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.box{display:flex;flex-wrap:wrap;gap:4px;min-height:32px;padding:3px 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);align-items:center}
+.c{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 6px;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-sm);font:400 13px/18px var(--font-sans)}
+.c.bad{border-color:var(--destructive);color:var(--destructive)}
+.c .x{color:var(--muted-foreground);cursor:pointer}
+.caret{width:1px;height:16px;background:var(--foreground)}
+.hint{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}.hint.bad{color:var(--destructive)}
+&lt;/style&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Admin email allowlist&lt;/label&gt;&lt;div class=&quot;box&quot;&gt;&lt;span class=&quot;c&quot;&gt;ama@graphite.co&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;kofi@graphite.co&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;c bad&quot;&gt;esi@graphite&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;hint bad&quot;&gt;&quot;esi@graphite&quot; is not a valid email address.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Allowed IP ranges&lt;/label&gt;&lt;div class=&quot;box&quot;&gt;&lt;span class=&quot;c&quot; style=&quot;font-family:var(--font-mono);font-size:12px&quot;&gt;41.66.192.0/22&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot; style=&quot;font-family:var(--font-mono);font-size:12px&quot;&gt;196.49.0.0/16&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;hint&quot;&gt;CIDR notation. Press Enter or comma to add.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

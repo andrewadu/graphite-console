@@ -1,0 +1,45 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>DescriptionList · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / DescriptionList</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">DescriptionList</h1><p class="small muted">tenant facts with copy actions</p>
+<div class="frame" style="min-height:230px"><div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.dl{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.r{display:grid;grid-template-columns:140px 1fr auto;align-items:center;min-height:36px;padding:0 16px;border-top:1px solid var(--border)}
+.dl .r:first-child{border-top:0}
+.k{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.mono{font:400 13px/20px var(--font-mono)}.empty{color:var(--muted-foreground)}
+.gh{height:24px;padding:0 6px;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--muted-foreground);font:500 12px/16px var(--font-sans);cursor:pointer}.r:hover .gh{color:var(--foreground)}
+</style>
+<div class="dl">
+<div class="r"><span class="k">TENANT ID</span><span class="mono">tnt_4b9e21</span><button class="gh">Copy</button></div>
+<div class="r"><span class="k">NAME</span><span>Graphite Microfinance Ltd</span><button class="gh">Edit</button></div>
+<div class="r"><span class="k">REGION</span><span>eu-west-1</span><span></span></div>
+<div class="r"><span class="k">PLAN</span><span>Enterprise · annual</span><span></span></div>
+<div class="r"><span class="k">2FA POLICY</span><span>Required for administrators</span><button class="gh">Edit</button></div>
+<div class="r"><span class="k">WEBHOOK URL</span><span class="empty">—</span><button class="gh">Add</button></div>
+</div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Key/value facts about one object, in detail pages and Sheets: a two-column grid, keys in `label` style `muted-foreground` (140px, uppercase optional), values in `body`, rows 32px with a `border` hairline between them inside a `card`. IDs, keys and amounts are `mono`; booleans read as words (Enabled / Disabled), never ticks; empty values show &quot;—&quot; in `muted-foreground`, never blank. A row may end with a ghost Copy or Edit button that appears on hover. Group related rows under a `title` heading with `space-4` above. The consumer provides the pairs; the system fixes alignment and the empty-value rule.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.dl{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.r{display:grid;grid-template-columns:140px 1fr auto;align-items:center;min-height:36px;padding:0 16px;border-top:1px solid var(--border)}
+.dl .r:first-child{border-top:0}
+.k{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.mono{font:400 13px/20px var(--font-mono)}.empty{color:var(--muted-foreground)}
+.gh{height:24px;padding:0 6px;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--muted-foreground);font:500 12px/16px var(--font-sans);cursor:pointer}.r:hover .gh{color:var(--foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;dl&quot;&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;TENANT ID&lt;/span&gt;&lt;span class=&quot;mono&quot;&gt;tnt_4b9e21&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Copy&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;NAME&lt;/span&gt;&lt;span&gt;Graphite Microfinance Ltd&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Edit&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;REGION&lt;/span&gt;&lt;span&gt;eu-west-1&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;PLAN&lt;/span&gt;&lt;span&gt;Enterprise · annual&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;2FA POLICY&lt;/span&gt;&lt;span&gt;Required for administrators&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Edit&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;WEBHOOK URL&lt;/span&gt;&lt;span class=&quot;empty&quot;&gt;—&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Add&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

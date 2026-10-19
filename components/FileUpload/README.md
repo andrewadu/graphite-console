@@ -1,0 +1,3 @@
+# FileUpload
+
+Dropzone for CSV imports, KYC documents, logo uploads. A dashed `border` box (2px dashed, `radius-lg`, `space-6` padding) with a 20px icon in `muted-foreground`, "Drop files or browse" in `body-medium` and the accepted types and size limit in `small`; on drag-over the border turns `primary` and the ground `accent`. Each queued file is a 40px row: 16px type icon, name in `body`, size in `small` `muted-foreground`, a 4px progress track (`muted` with `primary` fill), then a StatusBadge-style result or a `destructive` reason. Failures stay in the list with a Retry ghost button; never silently drop a file. The consumer provides accept, max size, multiple and the handlers.

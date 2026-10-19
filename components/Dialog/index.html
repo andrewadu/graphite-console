@@ -1,0 +1,51 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Dialog · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Overlays / Dialog</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Dialog</h1><p class="small muted">destructive confirmation with typed identifier</p>
+<div class="frame" style="min-height:260px"><div id="root" style="position:relative;height:260px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent);display:grid;place-items:center}
+.dlg{width:480px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:16px;display:flex;flex-direction:column;gap:12px}
+.dlg h2{margin:0;font:500 16px/24px var(--font-sans)}
+.dlg p{margin:0;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)}
+.dlg label{font:500 12px/16px var(--font-sans);letter-spacing:.02em;display:block;margin-bottom:4px}
+.dlg input{width:100%;box-sizing:border-box;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 13px/20px var(--font-mono)}
+.ft{display:flex;justify-content:flex-end;gap:8px}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.sec{background:var(--secondary);color:var(--secondary-foreground);border-color:var(--border)}
+.des{background:var(--destructive);color:var(--destructive-foreground)}
+code{font:400 13px/20px var(--font-mono);color:var(--foreground)}
+</style>
+<div class="scrim"><div class="dlg" role="dialog" aria-modal="true">
+<h2>Suspend Kofi Boateng?</h2>
+<p>Active sessions end immediately and API keys stop working. The account can be reinstated by an administrator. Type <code>usr_2d71e0aa</code> to confirm.</p>
+<div><label>User ID</label><input placeholder="usr_…"></div>
+<div class="ft"><button class="btn sec">Cancel</button><button class="btn des">Suspend user</button></div>
+</div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A modal for confirmations and short forms. 480px wide (640px for forms), `card` ground, `border`, `radius-lg`, `shadow-md`, over a scrim of `foreground` at 40%. Title in `title` style, body in `body` with `muted-foreground` for explanatory text, `space-4` padding, a footer with actions right-aligned: a secondary Cancel on the left of a primary or destructive confirm. Destructive dialogs name the object in the title (&quot;Suspend Kofi Boateng?&quot;) and the button (&quot;Suspend user&quot;), and for irreversible actions ask the operator to type the identifier. Focus is trapped; Escape cancels; the confirm is never the default-focused button for destructive dialogs. The consumer provides title, body, actions and the handlers.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;position:relative;height:260px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent);display:grid;place-items:center}
+.dlg{width:480px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:16px;display:flex;flex-direction:column;gap:12px}
+.dlg h2{margin:0;font:500 16px/24px var(--font-sans)}
+.dlg p{margin:0;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)}
+.dlg label{font:500 12px/16px var(--font-sans);letter-spacing:.02em;display:block;margin-bottom:4px}
+.dlg input{width:100%;box-sizing:border-box;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 13px/20px var(--font-mono)}
+.ft{display:flex;justify-content:flex-end;gap:8px}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.sec{background:var(--secondary);color:var(--secondary-foreground);border-color:var(--border)}
+.des{background:var(--destructive);color:var(--destructive-foreground)}
+code{font:400 13px/20px var(--font-mono);color:var(--foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;scrim&quot;&gt;&lt;div class=&quot;dlg&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot;&gt;
+&lt;h2&gt;Suspend Kofi Boateng?&lt;/h2&gt;
+&lt;p&gt;Active sessions end immediately and API keys stop working. The account can be reinstated by an administrator. Type &lt;code&gt;usr_2d71e0aa&lt;/code&gt; to confirm.&lt;/p&gt;
+&lt;div&gt;&lt;label&gt;User ID&lt;/label&gt;&lt;input placeholder=&quot;usr_…&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;&lt;button class=&quot;btn sec&quot;&gt;Cancel&lt;/button&gt;&lt;button class=&quot;btn des&quot;&gt;Suspend user&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

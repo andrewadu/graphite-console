@@ -1,0 +1,3 @@
+# DescriptionList
+
+Key/value facts about one object, in detail pages and Sheets: a two-column grid, keys in `label` style `muted-foreground` (140px, uppercase optional), values in `body`, rows 32px with a `border` hairline between them inside a `card`. IDs, keys and amounts are `mono`; booleans read as words (Enabled / Disabled), never ticks; empty values show "—" in `muted-foreground`, never blank. A row may end with a ghost Copy or Edit button that appears on hover. Group related rows under a `title` heading with `space-4` above. The consumer provides the pairs; the system fixes alignment and the empty-value rule.

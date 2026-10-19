@@ -1,0 +1,3 @@
+# Timeline
+
+Audit-log detail and object history: a vertical list where each entry has an 8px dot on a 1px `border` spine, the actor in `body-medium`, the action in `body`, the target in `mono`, and the time in `small` `muted-foreground` right-aligned (relative, absolute in a tooltip). Dots are `muted-foreground` by default, `success` for creations, `destructive` for deletions and suspensions, `warning` for failed attempts. Entries with detail (a diff of changed fields) expand inline as a two-column key/value block in `small`. Days are separated by a `label` date heading. Newest at the top. The consumer provides the entries; the system fixes density (40px per entry) and colour meaning.

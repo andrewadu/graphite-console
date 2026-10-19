@@ -1,0 +1,3 @@
+# CommandPalette
+
+The keyboard front door (⌘K / Ctrl+K): a 560px `popover` with `border`, `radius-lg`, `shadow-md`, centred 15% from the top over a 40% scrim. A 40px search row with a 16px icon, then grouped results: group headings in `label` `muted-foreground`, rows 32px with a 16px icon, `body` label, optional `small` hint, and a keyboard shortcut in a `secondary` key cap (`mono` 11px). The highlighted row is `accent`. Groups come in a fixed order: Go to, Actions, Recent, then search results. Every destructive action here opens its Dialog; the palette never executes one directly. The consumer provides the groups and the handlers.

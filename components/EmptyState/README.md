@@ -1,0 +1,3 @@
+# EmptyState
+
+What a table, list or panel shows when there is nothing in it: a 20px Lucide icon in `muted-foreground` inside a 40px `muted` circle, a `title` heading, one `body` sentence in `muted-foreground`, and at most one primary action plus one ghost link. Centred in the container with `space-8` vertical padding; inside a DataTable it replaces the body rows and keeps the header. The copy says what is missing and why it might be ("No failed jobs in the last 24 hours"), never "No data". Filtered-to-nothing is a different state: it says which filters are active and offers "Clear filters". The consumer provides icon, title, text and actions.

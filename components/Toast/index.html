@@ -1,0 +1,37 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Toast · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Overlays / Toast</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Toast</h1><p class="small muted">success with undo, error persistent, neutral with progress</p>
+<div class="frame" style="min-height:200px"><div id="root" style="padding:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-end;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.to{width:360px;box-sizing:border-box;display:flex;gap:8px;align-items:flex-start;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:12px}
+.to svg{width:16px;height:16px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.to.ok svg{color:var(--success)}.to.bad svg{color:var(--destructive)}.to.n svg{color:var(--muted-foreground)}
+.to b{display:block;font:500 14px/20px var(--font-sans)}.to span{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.to .body{flex:1}
+.to button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.to button:hover{background:var(--accent)}
+.x{color:var(--muted-foreground)}
+</style>
+<div class="to ok"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><div class="body"><b>Role updated</b><span>Ama Mensah is now an Administrator.</span></div><button>Undo</button></div>
+<div class="to bad"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div class="body"><b>Export failed</b><span>The job timed out after 120s. Retry with a smaller date range.</span></div><button>Retry</button><button class="x">✕</button></div>
+<div class="to n"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="body"><b>Exporting 12,400 rows…</b><span>We'll notify you when the CSV is ready.</span></div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Transient feedback after an action, bottom-right, 360px wide, stacked newest at the bottom. A `popover` ground with `border`, `radius-lg`, `shadow-sm`, `space-3` padding; a 16px icon in the tone colour, a `body-medium` title, optional `small` description in `muted-foreground`, optional ghost action (&quot;Undo&quot;, &quot;View&quot;). Tones: neutral, success, warning, destructive, mapped to the status tokens as icon colour only; the ground never changes colour, so a stack of five reads as one system. Success toasts dismiss after 5s; errors stay until dismissed. Never toast something the operator must act on; that is a Dialog or an inline error.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-end;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.to{width:360px;box-sizing:border-box;display:flex;gap:8px;align-items:flex-start;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:12px}
+.to svg{width:16px;height:16px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.to.ok svg{color:var(--success)}.to.bad svg{color:var(--destructive)}.to.n svg{color:var(--muted-foreground)}
+.to b{display:block;font:500 14px/20px var(--font-sans)}.to span{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.to .body{flex:1}
+.to button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.to button:hover{background:var(--accent)}
+.x{color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;to ok&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M5 12l5 5L20 7&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Role updated&lt;/b&gt;&lt;span&gt;Ama Mensah is now an Administrator.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;Undo&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;to bad&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 8v5M12 16h.01&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Export failed&lt;/b&gt;&lt;span&gt;The job timed out after 120s. Retry with a smaller date range.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;Retry&lt;/button&gt;&lt;button class=&quot;x&quot;&gt;✕&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;to n&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Exporting 12,400 rows…&lt;/b&gt;&lt;span&gt;We&#x27;ll notify you when the CSV is ready.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

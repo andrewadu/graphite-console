@@ -1,0 +1,3 @@
+# DataTable
+
+The workhorse of a console: a bordered `card` with a `secondary` header row, `label`-style column headers in `muted-foreground`, `body` cells (13px `small` in dense mode), hairline `border` rules between rows and `muted` on hover. Numbers are `mono` with tabular figures and right-aligned; IDs are `mono`; status cells use StatusBadge; the last column holds row actions as ghost buttons. Row height is 40px (32px dense). Selection is a checkbox in the first column; a selected row gets `accent`. The consumer provides columns, rows, sort state and actions; the system fixes density, alignment and every colour. Sticky headers and horizontal scroll are the consumer's layout concern; the table itself never wraps cells.

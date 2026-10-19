@@ -1,0 +1,55 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Sheet · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Overlays / Sheet</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Sheet</h1><p class="small muted">user detail sheet over a table</p>
+<div class="frame" style="min-height:300px"><div id="root" style="position:relative;height:300px;overflow:hidden;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent)}
+.sh{position:absolute;top:0;right:0;bottom:0;width:480px;background:var(--card);border-left:1px solid var(--border);box-shadow:var(--shadow-md);display:flex;flex-direction:column}
+.hd{display:flex;align-items:flex-start;justify-content:space-between;padding:16px;border-bottom:1px solid var(--border)}
+.hd h2{margin:0;font:500 16px/24px var(--font-sans)}.hd .id{font:400 13px/20px var(--font-mono);color:var(--muted-foreground)}
+.x{width:28px;height:28px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--muted-foreground);cursor:pointer}
+.bd{padding:16px;display:grid;grid-template-columns:140px 1fr;gap:12px 16px;font:400 14px/20px var(--font-sans);flex:1}
+.bd dt{font:500 12px/20px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}.bd dd{margin:0}
+.mono{font:400 13px/20px var(--font-mono)}
+.ft{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.sec{background:var(--secondary);color:var(--foreground);border-color:var(--border)}.pri{background:var(--primary);color:var(--primary-foreground)}
+.ghost-rows{padding:16px;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+</style>
+<div class="ghost-rows">Users · 1,204 accounts<br><br>Ama Mensah · Administrator<br>Kofi Boateng · Operator<br>Esi Owusu · Auditor</div>
+<div class="scrim"></div>
+<aside class="sh">
+<div class="hd"><div><h2>Kofi Boateng</h2><div class="id">usr_2d71e0aa</div></div><button class="x">✕</button></div>
+<dl class="bd"><dt>EMAIL</dt><dd>kofi.b@example.com</dd><dt>ROLE</dt><dd>Operator</dd><dt>TENANT</dt><dd class="mono">tnt_4b9e21</dd><dt>LAST SIGN-IN</dt><dd>14 min ago · Accra</dd><dt>2FA</dt><dd>Enabled (TOTP)</dd><dt>SESSIONS</dt><dd>3 active</dd></dl>
+<div class="ft"><button class="btn sec">Close</button><button class="btn pri">Edit user</button></div>
+</aside>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A side panel that slides from the right for details and quick edits without leaving a table: 480px wide (640px for forms), full height, `card` ground, `border` on its left edge, `shadow-md`, over a 40% scrim. Header: `title`, an `mono` ID line, a close button; body scrolls with `space-4` padding; footer actions as in Dialog. Sheets are for reading and light editing of one row; anything with more than ~8 fields becomes a page. The consumer provides header, body and actions. Escape closes; unsaved changes prompt a Dialog.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;position:relative;height:300px;overflow:hidden;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent)}
+.sh{position:absolute;top:0;right:0;bottom:0;width:480px;background:var(--card);border-left:1px solid var(--border);box-shadow:var(--shadow-md);display:flex;flex-direction:column}
+.hd{display:flex;align-items:flex-start;justify-content:space-between;padding:16px;border-bottom:1px solid var(--border)}
+.hd h2{margin:0;font:500 16px/24px var(--font-sans)}.hd .id{font:400 13px/20px var(--font-mono);color:var(--muted-foreground)}
+.x{width:28px;height:28px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--muted-foreground);cursor:pointer}
+.bd{padding:16px;display:grid;grid-template-columns:140px 1fr;gap:12px 16px;font:400 14px/20px var(--font-sans);flex:1}
+.bd dt{font:500 12px/20px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}.bd dd{margin:0}
+.mono{font:400 13px/20px var(--font-mono)}
+.ft{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.sec{background:var(--secondary);color:var(--foreground);border-color:var(--border)}.pri{background:var(--primary);color:var(--primary-foreground)}
+.ghost-rows{padding:16px;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;ghost-rows&quot;&gt;Users · 1,204 accounts&lt;br&gt;&lt;br&gt;Ama Mensah · Administrator&lt;br&gt;Kofi Boateng · Operator&lt;br&gt;Esi Owusu · Auditor&lt;/div&gt;
+&lt;div class=&quot;scrim&quot;&gt;&lt;/div&gt;
+&lt;aside class=&quot;sh&quot;&gt;
+&lt;div class=&quot;hd&quot;&gt;&lt;div&gt;&lt;h2&gt;Kofi Boateng&lt;/h2&gt;&lt;div class=&quot;id&quot;&gt;usr_2d71e0aa&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;x&quot;&gt;✕&lt;/button&gt;&lt;/div&gt;
+&lt;dl class=&quot;bd&quot;&gt;&lt;dt&gt;EMAIL&lt;/dt&gt;&lt;dd&gt;kofi.b@example.com&lt;/dd&gt;&lt;dt&gt;ROLE&lt;/dt&gt;&lt;dd&gt;Operator&lt;/dd&gt;&lt;dt&gt;TENANT&lt;/dt&gt;&lt;dd class=&quot;mono&quot;&gt;tnt_4b9e21&lt;/dd&gt;&lt;dt&gt;LAST SIGN-IN&lt;/dt&gt;&lt;dd&gt;14 min ago · Accra&lt;/dd&gt;&lt;dt&gt;2FA&lt;/dt&gt;&lt;dd&gt;Enabled (TOTP)&lt;/dd&gt;&lt;dt&gt;SESSIONS&lt;/dt&gt;&lt;dd&gt;3 active&lt;/dd&gt;&lt;/dl&gt;
+&lt;div class=&quot;ft&quot;&gt;&lt;button class=&quot;btn sec&quot;&gt;Close&lt;/button&gt;&lt;button class=&quot;btn pri&quot;&gt;Edit user&lt;/button&gt;&lt;/div&gt;
+&lt;/aside&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

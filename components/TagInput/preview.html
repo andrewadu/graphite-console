@@ -1,0 +1,16 @@
+<!-- @dsCard group="Forms" height=130 subtitle="allowlist with one invalid entry" -->
+<div id="root" style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.box{display:flex;flex-wrap:wrap;gap:4px;min-height:32px;padding:3px 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);align-items:center}
+.c{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 6px;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-sm);font:400 13px/18px var(--font-sans)}
+.c.bad{border-color:var(--destructive);color:var(--destructive)}
+.c .x{color:var(--muted-foreground);cursor:pointer}
+.caret{width:1px;height:16px;background:var(--foreground)}
+.hint{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}.hint.bad{color:var(--destructive)}
+</style>
+<div class="f"><label>Admin email allowlist</label><div class="box"><span class="c">ama@graphite.co<span class="x">✕</span></span><span class="c">kofi@graphite.co<span class="x">✕</span></span><span class="c bad">esi@graphite<span class="x">✕</span></span><span class="caret"></span></div><span class="hint bad">"esi@graphite" is not a valid email address.</span></div>
+<div class="f"><label>Allowed IP ranges</label><div class="box"><span class="c" style="font-family:var(--font-mono);font-size:12px">41.66.192.0/22<span class="x">✕</span></span><span class="c" style="font-family:var(--font-mono);font-size:12px">196.49.0.0/16<span class="x">✕</span></span><span class="caret"></span></div><span class="hint">CIDR notation. Press Enter or comma to add.</span></div>
+</div>
+<script>/* static */</script>

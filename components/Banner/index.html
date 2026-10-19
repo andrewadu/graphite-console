@@ -1,0 +1,35 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Banner · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Feedback / Banner</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Banner</h1><p class="small muted">sandbox, read-only and impersonation banners</p>
+<div class="frame" style="min-height:140px"><div id="root" style="display:flex;flex-direction:column;gap:12px;padding:16px 0;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.bn{display:flex;align-items:center;gap:8px;height:36px;padding:0 16px;font:400 13px/18px var(--font-sans);background:var(--secondary)}
+.bn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;flex:none}
+.bn b{font-weight:500}
+.bn.warn{background:color-mix(in srgb,var(--warning) 22%,var(--background))}
+.bn.bad{background:color-mix(in srgb,var(--destructive) 12%,var(--background));color:var(--destructive)}
+.bn button{margin-left:auto;height:24px;padding:0 8px;border:1px solid var(--border);border-radius:var(--radius-sm);background:transparent;color:var(--foreground);font:500 12px/16px var(--font-sans);cursor:pointer}
+</style>
+<div class="bn"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/></svg><b>Sandbox environment.</b> Data here is reset nightly and never billed.</div>
+<div class="bn bad"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><b>Read-only mode.</b> A database migration is running; writes are rejected until about 03:00 GMT.</div>
+<div class="bn warn"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Impersonating <b>Ama Mensah</b> (usr_8f3a92c1). Every action is logged under your account.<button>Exit impersonation</button></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A full-width strip above the page header for environment and global state: &quot;Sandbox environment&quot;, &quot;Read-only mode during migration&quot;, &quot;Impersonating Ama Mensah&quot;. 36px tall, `small` text centred or left with a 16px icon, an optional ghost action on the right, no radius. Tones: neutral (`secondary` ground), warning (`warning` at 22% over the ground, `foreground` text), destructive (`destructive` at 12%, `destructive` text), and impersonation, which is always the warning tone with an &quot;Exit&quot; action because acting as another user is the most dangerous normal thing an admin does. Only one banner at a time; the most severe wins. The consumer provides tone, text and action.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;display:flex;flex-direction:column;gap:12px;padding:16px 0;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.bn{display:flex;align-items:center;gap:8px;height:36px;padding:0 16px;font:400 13px/18px var(--font-sans);background:var(--secondary)}
+.bn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;flex:none}
+.bn b{font-weight:500}
+.bn.warn{background:color-mix(in srgb,var(--warning) 22%,var(--background))}
+.bn.bad{background:color-mix(in srgb,var(--destructive) 12%,var(--background));color:var(--destructive)}
+.bn button{margin-left:auto;height:24px;padding:0 8px;border:1px solid var(--border);border-radius:var(--radius-sm);background:transparent;color:var(--foreground);font:500 12px/16px var(--font-sans);cursor:pointer}
+&lt;/style&gt;
+&lt;div class=&quot;bn&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 4h16v16H4z&quot;/&gt;&lt;path d=&quot;M4 9h16&quot;/&gt;&lt;/svg&gt;&lt;b&gt;Sandbox environment.&lt;/b&gt; Data here is reset nightly and never billed.&lt;/div&gt;
+&lt;div class=&quot;bn bad&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;rect x=&quot;5&quot; y=&quot;11&quot; width=&quot;14&quot; height=&quot;10&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M8 11V7a4 4 0 0 1 8 0v4&quot;/&gt;&lt;/svg&gt;&lt;b&gt;Read-only mode.&lt;/b&gt; A database migration is running; writes are rejected until about 03:00 GMT.&lt;/div&gt;
+&lt;div class=&quot;bn warn&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M4 21c0-4 4-6 8-6s8 2 8 6&quot;/&gt;&lt;/svg&gt;Impersonating &lt;b&gt;Ama Mensah&lt;/b&gt; (usr_8f3a92c1). Every action is logged under your account.&lt;button&gt;Exit impersonation&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

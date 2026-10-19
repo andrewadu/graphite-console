@@ -1,0 +1,3 @@
+# FormControls
+
+Checkbox, radio, switch and select, sized to the 32px control row. Checkbox and radio are 16px with a `input` border at rest, `primary` fill when checked, `radius-sm` (radio: `radius-full`), label in `body` with a `space-2` gap; a description line in `small` `muted-foreground` sits under the label. Switch is 32×18px, `muted` track off and `primary` on, a `card` thumb; use it only for settings that apply immediately, otherwise a checkbox plus Save. Select matches TextField (32px, `input` border, `card` fill, `radius-md`) with a chevron in `muted-foreground`. All show the `ring` focus style. The consumer provides labels, options and state; indeterminate checkboxes are reserved for "select all" in tables.

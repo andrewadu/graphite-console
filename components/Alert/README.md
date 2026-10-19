@@ -1,0 +1,3 @@
+# Alert
+
+Inline, persistent messages that belong to the content: a maintenance notice at the top of a page, a warning on a form, an error above a table that failed to load. A `card` block with `border`, `radius-lg`, `space-3` padding, a 16px icon in the tone colour, `body-medium` title, `body` text in `muted-foreground`, optional ghost action. Tones: info (`chart-2`), success, warning, destructive. The ground stays `card` for every tone except destructive, which gets a 10% `destructive` tint so a failed load is unmistakable. No left border stripe. Alerts are not dismissible unless the condition is informational; a warning about a real state stays until the state changes.

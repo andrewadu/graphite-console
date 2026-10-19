@@ -1,0 +1,20 @@
+<!-- @dsCard group="Data display" height=230 subtitle="tenant facts with copy actions" -->
+<div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.dl{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.r{display:grid;grid-template-columns:140px 1fr auto;align-items:center;min-height:36px;padding:0 16px;border-top:1px solid var(--border)}
+.dl .r:first-child{border-top:0}
+.k{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.mono{font:400 13px/20px var(--font-mono)}.empty{color:var(--muted-foreground)}
+.gh{height:24px;padding:0 6px;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--muted-foreground);font:500 12px/16px var(--font-sans);cursor:pointer}.r:hover .gh{color:var(--foreground)}
+</style>
+<div class="dl">
+<div class="r"><span class="k">TENANT ID</span><span class="mono">tnt_4b9e21</span><button class="gh">Copy</button></div>
+<div class="r"><span class="k">NAME</span><span>Graphite Microfinance Ltd</span><button class="gh">Edit</button></div>
+<div class="r"><span class="k">REGION</span><span>eu-west-1</span><span></span></div>
+<div class="r"><span class="k">PLAN</span><span>Enterprise · annual</span><span></span></div>
+<div class="r"><span class="k">2FA POLICY</span><span>Required for administrators</span><button class="gh">Edit</button></div>
+<div class="r"><span class="k">WEBHOOK URL</span><span class="empty">—</span><button class="gh">Add</button></div>
+</div>
+</div>
+<script>/* static */</script>

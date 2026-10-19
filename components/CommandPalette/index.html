@@ -1,0 +1,59 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>CommandPalette · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Overlays / CommandPalette</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">CommandPalette</h1><p class="small muted">open palette with a typed query</p>
+<div class="frame" style="min-height:300px"><div id="root" style="position:relative;height:300px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent);display:flex;justify-content:center;padding-top:24px}
+.cp{width:560px;height:fit-content;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden}
+.q{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-bottom:1px solid var(--border);font:400 14px/20px var(--font-sans)}
+.q svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:2}
+.q .caret{display:inline-block;width:1px;height:16px;background:var(--foreground)}
+.g{padding:8px 4px 4px 12px;font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.r{display:flex;align-items:center;gap:8px;height:32px;margin:0 4px;padding:0 8px;border-radius:var(--radius-md);font:400 14px/20px var(--font-sans)}
+.r.on{background:var(--accent)}
+.r svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;color:var(--muted-foreground)}
+.r .h{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.r kbd{margin-left:auto;font:400 11px/16px var(--font-mono);padding:0 5px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--secondary);color:var(--muted-foreground)}
+.ft{display:flex;gap:12px;padding:8px 12px;border-top:1px solid var(--border);font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+</style>
+<div class="scrim"><div class="cp">
+<div class="q"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>sus<span class="caret"></span></div>
+<div class="g">ACTIONS</div>
+<div class="r on"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Suspend user… <span class="h">opens confirmation</span><kbd>S</kbd></div>
+<div class="r"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Suspend scheduled jobs</div>
+<div class="g">GO TO</div>
+<div class="r"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Audit log <span class="h">filtered: suspensions</span><kbd>G A</kbd></div>
+<div class="ft"><span>↑↓ navigate</span><span>↵ select</span><span>esc close</span></div>
+</div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>The keyboard front door (⌘K / Ctrl+K): a 560px `popover` with `border`, `radius-lg`, `shadow-md`, centred 15% from the top over a 40% scrim. A 40px search row with a 16px icon, then grouped results: group headings in `label` `muted-foreground`, rows 32px with a 16px icon, `body` label, optional `small` hint, and a keyboard shortcut in a `secondary` key cap (`mono` 11px). The highlighted row is `accent`. Groups come in a fixed order: Go to, Actions, Recent, then search results. Every destructive action here opens its Dialog; the palette never executes one directly. The consumer provides the groups and the handlers.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;position:relative;height:300px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent);display:flex;justify-content:center;padding-top:24px}
+.cp{width:560px;height:fit-content;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden}
+.q{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-bottom:1px solid var(--border);font:400 14px/20px var(--font-sans)}
+.q svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:2}
+.q .caret{display:inline-block;width:1px;height:16px;background:var(--foreground)}
+.g{padding:8px 4px 4px 12px;font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.r{display:flex;align-items:center;gap:8px;height:32px;margin:0 4px;padding:0 8px;border-radius:var(--radius-md);font:400 14px/20px var(--font-sans)}
+.r.on{background:var(--accent)}
+.r svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;color:var(--muted-foreground)}
+.r .h{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.r kbd{margin-left:auto;font:400 11px/16px var(--font-mono);padding:0 5px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--secondary);color:var(--muted-foreground)}
+.ft{display:flex;gap:12px;padding:8px 12px;border-top:1px solid var(--border);font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;scrim&quot;&gt;&lt;div class=&quot;cp&quot;&gt;
+&lt;div class=&quot;q&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;11&quot; cy=&quot;11&quot; r=&quot;7&quot;/&gt;&lt;path d=&quot;M20 20l-4-4&quot;/&gt;&lt;/svg&gt;sus&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;g&quot;&gt;ACTIONS&lt;/div&gt;
+&lt;div class=&quot;r on&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M4 21c0-4 4-6 8-6s8 2 8 6&quot;/&gt;&lt;/svg&gt;Suspend user… &lt;span class=&quot;h&quot;&gt;opens confirmation&lt;/span&gt;&lt;kbd&gt;S&lt;/kbd&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt;Suspend scheduled jobs&lt;/div&gt;
+&lt;div class=&quot;g&quot;&gt;GO TO&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 6h16M4 12h16M4 18h10&quot;/&gt;&lt;/svg&gt;Audit log &lt;span class=&quot;h&quot;&gt;filtered: suspensions&lt;/span&gt;&lt;kbd&gt;G A&lt;/kbd&gt;&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;&lt;span&gt;↑↓ navigate&lt;/span&gt;&lt;span&gt;↵ select&lt;/span&gt;&lt;span&gt;esc close&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

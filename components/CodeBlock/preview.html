@@ -1,0 +1,14 @@
+<!-- @dsCard group="Data display" height=200 subtitle="JSON response with line numbers and a masked secret" -->
+<div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.cb{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden}
+.hd{display:flex;justify-content:space-between;align-items:center;height:32px;padding:0 12px;border-bottom:1px solid var(--border);font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.hd button{height:24px;padding:0 6px;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--foreground);font:500 12px/16px var(--font-sans);cursor:pointer}
+pre{margin:0;padding:12px;background:var(--background);font:400 13px/20px var(--font-mono);overflow-x:auto;display:grid;grid-template-columns:auto 1fr;column-gap:16px}
+pre .n{color:var(--muted-foreground);text-align:right;user-select:none}
+.k{color:var(--chart-2)}.s{color:var(--chart-2)}.m{color:var(--muted-foreground)}
+</style>
+<div class="cb"><div class="hd"><span>GET /v1/users/usr_8f3a92c1 · 200 · 84 ms</span><button>Copy</button></div>
+<pre><span class="n">1</span><span>{</span><span class="n">2</span><span>  <span class="k">"id"</span>: <span class="s">"usr_8f3a92c1"</span>,</span><span class="n">3</span><span>  <span class="k">"role"</span>: <span class="s">"administrator"</span>,</span><span class="n">4</span><span>  <span class="k">"two_factor"</span>: true,</span><span class="n">5</span><span>  <span class="k">"api_key"</span>: <span class="s">"sk_live_••••••••7f3a"</span> <span class="m">// masked · Reveal is logged</span></span><span class="n">6</span><span>}</span></pre></div>
+</div>
+<script>/* static */</script>

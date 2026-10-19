@@ -1,0 +1,3 @@
+# DateRangePicker
+
+Picks the window every report and log view runs on. A 32px trigger styled like a TextField showing the range in `mono` (2026-10-01 → 2026-10-15), opening a `popover` with presets on the left (Today, Last 7 days, Last 30 days, This month, Last month, Custom) and a two-month calendar on the right. Calendar days are 32px cells, `body`, today outlined in `border`, selected ends in `primary` with `primary-foreground`, the span between in `accent`; weekends are not dimmed, disabled dates are `muted-foreground`. Presets are the primary path: most operators never open the calendar. Dates are ISO in the UI and displayed in the tenant's timezone, named in the footer. The consumer provides the range, presets and timezone.

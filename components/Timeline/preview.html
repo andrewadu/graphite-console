@@ -1,0 +1,24 @@
+<!-- @dsCard group="Data display" height=260 subtitle="audit entries with a date divider and an expanded diff" -->
+<div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.day{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);margin:0 0 8px 20px}
+.tl{position:relative;padding-left:20px}
+.tl::before{content:"";position:absolute;left:3px;top:6px;bottom:6px;width:1px;background:var(--border)}
+.e{position:relative;display:flex;gap:12px;align-items:flex-start;min-height:40px;padding-bottom:8px}
+.e::before{content:"";position:absolute;left:-20px;top:6px;width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.e.ok::before{background:var(--success)}.e.bad::before{background:var(--destructive)}.e.warn::before{background:var(--warning)}
+.e .t{flex:1}.e b{font-weight:500}.e code{font:400 13px/20px var(--font-mono)}
+.e .when{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);white-space:nowrap;margin-top:1px}
+.diff{margin-top:6px;display:grid;grid-template-columns:auto 1fr 1fr;gap:2px 12px;font:400 13px/18px var(--font-sans);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 12px;max-width:420px}
+.diff .k{color:var(--muted-foreground)}.diff .o{text-decoration:line-through;color:var(--muted-foreground)}.diff .n{font-family:var(--font-mono);font-size:12px}
+</style>
+<div class="day">TODAY · 15 OCT 2026</div>
+<div class="tl">
+<div class="e"><div class="t"><b>Ama Mensah</b> changed role of <code>usr_2d71e0aa</code><div class="diff"><span class="k">role</span><span class="o">Operator</span><span class="n">Administrator</span><span class="k">2fa_required</span><span class="o">false</span><span class="n">true</span></div></div><span class="when">14 min ago</span></div>
+<div class="e warn"><div class="t"><b>Kofi Boateng</b> failed sign-in (3rd attempt) from <code>41.66.x.x</code></div><span class="when">2 h ago</span></div>
+<div class="e ok"><div class="t"><b>System</b> created API key <code>key_a91f…</code> for tenant <code>tnt_4b9e21</code></div><span class="when">5 h ago</span></div>
+</div>
+<div class="day">YESTERDAY · 14 OCT 2026</div>
+<div class="tl"><div class="e bad"><div class="t"><b>Ama Mensah</b> suspended <code>usr_c40b5d17</code> · reason: policy violation</div><span class="when">17:42</span></div></div>
+</div>
+<script>/* static */</script>

@@ -1,0 +1,29 @@
+<!-- @dsCard group="Navigation" height=300 width=480 subtitle="rail with workspace switcher, two groups, current item" -->
+<div id="root" style="display:flex;height:300px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.rail{width:240px;background:var(--sidebar);border-right:1px solid var(--sidebar-border);display:flex;flex-direction:column;padding:8px}
+.ws,.me{display:flex;align-items:center;gap:8px;height:40px;padding:0 8px;border-radius:var(--radius-md)}
+.mark{width:24px;height:24px;border-radius:var(--radius-sm);background:var(--sidebar-primary);color:var(--sidebar-primary-foreground);display:grid;place-items:center;font:600 12px/1 var(--font-sans)}
+.ws b{font:500 14px/20px var(--font-sans)}.ws small,.me small{display:block;font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+.grp{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);padding:16px 8px 4px}
+.it{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:var(--radius-md);font:500 14px/20px var(--font-sans);position:relative;cursor:pointer}
+.it:hover{background:var(--sidebar-accent)}
+.it.cur{background:var(--sidebar-accent)}.it.cur::before{content:"";position:absolute;left:-8px;top:6px;bottom:6px;width:2px;background:var(--sidebar-primary)}
+.it svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75}
+.me{margin-top:auto;border-top:1px solid var(--sidebar-border);border-radius:0;padding-top:8px}
+.av{width:24px;height:24px;border-radius:9999px;background:var(--muted);display:grid;place-items:center;font:500 11px/1 var(--font-sans)}
+</style>
+<nav class="rail">
+<div class="ws"><span class="mark">G</span><div><b>Graphite Admin</b><small>Production</small></div></div>
+<div class="grp">OPERATIONS</div>
+<div class="it"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</div>
+<div class="it cur"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Users</div>
+<div class="it"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Audit log</div>
+<div class="grp">SYSTEM</div>
+<div class="it"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Settings</div>
+<div class="it"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/></svg>API keys</div>
+<div class="me"><span class="av">AA</span><div><b style="font:500 14px/20px var(--font-sans)">Andie</b><small>andie@example.com</small></div></div>
+</nav>
+<div style="flex:1;padding:16px"><div style="font:600 24px/32px var(--font-sans);letter-spacing:-.01em">Users</div><div style="font:400 13px/18px var(--font-sans);color:var(--muted-foreground)">1,204 accounts · 3 pending review</div></div>
+</div>
+<script>/* static */</script>

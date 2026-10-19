@@ -1,0 +1,35 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Tooltip · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Overlays / Tooltip</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Tooltip</h1><p class="small muted">icon button name, absolute timestamp, truncated cell</p>
+<div class="frame" style="min-height:110px"><div id="root" style="padding:40px 16px 16px;display:flex;gap:48px;align-items:center;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.w{position:relative;display:inline-flex}
+.tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:4px 8px;font:400 13px/18px var(--font-sans)}
+.ib{width:28px;height:28px;border:0;border-radius:var(--radius-md);background:var(--accent);display:grid;place-items:center}
+.ib svg{width:16px;height:16px;stroke:var(--foreground);fill:none;stroke-width:1.75}
+.rel{color:var(--muted-foreground);font-size:13px;border-bottom:1px dotted var(--muted-foreground)}
+.cell{max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;font:400 13px/20px var(--font-mono)}
+</style>
+<span class="w"><span class="tip">Refresh (R)</span><button class="ib"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></button></span>
+<span class="w"><span class="tip">2026-10-15 09:41:07 GMT</span><span class="rel">14 min ago</span></span>
+<span class="w"><span class="tip">whsec_9f2a7c41e0b35d6f8a1c2e4b</span><span class="cell">whsec_9f2a7c41e0b35d6f8a1c2e4b</span></span>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A `small` label in a `popover`-grounded box with `border`, `radius-sm`, `shadow-sm`, 4px by 8px padding, max 240px, shown after 400ms hover or immediately on keyboard focus, placed above by default. Tooltips name icon-only buttons (mandatory), show absolute timestamps behind relative ones, and give full values behind truncated cells. They never hold actions, links or anything the operator must read to proceed; that content goes inline. The consumer provides the text; the system fixes timing and placement.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:40px 16px 16px;display:flex;gap:48px;align-items:center;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.w{position:relative;display:inline-flex}
+.tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:4px 8px;font:400 13px/18px var(--font-sans)}
+.ib{width:28px;height:28px;border:0;border-radius:var(--radius-md);background:var(--accent);display:grid;place-items:center}
+.ib svg{width:16px;height:16px;stroke:var(--foreground);fill:none;stroke-width:1.75}
+.rel{color:var(--muted-foreground);font-size:13px;border-bottom:1px dotted var(--muted-foreground)}
+.cell{max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;font:400 13px/20px var(--font-mono)}
+&lt;/style&gt;
+&lt;span class=&quot;w&quot;&gt;&lt;span class=&quot;tip&quot;&gt;Refresh (R)&lt;/span&gt;&lt;button class=&quot;ib&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M20 12a8 8 0 1 1-2.3-5.7&quot;/&gt;&lt;path d=&quot;M20 4v5h-5&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;&lt;span class=&quot;tip&quot;&gt;2026-10-15 09:41:07 GMT&lt;/span&gt;&lt;span class=&quot;rel&quot;&gt;14 min ago&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;&lt;span class=&quot;tip&quot;&gt;whsec_9f2a7c41e0b35d6f8a1c2e4b&lt;/span&gt;&lt;span class=&quot;cell&quot;&gt;whsec_9f2a7c41e0b35d6f8a1c2e4b&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

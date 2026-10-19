@@ -1,0 +1,69 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>ChartCard · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / ChartCard</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">ChartCard</h1><p class="small muted">revenue line vs previous period, with legend and tooltip</p>
+<div class="frame" style="min-height:240px"><div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.hd h3{margin:0;font:500 16px/24px var(--font-sans)}.hd .sub{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.lg{display:flex;gap:16px;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.lg i{display:inline-block;width:12px;height:2px;vertical-align:middle;margin-right:6px}
+svg{width:100%;height:140px;font:400 11px var(--font-sans)}
+.grid{stroke:var(--border)}.tick{fill:var(--muted-foreground)}
+.s1{fill:none;stroke:var(--chart-1);stroke-width:2}.s2{fill:none;stroke:var(--chart-2);stroke-width:1.5;stroke-dasharray:4 3}
+.a1{fill:var(--chart-1);opacity:.12}
+.hl{stroke:var(--muted-foreground);stroke-dasharray:2 2}
+.tt{fill:var(--popover);stroke:var(--border)}.ttx{fill:var(--foreground);font:400 11px var(--font-mono)}.ttc{fill:var(--muted-foreground)}
+</style>
+<div class="card">
+<div class="hd"><div><h3>Revenue overview</h3><div class="sub">GH₵633,000 this period · ↗ 7.7%</div></div><div class="lg"><span><i style="background:var(--chart-1)"></i>This year</span><span><i style="background:var(--chart-2)"></i>Previous year</span></div></div>
+<svg viewBox="0 0 600 140" preserveAspectRatio="none">
+<g class="grid"><line x1="40" y1="20" x2="600" y2="20"/><line x1="40" y1="60" x2="600" y2="60"/><line x1="40" y1="100" x2="600" y2="100"/></g>
+<g class="tick"><text x="0" y="24">80K</text><text x="0" y="64">40K</text><text x="0" y="104">0</text><text x="40" y="132">Jan</text><text x="180" y="132">Apr</text><text x="320" y="132">Jul</text><text x="460" y="132">Oct</text><text x="575" y="132">Dec</text></g>
+<path class="a1" d="M40 80L110 72 180 76 250 58 320 62 390 44 460 40 530 30 600 24V100H40Z"/>
+<path class="s2" d="M40 90L110 84 180 88 250 76 320 78 390 66 460 64 530 58 600 54"/>
+<path class="s1" d="M40 80L110 72 180 76 250 58 320 62 390 44 460 40 530 30 600 24"/>
+<line class="hl" x1="390" y1="20" x2="390" y2="100"/>
+<circle cx="390" cy="44" r="3" fill="var(--chart-1)"/><circle cx="390" cy="66" r="3" fill="var(--chart-2)"/>
+<rect class="tt" x="404" y="28" width="132" height="46" rx="4"/>
+<text class="ttc" x="412" y="42" style="font:500 11px var(--font-sans)">Aug 2026</text>
+<text class="ttx" x="412" y="56">This year   62,400</text><text class="ttx" x="412" y="68">Previous   47,100</text>
+</svg>
+</div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A `card` that frames one chart: a `title` heading with a `small` subtitle, an inline legend on the right, the plot, and nothing else. Series take `chart-1` (current) and `chart-2` (comparison, the only hue) first, then `chart-3`…`chart-5`; because the scale differs by lightness, a greyscale print still reads. Gridlines are `border` at 1px, horizontal only; axes have no line, just `small` tick labels in `muted-foreground`, with numbers tabular and abbreviated (1.2M). Areas fill with the series colour at 12%. The tooltip is a `popover` with `shadow-sm` showing every series at the hovered x with the value in `mono`. Negative deltas are not red in charts; colour means series, and status colours stay out of plots. The consumer provides the data and series names; the system fixes the frame, scale, grid and legend.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.hd h3{margin:0;font:500 16px/24px var(--font-sans)}.hd .sub{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.lg{display:flex;gap:16px;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.lg i{display:inline-block;width:12px;height:2px;vertical-align:middle;margin-right:6px}
+svg{width:100%;height:140px;font:400 11px var(--font-sans)}
+.grid{stroke:var(--border)}.tick{fill:var(--muted-foreground)}
+.s1{fill:none;stroke:var(--chart-1);stroke-width:2}.s2{fill:none;stroke:var(--chart-2);stroke-width:1.5;stroke-dasharray:4 3}
+.a1{fill:var(--chart-1);opacity:.12}
+.hl{stroke:var(--muted-foreground);stroke-dasharray:2 2}
+.tt{fill:var(--popover);stroke:var(--border)}.ttx{fill:var(--foreground);font:400 11px var(--font-mono)}.ttc{fill:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;card&quot;&gt;
+&lt;div class=&quot;hd&quot;&gt;&lt;div&gt;&lt;h3&gt;Revenue overview&lt;/h3&gt;&lt;div class=&quot;sub&quot;&gt;GH₵633,000 this period · ↗ 7.7%&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;lg&quot;&gt;&lt;span&gt;&lt;i style=&quot;background:var(--chart-1)&quot;&gt;&lt;/i&gt;This year&lt;/span&gt;&lt;span&gt;&lt;i style=&quot;background:var(--chart-2)&quot;&gt;&lt;/i&gt;Previous year&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;svg viewBox=&quot;0 0 600 140&quot; preserveAspectRatio=&quot;none&quot;&gt;
+&lt;g class=&quot;grid&quot;&gt;&lt;line x1=&quot;40&quot; y1=&quot;20&quot; x2=&quot;600&quot; y2=&quot;20&quot;/&gt;&lt;line x1=&quot;40&quot; y1=&quot;60&quot; x2=&quot;600&quot; y2=&quot;60&quot;/&gt;&lt;line x1=&quot;40&quot; y1=&quot;100&quot; x2=&quot;600&quot; y2=&quot;100&quot;/&gt;&lt;/g&gt;
+&lt;g class=&quot;tick&quot;&gt;&lt;text x=&quot;0&quot; y=&quot;24&quot;&gt;80K&lt;/text&gt;&lt;text x=&quot;0&quot; y=&quot;64&quot;&gt;40K&lt;/text&gt;&lt;text x=&quot;0&quot; y=&quot;104&quot;&gt;0&lt;/text&gt;&lt;text x=&quot;40&quot; y=&quot;132&quot;&gt;Jan&lt;/text&gt;&lt;text x=&quot;180&quot; y=&quot;132&quot;&gt;Apr&lt;/text&gt;&lt;text x=&quot;320&quot; y=&quot;132&quot;&gt;Jul&lt;/text&gt;&lt;text x=&quot;460&quot; y=&quot;132&quot;&gt;Oct&lt;/text&gt;&lt;text x=&quot;575&quot; y=&quot;132&quot;&gt;Dec&lt;/text&gt;&lt;/g&gt;
+&lt;path class=&quot;a1&quot; d=&quot;M40 80L110 72 180 76 250 58 320 62 390 44 460 40 530 30 600 24V100H40Z&quot;/&gt;
+&lt;path class=&quot;s2&quot; d=&quot;M40 90L110 84 180 88 250 76 320 78 390 66 460 64 530 58 600 54&quot;/&gt;
+&lt;path class=&quot;s1&quot; d=&quot;M40 80L110 72 180 76 250 58 320 62 390 44 460 40 530 30 600 24&quot;/&gt;
+&lt;line class=&quot;hl&quot; x1=&quot;390&quot; y1=&quot;20&quot; x2=&quot;390&quot; y2=&quot;100&quot;/&gt;
+&lt;circle cx=&quot;390&quot; cy=&quot;44&quot; r=&quot;3&quot; fill=&quot;var(--chart-1)&quot;/&gt;&lt;circle cx=&quot;390&quot; cy=&quot;66&quot; r=&quot;3&quot; fill=&quot;var(--chart-2)&quot;/&gt;
+&lt;rect class=&quot;tt&quot; x=&quot;404&quot; y=&quot;28&quot; width=&quot;132&quot; height=&quot;46&quot; rx=&quot;4&quot;/&gt;
+&lt;text class=&quot;ttc&quot; x=&quot;412&quot; y=&quot;42&quot; style=&quot;font:500 11px var(--font-sans)&quot;&gt;Aug 2026&lt;/text&gt;
+&lt;text class=&quot;ttx&quot; x=&quot;412&quot; y=&quot;56&quot;&gt;This year   62,400&lt;/text&gt;&lt;text class=&quot;ttx&quot; x=&quot;412&quot; y=&quot;68&quot;&gt;Previous   47,100&lt;/text&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

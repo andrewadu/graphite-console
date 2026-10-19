@@ -1,0 +1,55 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>SettingsRow · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Forms / SettingsRow</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">SettingsRow</h1><p class="small muted">a settings group and the danger zone</p>
+<div class="frame" style="min-height:300px"><div id="root" style="padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+h3{margin:0 0 8px;font:500 16px/24px var(--font-sans)}
+.g{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg)}
+.g.danger{border-color:var(--destructive)}
+.r{display:flex;align-items:center;gap:16px;min-height:56px;padding:8px 16px;border-top:1px solid var(--border)}.g .r:first-child{border-top:0}
+.r div{flex:1}.r b{font-weight:500;display:block}.r small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--primary);flex:none}.sw::after{content:"";position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:9999px;background:var(--card)}
+.sw.off{background:var(--muted)}.sw.off::after{left:2px;border:1px solid var(--border);box-sizing:border-box}
+select{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--secondary);color:var(--foreground);font:500 14px/20px var(--font-sans);cursor:pointer;white-space:nowrap}
+.btn.des{background:transparent;border-color:var(--destructive);color:var(--destructive)}
+</style>
+<div><h3>Security</h3><div class="g">
+<div class="r"><div><b>Require 2FA for administrators</b><small>Applies at next sign-in. Takes effect immediately.</small></div><span class="sw"></span></div>
+<div class="r"><div><b>Session lifetime</b><small>Idle sessions are signed out after this period.</small></div><select><option>30 days</option><option>7 days</option><option>24 hours</option></select></div>
+<div class="r"><div><b>IP allowlist</b><small>Restrict console access to listed CIDR ranges. Off.</small></div><span class="sw off"></span></div>
+</div></div>
+<div><h3 style="color:var(--destructive)">Danger zone</h3><div class="g danger">
+<div class="r"><div><b>Rotate all API keys</b><small>Every integration stops until it is updated with a new key.</small></div><button class="btn des">Rotate keys…</button></div>
+<div class="r"><div><b>Delete tenant</b><small>Removes all users, data and audit history after a 30-day hold.</small></div><button class="btn des">Delete tenant…</button></div>
+</div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>The unit of every settings page: a row with the setting name in `body-medium`, a one-line `small` description in `muted-foreground`, and the control on the right (switch, select, button or value with Edit). Rows are 56px (two lines) inside a `card`, separated by `border` hairlines, grouped under a `title` with an optional group description. Dangerous settings (delete tenant, rotate all keys) live in a last group titled &quot;Danger zone&quot; whose card border is `destructive` and whose buttons are destructive outlines; each opens a Dialog. Changes apply on toggle for switches and on Save for everything else, stated per row. The consumer provides the rows; the system fixes the layout and the danger-zone rule.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+h3{margin:0 0 8px;font:500 16px/24px var(--font-sans)}
+.g{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg)}
+.g.danger{border-color:var(--destructive)}
+.r{display:flex;align-items:center;gap:16px;min-height:56px;padding:8px 16px;border-top:1px solid var(--border)}.g .r:first-child{border-top:0}
+.r div{flex:1}.r b{font-weight:500;display:block}.r small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--primary);flex:none}.sw::after{content:&quot;&quot;;position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:9999px;background:var(--card)}
+.sw.off{background:var(--muted)}.sw.off::after{left:2px;border:1px solid var(--border);box-sizing:border-box}
+select{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--secondary);color:var(--foreground);font:500 14px/20px var(--font-sans);cursor:pointer;white-space:nowrap}
+.btn.des{background:transparent;border-color:var(--destructive);color:var(--destructive)}
+&lt;/style&gt;
+&lt;div&gt;&lt;h3&gt;Security&lt;/h3&gt;&lt;div class=&quot;g&quot;&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;Require 2FA for administrators&lt;/b&gt;&lt;small&gt;Applies at next sign-in. Takes effect immediately.&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;sw&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;Session lifetime&lt;/b&gt;&lt;small&gt;Idle sessions are signed out after this period.&lt;/small&gt;&lt;/div&gt;&lt;select&gt;&lt;option&gt;30 days&lt;/option&gt;&lt;option&gt;7 days&lt;/option&gt;&lt;option&gt;24 hours&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;IP allowlist&lt;/b&gt;&lt;small&gt;Restrict console access to listed CIDR ranges. Off.&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;sw off&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;h3 style=&quot;color:var(--destructive)&quot;&gt;Danger zone&lt;/h3&gt;&lt;div class=&quot;g danger&quot;&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;Rotate all API keys&lt;/b&gt;&lt;small&gt;Every integration stops until it is updated with a new key.&lt;/small&gt;&lt;/div&gt;&lt;button class=&quot;btn des&quot;&gt;Rotate keys…&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;Delete tenant&lt;/b&gt;&lt;small&gt;Removes all users, data and audit history after a 30-day hold.&lt;/small&gt;&lt;/div&gt;&lt;button class=&quot;btn des&quot;&gt;Delete tenant…&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

@@ -1,0 +1,3 @@
+# CodeBlock
+
+Read-only code and data: API responses, webhook payloads, config, log lines. `mono` 13px/20px on a `background` ground inside a `card` with `border` and `radius-md`, `space-3` padding, horizontal scroll (never wrap, except logs). A header row shows the language or content type in `label` `muted-foreground` and a Copy ghost button; line numbers in `muted-foreground` are on for anything over 8 lines. Syntax colouring uses only `foreground`, `muted-foreground` and `chart-2` (strings and keys), so the block stays as quiet as the rest of the console. Secrets render masked (`sk_live_••••7f3a`) with a Reveal button that is logged. The consumer provides the text and language.
