@@ -1,0 +1,13 @@
+<!-- @dsCard group="Feedback" height=150 subtitle="job progress; quota at 83%; quota at 97%" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.p{display:flex;flex-direction:column;gap:6px}
+.p .l{display:flex;justify-content:space-between}.p .l span:last-child{font:400 13px/20px var(--font-mono);color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+.tr{height:4px;background:var(--muted);border-radius:9999px;overflow:hidden}.tr i{display:block;height:100%;background:var(--primary)}
+.tr.warn i{background:var(--warning)}.tr.bad i{background:var(--destructive)}
+</style>
+<div class="p"><div class="l"><span>Importing users-october.csv</span><span>64% · 7,936 / 12,400</span></div><div class="tr"><i style="width:64%"></i></div></div>
+<div class="p"><div class="l"><span>API requests this month</span><span>83% · 830K / 1M</span></div><div class="tr warn"><i style="width:83%"></i></div></div>
+<div class="p"><div class="l"><span>Storage</span><span style="color:var(--destructive)">97% · 48.5 / 50 GB</span></div><div class="tr bad"><i style="width:97%"></i></div></div>
+</div>
+<script>/* static */</script>

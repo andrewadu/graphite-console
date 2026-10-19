@@ -1,0 +1,3 @@
+# Dialog
+
+A modal for confirmations and short forms. 480px wide (640px for forms), `card` ground, `border`, `radius-lg`, `shadow-md`, over a scrim of `foreground` at 40%. Title in `title` style, body in `body` with `muted-foreground` for explanatory text, `space-4` padding, a footer with actions right-aligned: a secondary Cancel on the left of a primary or destructive confirm. Destructive dialogs name the object in the title ("Suspend Kofi Boateng?") and the button ("Suspend user"), and for irreversible actions ask the operator to type the identifier. Focus is trapped; Escape cancels; the confirm is never the default-focused button for destructive dialogs. The consumer provides title, body, actions and the handlers.

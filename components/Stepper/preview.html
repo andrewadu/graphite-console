@@ -1,0 +1,24 @@
+<!-- @dsCard group="Navigation" height=110 subtitle="four-step tenant setup, on step 2; compact form" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:20px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.st{display:flex;align-items:flex-start}
+.s{display:flex;align-items:flex-start;gap:8px;flex:1}
+.s .d{width:24px;height:24px;border-radius:9999px;display:grid;place-items:center;font:500 12px/1 var(--font-sans);flex:none;background:var(--secondary);color:var(--muted-foreground);border:1px solid var(--border)}
+.s.done .d,.s.cur .d{background:var(--primary);color:var(--primary-foreground);border-color:transparent}
+.s .l{font:500 14px/20px var(--font-sans);color:var(--muted-foreground)}.s.cur .l,.s.done .l{color:var(--foreground)}
+.s small{display:block;font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+.s .ln{flex:1;height:1px;background:var(--border);margin:12px 12px 0 8px}
+.s:last-child .ln{display:none}
+.cmp{display:flex;flex-direction:column;gap:4px;width:280px}
+.cmp span{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}.cmp b{font-weight:500;color:var(--foreground)}
+.pb{height:4px;background:var(--muted);border-radius:2px;overflow:hidden}.pb i{display:block;height:100%;width:50%;background:var(--primary)}
+</style>
+<div class="st">
+<div class="s done"><span class="d">✓</span><div><div class="l">Tenant details</div><small>Name, region</small></div><span class="ln"></span></div>
+<div class="s cur"><span class="d">2</span><div><div class="l">Permissions</div><small>Roles and admins</small></div><span class="ln"></span></div>
+<div class="s"><span class="d">3</span><div><div class="l">Integrations</div><small>API keys, webhooks</small></div><span class="ln"></span></div>
+<div class="s"><span class="d">4</span><div><div class="l">Review</div><small>Confirm and create</small></div><span class="ln"></span></div>
+</div>
+<div class="cmp"><span>Step 2 of 4 · <b>Permissions</b></span><div class="pb"><i></i></div></div>
+</div>
+<script>/* static */</script>

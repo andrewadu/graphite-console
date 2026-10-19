@@ -1,0 +1,45 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>FilterBar · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / FilterBar</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">FilterBar</h1><p class="small muted">search and filter chips; bulk-selection bar</p>
+<div class="frame" style="min-height:120px"><div id="root" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.search{display:flex;align-items:center;gap:6px;width:240px;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--muted-foreground)}
+.search svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:var(--radius-md);background:var(--accent);border:1px solid var(--border);font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.chip b{font-weight:500;color:var(--foreground)}.chip .x{cursor:pointer}
+.gh{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.gh:hover{background:var(--accent)}
+.gh.mut{color:var(--muted-foreground)}
+.bulk{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:var(--radius-md);background:var(--accent);border:1px solid var(--border)}
+.bulk b{font-weight:500;margin-right:8px}
+.des{color:var(--destructive);margin-left:auto}
+</style>
+<div class="bar"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search users…</div>
+<span class="chip">Role: <b>Administrator</b><span class="x">✕</span></span><span class="chip">Status: <b>Active</b><span class="x">✕</span></span><span class="chip">Created: <b>Last 30 days</b><span class="x">✕</span></span>
+<button class="gh">+ Add filter</button><button class="gh mut">Clear all</button></div>
+<div class="bulk"><b>3 selected</b><button class="gh">Assign role</button><button class="gh">Export</button><button class="gh">Require 2FA</button><button class="gh des">Suspend…</button></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>The row above a DataTable: a 32px search field (240px), filter chips, and a &quot;Add filter&quot; ghost button; the row-count and bulk-action bar replace it while rows are selected. A chip is a `secondary` pill-less `radius-md` block showing `Field: value` in `small`, the value in `body-medium`, with a ✕ to remove; active chips are `accent` with a `border`. A &quot;Clear all&quot; ghost link appears after two chips. Bulk mode: `accent` ground, &quot;3 selected&quot; in `body-medium`, then ghost actions and a destructive one last. The consumer provides the fields, operators, values and bulk actions; the system fixes layout and the rule that filters are visible as chips, never hidden in a drawer.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.search{display:flex;align-items:center;gap:6px;width:240px;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--muted-foreground)}
+.search svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:var(--radius-md);background:var(--accent);border:1px solid var(--border);font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.chip b{font-weight:500;color:var(--foreground)}.chip .x{cursor:pointer}
+.gh{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.gh:hover{background:var(--accent)}
+.gh.mut{color:var(--muted-foreground)}
+.bulk{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:var(--radius-md);background:var(--accent);border:1px solid var(--border)}
+.bulk b{font-weight:500;margin-right:8px}
+.des{color:var(--destructive);margin-left:auto}
+&lt;/style&gt;
+&lt;div class=&quot;bar&quot;&gt;&lt;div class=&quot;search&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;11&quot; cy=&quot;11&quot; r=&quot;7&quot;/&gt;&lt;path d=&quot;M20 20l-4-4&quot;/&gt;&lt;/svg&gt;Search users…&lt;/div&gt;
+&lt;span class=&quot;chip&quot;&gt;Role: &lt;b&gt;Administrator&lt;/b&gt;&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;chip&quot;&gt;Status: &lt;b&gt;Active&lt;/b&gt;&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;chip&quot;&gt;Created: &lt;b&gt;Last 30 days&lt;/b&gt;&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;
+&lt;button class=&quot;gh&quot;&gt;+ Add filter&lt;/button&gt;&lt;button class=&quot;gh mut&quot;&gt;Clear all&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;bulk&quot;&gt;&lt;b&gt;3 selected&lt;/b&gt;&lt;button class=&quot;gh&quot;&gt;Assign role&lt;/button&gt;&lt;button class=&quot;gh&quot;&gt;Export&lt;/button&gt;&lt;button class=&quot;gh&quot;&gt;Require 2FA&lt;/button&gt;&lt;button class=&quot;gh des&quot;&gt;Suspend…&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

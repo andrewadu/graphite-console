@@ -1,0 +1,23 @@
+<!-- @dsCard group="Forms" height=230 subtitle="open tenant picker with search and descriptions" -->
+<div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.f{width:320px;display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.trig{display:flex;align-items:center;justify-content:space-between;height:32px;padding:0 8px;border:1px solid var(--ring);border-radius:var(--radius-md);background:var(--card);outline:2px solid var(--ring);outline-offset:2px}
+.trig span:last-child{color:var(--muted-foreground)}
+.pop{margin-top:6px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.q{height:36px;padding:0 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--muted-foreground)}
+.q b{color:var(--foreground);font-weight:400}
+.o{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;margin:4px}
+.o.on{background:var(--accent);border-radius:var(--radius-md)}
+.o div{flex:1;line-height:16px}.o small{display:block;font:400 12px/14px var(--font-sans);color:var(--muted-foreground)}
+.o .ck{color:var(--foreground)}
+</style>
+<div class="f"><label>Tenant</label><div class="trig"><span>Graphite Microfinance Ltd</span><span>▾</span></div>
+<div class="pop"><div class="q">🔍 <b>gra</b></div>
+<div class="o on"><div>Graphite Microfinance Ltd<small>tnt_4b9e21 · eu-west-1 · Enterprise</small></div><span class="ck">✓</span></div>
+<div class="o"><div>Grand Ridge Credit Union<small>tnt_77c0ab · eu-west-1 · Standard</small></div></div>
+<div class="o"><div>Gravity Pay Sandbox<small>tnt_s_19de · sandbox</small></div></div>
+</div></div>
+</div>
+<script>/* static */</script>

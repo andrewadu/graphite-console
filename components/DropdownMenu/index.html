@@ -1,0 +1,55 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>DropdownMenu · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Overlays / DropdownMenu</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">DropdownMenu</h1><p class="small muted">row actions menu with a destructive group</p>
+<div class="frame" style="min-height:230px"><div id="root" style="padding:16px;display:flex;gap:16px;align-items:flex-start;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.trig{height:28px;width:28px;border:0;border-radius:var(--radius-md);background:var(--accent);color:var(--foreground);font:600 14px/1 var(--font-sans);cursor:pointer}
+.menu{min-width:200px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:4px}
+.it{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:var(--radius-md);font:400 14px/20px var(--font-sans);cursor:pointer}
+.it:hover,.it.on{background:var(--accent)}
+.it svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;color:var(--muted-foreground)}
+.it .k{margin-left:auto;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.sep{height:1px;background:var(--border);margin:4px 0}
+.des{color:var(--destructive)}.des svg{color:var(--destructive)}
+</style>
+<button class="trig">⋯</button>
+<div class="menu">
+<div class="it on"><svg viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16z"/></svg>Edit user<span class="k">E</span></div>
+<div class="it"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8"/></svg>Copy user ID<span class="k">⌘C</span></div>
+<div class="it"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>View audit log</div>
+<div class="sep"></div>
+<div class="it"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Reset password</div>
+<div class="it"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>Require 2FA</div>
+<div class="sep"></div>
+<div class="it des"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.5 5.5l13 13"/></svg>Suspend user…</div>
+</div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Row actions and overflow (&quot;…&quot;) menus: a `popover` with `border`, `radius-lg`, `shadow-sm`, 4px inner padding, min 180px. Items are 32px, `body`, 16px icon in `muted-foreground`, optional shortcut in `small` `muted-foreground` on the right; hover and keyboard focus are `accent`. Groups are separated by a `border` hairline with `space-1` margins. Destructive items sit in their own last group in `destructive` text and always open a Dialog. Submenus open to the right with a chevron. A menu never has more than ~9 items; beyond that it becomes a CommandPalette or a page. The consumer provides groups, items, icons and handlers.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;gap:16px;align-items:flex-start;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.trig{height:28px;width:28px;border:0;border-radius:var(--radius-md);background:var(--accent);color:var(--foreground);font:600 14px/1 var(--font-sans);cursor:pointer}
+.menu{min-width:200px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:4px}
+.it{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:var(--radius-md);font:400 14px/20px var(--font-sans);cursor:pointer}
+.it:hover,.it.on{background:var(--accent)}
+.it svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;color:var(--muted-foreground)}
+.it .k{margin-left:auto;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.sep{height:1px;background:var(--border);margin:4px 0}
+.des{color:var(--destructive)}.des svg{color:var(--destructive)}
+&lt;/style&gt;
+&lt;button class=&quot;trig&quot;&gt;⋯&lt;/button&gt;
+&lt;div class=&quot;menu&quot;&gt;
+&lt;div class=&quot;it on&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 20h4l10-10-4-4L4 16z&quot;/&gt;&lt;/svg&gt;Edit user&lt;span class=&quot;k&quot;&gt;E&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;3&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M8 12h8&quot;/&gt;&lt;/svg&gt;Copy user ID&lt;span class=&quot;k&quot;&gt;⌘C&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 6h16M4 12h16M4 18h10&quot;/&gt;&lt;/svg&gt;View audit log&lt;/div&gt;
+&lt;div class=&quot;sep&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt;Reset password&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z&quot;/&gt;&lt;/svg&gt;Require 2FA&lt;/div&gt;
+&lt;div class=&quot;sep&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;it des&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M5.5 5.5l13 13&quot;/&gt;&lt;/svg&gt;Suspend user…&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

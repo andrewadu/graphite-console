@@ -1,0 +1,41 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>TextField · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Forms / TextField</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">TextField</h1><p class="small muted">rest, with helper, error, disabled</p>
+<div class="frame" style="min-height:140px"><div id="root" style="padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f input{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.f input::placeholder{color:var(--muted-foreground)}
+.f input:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-color:var(--ring)}
+.f .hint{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f.error input{border-color:var(--destructive)}.f.error .hint{color:var(--destructive)}
+.f input:disabled{background:var(--muted);color:var(--muted-foreground)}
+</style>
+<div class="f"><label>Email</label><input placeholder="name@company.com"></div>
+<div class="f"><label>Display name</label><input value="Ama Mensah"><span class="hint">Shown in audit logs.</span></div>
+<div class="f error"><label>API rate limit</label><input value="0"><span class="hint">Must be at least 1 request/second.</span></div>
+<div class="f"><label>Tenant ID</label><input value="tnt_4b9e21" disabled><span class="hint">Assigned at creation.</span></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A labelled text input for forms, filters and search. The consumer provides the label, value, placeholder, optional helper or error text and an optional leading icon. The system fixes the 32px height, `input` border at rest, `card` fill, `radius-md`, the `ring` focus state and the error state (`destructive` border and message). Label is `label` style above the field, helper text is `small` in `muted-foreground`, errors are `small` in `destructive`. Fields sit `space-3` apart in a form; never place a label to the left of a field in a console form, since labels of different lengths break the column.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f input{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.f input::placeholder{color:var(--muted-foreground)}
+.f input:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-color:var(--ring)}
+.f .hint{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f.error input{border-color:var(--destructive)}.f.error .hint{color:var(--destructive)}
+.f input:disabled{background:var(--muted);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Email&lt;/label&gt;&lt;input placeholder=&quot;name@company.com&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Display name&lt;/label&gt;&lt;input value=&quot;Ama Mensah&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Shown in audit logs.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f error&quot;&gt;&lt;label&gt;API rate limit&lt;/label&gt;&lt;input value=&quot;0&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Must be at least 1 request/second.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Tenant ID&lt;/label&gt;&lt;input value=&quot;tnt_4b9e21&quot; disabled&gt;&lt;span class=&quot;hint&quot;&gt;Assigned at creation.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

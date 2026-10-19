@@ -1,0 +1,3 @@
+# Textarea
+
+Multi-line input for notes, reasons and JSON payloads. Same chrome as TextField (`input` border, `card` fill, `radius-md`, `ring` focus), min 3 rows, grows to 10 then scrolls, `space-2` by `space-2` padding. A character counter in `small` `muted-foreground` sits bottom-right when a limit exists and turns `destructive` past it. The code variant switches to `mono` 13px, `background` fill and preserves whitespace; it is for config and payloads, not prose. A suspension or refund reason is always required and at least 10 characters, enforced inline. The consumer provides label, value, limit and the code flag.

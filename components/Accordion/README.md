@@ -1,0 +1,3 @@
+# Accordion
+
+Collapsible sections for long settings pages and detail panes: each header is a 40px row with the title in `body-medium`, an optional `small` summary in `muted-foreground` (the current value, so a closed section still informs), and a chevron in `muted-foreground` that rotates when open; a `border` hairline separates sections. Content pads `space-4` and sits on the same ground as the header. Several sections may be open at once; the first is open by default. Use it for settings groups (Security, Notifications, Billing), never to hide primary content or a table. The consumer provides items and open state.

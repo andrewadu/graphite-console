@@ -1,0 +1,43 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>FileUpload · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Forms / FileUpload</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">FileUpload</h1><p class="small muted">dropzone with queued, uploading and failed files</p>
+<div class="frame" style="min-height:240px"><div id="root" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.dz{border:2px dashed var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.dz svg{width:20px;height:20px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75}
+.dz b{font-weight:500}.dz small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md)}
+.f svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75;flex:none}
+.f .n{flex:1;display:flex;flex-direction:column;gap:2px}.f .n small{font:400 12px/14px var(--font-sans);color:var(--muted-foreground)}
+.pb{width:120px;height:4px;background:var(--muted);border-radius:2px;overflow:hidden}.pb i{display:block;height:100%;background:var(--primary)}
+.ok{color:var(--success);font:500 12px/16px var(--font-sans)}.bad{color:var(--destructive);font:400 13px/18px var(--font-sans)}
+.gh{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.gh:hover{background:var(--accent)}
+</style>
+<div class="dz"><svg viewBox="0 0 24 24"><path d="M12 16V4M6 10l6-6 6 6"/><path d="M4 20h16"/></svg><b>Drop files or browse</b><small>CSV or XLSX up to 20 MB · one file per import</small></div>
+<div class="f"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg><div class="n">users-october.csv<small>1.8 MB · 12,400 rows</small></div><span class="ok">✓ Validated</span></div>
+<div class="f"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg><div class="n">kyc-batch-07.xlsx<small>9.2 MB · uploading 64%</small></div><span class="pb"><i style="width:64%"></i></span></div>
+<div class="f"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg><div class="n">export (1).csv<small>31 MB</small></div><span class="bad">Exceeds 20 MB limit</span><button class="gh">Remove</button></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Dropzone for CSV imports, KYC documents, logo uploads. A dashed `border` box (2px dashed, `radius-lg`, `space-6` padding) with a 20px icon in `muted-foreground`, &quot;Drop files or browse&quot; in `body-medium` and the accepted types and size limit in `small`; on drag-over the border turns `primary` and the ground `accent`. Each queued file is a 40px row: 16px type icon, name in `body`, size in `small` `muted-foreground`, a 4px progress track (`muted` with `primary` fill), then a StatusBadge-style result or a `destructive` reason. Failures stay in the list with a Retry ghost button; never silently drop a file. The consumer provides accept, max size, multiple and the handlers.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.dz{border:2px dashed var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.dz svg{width:20px;height:20px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75}
+.dz b{font-weight:500}.dz small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md)}
+.f svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75;flex:none}
+.f .n{flex:1;display:flex;flex-direction:column;gap:2px}.f .n small{font:400 12px/14px var(--font-sans);color:var(--muted-foreground)}
+.pb{width:120px;height:4px;background:var(--muted);border-radius:2px;overflow:hidden}.pb i{display:block;height:100%;background:var(--primary)}
+.ok{color:var(--success);font:500 12px/16px var(--font-sans)}.bad{color:var(--destructive);font:400 13px/18px var(--font-sans)}
+.gh{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.gh:hover{background:var(--accent)}
+&lt;/style&gt;
+&lt;div class=&quot;dz&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 16V4M6 10l6-6 6 6&quot;/&gt;&lt;path d=&quot;M4 20h16&quot;/&gt;&lt;/svg&gt;&lt;b&gt;Drop files or browse&lt;/b&gt;&lt;small&gt;CSV or XLSX up to 20 MB · one file per import&lt;/small&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 2h9l5 5v15H6z&quot;/&gt;&lt;path d=&quot;M14 2v6h6&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;n&quot;&gt;users-october.csv&lt;small&gt;1.8 MB · 12,400 rows&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;ok&quot;&gt;✓ Validated&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 2h9l5 5v15H6z&quot;/&gt;&lt;path d=&quot;M14 2v6h6&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;n&quot;&gt;kyc-batch-07.xlsx&lt;small&gt;9.2 MB · uploading 64%&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;pb&quot;&gt;&lt;i style=&quot;width:64%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 2h9l5 5v15H6z&quot;/&gt;&lt;path d=&quot;M14 2v6h6&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;n&quot;&gt;export (1).csv&lt;small&gt;31 MB&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;bad&quot;&gt;Exceeds 20 MB limit&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Remove&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

@@ -1,0 +1,17 @@
+<!-- @dsCard group="Forms" height=170 subtitle="reason field with counter; code variant" -->
+<div id="root" style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f textarea{min-height:88px;padding:8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans);resize:vertical}
+.f textarea.code{font:400 13px/20px var(--font-mono);background:var(--background);white-space:pre}
+.f .ft{display:flex;justify-content:space-between;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+</style>
+<div class="f"><label>Reason for suspension</label><textarea>Repeated failed sign-ins from an unrecognised network; account holder confirmed by phone they did not attempt them.</textarea><div class="ft"><span>Visible to the account holder.</span><span>128 / 500</span></div></div>
+<div class="f"><label>Webhook payload (JSON)</label><textarea class="code">{
+  "event": "user.suspended",
+  "user_id": "usr_c40b5d17",
+  "actor": "usr_8f3a92c1"
+}</textarea><div class="ft"><span>Sent as application/json.</span><span>Valid</span></div></div>
+</div>
+<script>/* static */</script>

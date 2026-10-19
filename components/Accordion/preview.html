@@ -1,0 +1,22 @@
+<!-- @dsCard group="Navigation" height=220 subtitle="settings groups with summaries; one open" -->
+<div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.ac{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.h{display:flex;align-items:center;gap:12px;height:40px;padding:0 16px;border-top:1px solid var(--border);cursor:pointer}
+.ac .h:first-child{border-top:0}
+.h b{font-weight:500}.h small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);flex:1}
+.h svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:2}
+.h.on svg{transform:rotate(180deg)}
+.c{padding:4px 16px 16px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center;color:var(--muted-foreground);font-size:13px}
+.c b{font-weight:400;font-size:14px;color:var(--foreground);display:block}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--primary)}.sw::after{content:"";position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:9999px;background:var(--card)}
+.sw.off{background:var(--muted)}.sw.off::after{left:2px;border:1px solid var(--border);box-sizing:border-box}
+</style>
+<div class="ac">
+<div class="h on"><b>Security</b><small>2FA required · 30-day sessions</small><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+<div class="c"><div><b>Require 2FA for administrators</b>Applies at next sign-in.</div><span class="sw"></span><div><b>Session lifetime</b>Sign out idle sessions after 30 days.</div><span style="color:var(--foreground)">30 days ▾</span><div><b>IP allowlist</b>Restrict console access to listed ranges.</div><span class="sw off"></span></div>
+<div class="h"><b>Notifications</b><small>Email on failed jobs · weekly digest off</small><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+<div class="h"><b>Billing</b><small>Invoice monthly · GHS</small><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+</div>
+</div>
+<script>/* static */</script>

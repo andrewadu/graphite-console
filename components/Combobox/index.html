@@ -1,0 +1,51 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Combobox · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Forms / Combobox</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Combobox</h1><p class="small muted">open tenant picker with search and descriptions</p>
+<div class="frame" style="min-height:230px"><div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.f{width:320px;display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.trig{display:flex;align-items:center;justify-content:space-between;height:32px;padding:0 8px;border:1px solid var(--ring);border-radius:var(--radius-md);background:var(--card);outline:2px solid var(--ring);outline-offset:2px}
+.trig span:last-child{color:var(--muted-foreground)}
+.pop{margin-top:6px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.q{height:36px;padding:0 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--muted-foreground)}
+.q b{color:var(--foreground);font-weight:400}
+.o{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;margin:4px}
+.o.on{background:var(--accent);border-radius:var(--radius-md)}
+.o div{flex:1;line-height:16px}.o small{display:block;font:400 12px/14px var(--font-sans);color:var(--muted-foreground)}
+.o .ck{color:var(--foreground)}
+</style>
+<div class="f"><label>Tenant</label><div class="trig"><span>Graphite Microfinance Ltd</span><span>▾</span></div>
+<div class="pop"><div class="q">🔍 <b>gra</b></div>
+<div class="o on"><div>Graphite Microfinance Ltd<small>tnt_4b9e21 · eu-west-1 · Enterprise</small></div><span class="ck">✓</span></div>
+<div class="o"><div>Grand Ridge Credit Union<small>tnt_77c0ab · eu-west-1 · Standard</small></div></div>
+<div class="o"><div>Gravity Pay Sandbox<small>tnt_s_19de · sandbox</small></div></div>
+</div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A searchable select for long lists: tenants, users, countries, roles with descriptions. The trigger matches TextField (32px, `input` border, chevron in `muted-foreground`); open, it shows a search row and a `popover` list of 32px options with the label in `body`, an optional `small` description in `muted-foreground`, and a check on the selected one; the highlighted option is `accent`. Results filter as you type and show &quot;No matches&quot; as a quiet row, never an empty box. Multi-select shows chips in the trigger like TagInput. Lists over ~200 items are fetched as the operator types, with a Skeleton row while loading. The consumer provides options, value and the fetcher.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.f{width:320px;display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.trig{display:flex;align-items:center;justify-content:space-between;height:32px;padding:0 8px;border:1px solid var(--ring);border-radius:var(--radius-md);background:var(--card);outline:2px solid var(--ring);outline-offset:2px}
+.trig span:last-child{color:var(--muted-foreground)}
+.pop{margin-top:6px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.q{height:36px;padding:0 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--muted-foreground)}
+.q b{color:var(--foreground);font-weight:400}
+.o{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;margin:4px}
+.o.on{background:var(--accent);border-radius:var(--radius-md)}
+.o div{flex:1;line-height:16px}.o small{display:block;font:400 12px/14px var(--font-sans);color:var(--muted-foreground)}
+.o .ck{color:var(--foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Tenant&lt;/label&gt;&lt;div class=&quot;trig&quot;&gt;&lt;span&gt;Graphite Microfinance Ltd&lt;/span&gt;&lt;span&gt;▾&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;pop&quot;&gt;&lt;div class=&quot;q&quot;&gt;🔍 &lt;b&gt;gra&lt;/b&gt;&lt;/div&gt;
+&lt;div class=&quot;o on&quot;&gt;&lt;div&gt;Graphite Microfinance Ltd&lt;small&gt;tnt_4b9e21 · eu-west-1 · Enterprise&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;ck&quot;&gt;✓&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;o&quot;&gt;&lt;div&gt;Grand Ridge Credit Union&lt;small&gt;tnt_77c0ab · eu-west-1 · Standard&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;o&quot;&gt;&lt;div&gt;Gravity Pay Sandbox&lt;small&gt;tnt_s_19de · sandbox&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

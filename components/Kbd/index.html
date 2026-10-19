@@ -1,0 +1,35 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Kbd · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Actions / Kbd</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Kbd</h1><p class="small muted">shortcut legend</p>
+<div class="frame" style="min-height:130px"><div id="root" style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px 32px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.r{display:flex;justify-content:space-between;align-items:center;height:28px}
+kbd{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;font:400 11px/1 var(--font-mono);color:var(--muted-foreground);background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.k{display:inline-flex;gap:4px;align-items:center}.then{font:400 12px/16px var(--font-sans);color:var(--muted-foreground);margin:0 2px}
+</style>
+<div class="r"><span>Command palette</span><span class="k"><kbd>⌘</kbd><kbd>K</kbd></span></div>
+<div class="r"><span>Go to users</span><span class="k"><kbd>G</kbd><span class="then">then</span><kbd>U</kbd></span></div>
+<div class="r"><span>Focus search</span><span class="k"><kbd>/</kbd></span></div>
+<div class="r"><span>Select row</span><span class="k"><kbd>X</kbd></span></div>
+<div class="r"><span>Shortcuts</span><span class="k"><kbd>?</kbd></span></div>
+<div class="r"><span>Close / cancel</span><span class="k"><kbd>Esc</kbd></span></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Keyboard shortcut caps, shown next to menu items, in tooltips, in the CommandPalette and on a shortcuts sheet (opened with `?`). A cap is `mono` 11px in `muted-foreground` on a `secondary` ground with a `border` and `radius-sm`, 20px tall, min 20px wide; combinations join caps with a 4px gap, no plus sign; sequences (G then A) are two caps separated by &quot;then&quot; in `small`. Use the platform symbol (⌘ on macOS, Ctrl elsewhere) and never bind single letters that type into a focused field. The consumer provides the keys; the system fixes the rendering and reserves `?`, `/`, `⌘K` and `Esc`.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px 32px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.r{display:flex;justify-content:space-between;align-items:center;height:28px}
+kbd{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;font:400 11px/1 var(--font-mono);color:var(--muted-foreground);background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.k{display:inline-flex;gap:4px;align-items:center}.then{font:400 12px/16px var(--font-sans);color:var(--muted-foreground);margin:0 2px}
+&lt;/style&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Command palette&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;K&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Go to users&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;G&lt;/kbd&gt;&lt;span class=&quot;then&quot;&gt;then&lt;/span&gt;&lt;kbd&gt;U&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Focus search&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;/&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Select row&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;X&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Shortcuts&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;?&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Close / cancel&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;Esc&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

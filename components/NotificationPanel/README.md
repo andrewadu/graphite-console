@@ -1,0 +1,3 @@
+# NotificationPanel
+
+The bell: a 28px ghost icon button with an unread count badge (16px, `primary` ground, `primary-foreground` 11px text; never red, because red means failure), opening a 360px `popover` panel. Rows are 56px: a 16px tone icon, a `body` title with the actor in `body-medium`, a `small` time in `muted-foreground`; unread rows have a 6px `primary` dot on the left and sit on `card`; read rows sit on `popover`. A header with "Notifications" in `title` and a "Mark all read" ghost link; a footer link to the full inbox. Notifications are about things that happened to the operator's objects, never marketing. The consumer provides the list and handlers.

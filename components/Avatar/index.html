@@ -1,0 +1,39 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Avatar · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / Avatar</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Avatar</h1><p class="small muted">sizes, square tenant mark, presence, stack</p>
+<div class="frame" style="min-height:90px"><div id="root" style="padding:16px;display:flex;gap:24px;align-items:center;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.av{display:inline-grid;place-items:center;border-radius:9999px;background:var(--muted);color:var(--foreground);font:500 14px/1 var(--font-sans);position:relative;flex:none}
+.s20{width:20px;height:20px;font-size:11px}.s24{width:24px;height:24px;font-size:11px}.s32{width:32px;height:32px;font-size:13px}.s40{width:40px;height:40px}
+.sq{border-radius:var(--radius-sm);background:var(--primary);color:var(--primary-foreground)}
+.dot::after{content:"";position:absolute;right:-1px;bottom:-1px;width:8px;height:8px;border-radius:9999px;background:var(--success);border:2px solid var(--card)}
+.stack{display:flex}.stack .av{border:2px solid var(--card);margin-left:-8px}.stack .av:first-child{margin-left:0}
+.more{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);margin-left:8px;align-self:center}
+.row{display:flex;align-items:center;gap:8px}
+</style>
+<div class="row"><span class="av s20">AM</span><span class="av s24">KB</span><span class="av s32">EO</span><span class="av s40">YD</span></div>
+<div class="row"><span class="av s32 sq">G</span><span class="av s24 sq">T</span></div>
+<div class="row"><span class="av s32 dot">AM</span><span class="av s40 dot">KB</span></div>
+<div class="stack"><span class="av s32">AM</span><span class="av s32">KB</span><span class="av s32">EO</span><span class="more">+9</span></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>People and tenants in tables, headers and the sidebar: a `radius-full` circle (`radius-sm` square for tenants and systems) in 20, 24, 32 and 40px. With no image, initials in `body-medium` (11px at 20 and 24) on a `muted` ground in `foreground`; the system does not assign random colours to initials, because colour means status. An optional 8px presence dot in `success` sits bottom-right with a 2px `card` ring. Stacked avatars overlap by a quarter with the same ring, and show &quot;+N&quot; in `muted-foreground` after three. The consumer provides name, image and size.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;gap:24px;align-items:center;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.av{display:inline-grid;place-items:center;border-radius:9999px;background:var(--muted);color:var(--foreground);font:500 14px/1 var(--font-sans);position:relative;flex:none}
+.s20{width:20px;height:20px;font-size:11px}.s24{width:24px;height:24px;font-size:11px}.s32{width:32px;height:32px;font-size:13px}.s40{width:40px;height:40px}
+.sq{border-radius:var(--radius-sm);background:var(--primary);color:var(--primary-foreground)}
+.dot::after{content:&quot;&quot;;position:absolute;right:-1px;bottom:-1px;width:8px;height:8px;border-radius:9999px;background:var(--success);border:2px solid var(--card)}
+.stack{display:flex}.stack .av{border:2px solid var(--card);margin-left:-8px}.stack .av:first-child{margin-left:0}
+.more{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);margin-left:8px;align-self:center}
+.row{display:flex;align-items:center;gap:8px}
+&lt;/style&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;av s20&quot;&gt;AM&lt;/span&gt;&lt;span class=&quot;av s24&quot;&gt;KB&lt;/span&gt;&lt;span class=&quot;av s32&quot;&gt;EO&lt;/span&gt;&lt;span class=&quot;av s40&quot;&gt;YD&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;av s32 sq&quot;&gt;G&lt;/span&gt;&lt;span class=&quot;av s24 sq&quot;&gt;T&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;av s32 dot&quot;&gt;AM&lt;/span&gt;&lt;span class=&quot;av s40 dot&quot;&gt;KB&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;stack&quot;&gt;&lt;span class=&quot;av s32&quot;&gt;AM&lt;/span&gt;&lt;span class=&quot;av s32&quot;&gt;KB&lt;/span&gt;&lt;span class=&quot;av s32&quot;&gt;EO&lt;/span&gt;&lt;span class=&quot;more&quot;&gt;+9&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

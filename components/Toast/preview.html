@@ -1,0 +1,16 @@
+<!-- @dsCard group="Overlays" height=200 subtitle="success with undo, error persistent, neutral with progress" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-end;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.to{width:360px;box-sizing:border-box;display:flex;gap:8px;align-items:flex-start;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:12px}
+.to svg{width:16px;height:16px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.to.ok svg{color:var(--success)}.to.bad svg{color:var(--destructive)}.to.n svg{color:var(--muted-foreground)}
+.to b{display:block;font:500 14px/20px var(--font-sans)}.to span{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.to .body{flex:1}
+.to button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.to button:hover{background:var(--accent)}
+.x{color:var(--muted-foreground)}
+</style>
+<div class="to ok"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><div class="body"><b>Role updated</b><span>Ama Mensah is now an Administrator.</span></div><button>Undo</button></div>
+<div class="to bad"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div class="body"><b>Export failed</b><span>The job timed out after 120s. Retry with a smaller date range.</span></div><button>Retry</button><button class="x">✕</button></div>
+<div class="to n"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="body"><b>Exporting 12,400 rows…</b><span>We'll notify you when the CSV is ready.</span></div></div>
+</div>
+<script>/* static */</script>

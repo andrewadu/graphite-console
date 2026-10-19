@@ -1,0 +1,3 @@
+# TextField
+
+A labelled text input for forms, filters and search. The consumer provides the label, value, placeholder, optional helper or error text and an optional leading icon. The system fixes the 32px height, `input` border at rest, `card` fill, `radius-md`, the `ring` focus state and the error state (`destructive` border and message). Label is `label` style above the field, helper text is `small` in `muted-foreground`, errors are `small` in `destructive`. Fields sit `space-3` apart in a form; never place a label to the left of a field in a console form, since labels of different lengths break the column.

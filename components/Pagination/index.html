@@ -1,0 +1,31 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Pagination · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / Pagination</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Pagination</h1><p class="small muted">table footer: summary, page size, prev/next</p>
+<div class="frame" style="min-height:70px"><div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.pg{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.pg .r{display:flex;align-items:center;gap:8px}
+.pg select{height:28px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 13px/20px var(--font-sans)}
+.pg button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.pg button:hover{background:var(--accent)}
+.pg button[disabled]{color:var(--muted-foreground);cursor:not-allowed;background:transparent}
+.pg .cur{height:28px;padding:0 10px;display:inline-grid;place-items:center;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--foreground);font:500 13px/20px var(--font-sans);font-variant-numeric:tabular-nums}
+</style>
+<div class="pg"><div class="r"><span>Showing 26–50 of 1,204</span><select><option>25 rows</option><option>50 rows</option><option>100 rows</option></select></div><div class="r"><button>‹ Previous</button><span class="cur">2 / 49</span><button>Next ›</button></div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>The footer of every DataTable: a `small` summary in `muted-foreground` on the left (&quot;Showing 26–50 of 1,204&quot;), a rows-per-page select, and on the right previous/next ghost buttons (28px) with the current page as a `secondary` chip. For large sets the system prefers cursor paging (previous/next only) over numbered pages; numbered pages appear only when the total is known and under 50 pages. Keyboard: the buttons are real buttons; disabled at the ends. The consumer provides range, total, page size options and handlers.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.pg{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.pg .r{display:flex;align-items:center;gap:8px}
+.pg select{height:28px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 13px/20px var(--font-sans)}
+.pg button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.pg button:hover{background:var(--accent)}
+.pg button[disabled]{color:var(--muted-foreground);cursor:not-allowed;background:transparent}
+.pg .cur{height:28px;padding:0 10px;display:inline-grid;place-items:center;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--foreground);font:500 13px/20px var(--font-sans);font-variant-numeric:tabular-nums}
+&lt;/style&gt;
+&lt;div class=&quot;pg&quot;&gt;&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Showing 26–50 of 1,204&lt;/span&gt;&lt;select&gt;&lt;option&gt;25 rows&lt;/option&gt;&lt;option&gt;50 rows&lt;/option&gt;&lt;option&gt;100 rows&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;r&quot;&gt;&lt;button&gt;‹ Previous&lt;/button&gt;&lt;span class=&quot;cur&quot;&gt;2 / 49&lt;/span&gt;&lt;button&gt;Next ›&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

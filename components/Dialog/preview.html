@@ -1,0 +1,23 @@
+<!-- @dsCard group="Overlays" height=260 subtitle="destructive confirmation with typed identifier" -->
+<div id="root" style="position:relative;height:260px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent);display:grid;place-items:center}
+.dlg{width:480px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:16px;display:flex;flex-direction:column;gap:12px}
+.dlg h2{margin:0;font:500 16px/24px var(--font-sans)}
+.dlg p{margin:0;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)}
+.dlg label{font:500 12px/16px var(--font-sans);letter-spacing:.02em;display:block;margin-bottom:4px}
+.dlg input{width:100%;box-sizing:border-box;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 13px/20px var(--font-mono)}
+.ft{display:flex;justify-content:flex-end;gap:8px}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.sec{background:var(--secondary);color:var(--secondary-foreground);border-color:var(--border)}
+.des{background:var(--destructive);color:var(--destructive-foreground)}
+code{font:400 13px/20px var(--font-mono);color:var(--foreground)}
+</style>
+<div class="scrim"><div class="dlg" role="dialog" aria-modal="true">
+<h2>Suspend Kofi Boateng?</h2>
+<p>Active sessions end immediately and API keys stop working. The account can be reinstated by an administrator. Type <code>usr_2d71e0aa</code> to confirm.</p>
+<div><label>User ID</label><input placeholder="usr_…"></div>
+<div class="ft"><button class="btn sec">Cancel</button><button class="btn des">Suspend user</button></div>
+</div></div>
+</div>
+<script>/* static */</script>

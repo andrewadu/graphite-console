@@ -1,0 +1,61 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>LoginScreen · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Pages / LoginScreen</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">LoginScreen</h1><p class="small muted">sign-in and the 2FA step side by side</p>
+<div class="frame" style="min-height:340px"><div id="root" style="display:flex;gap:48px;justify-content:center;align-items:flex-start;padding:24px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.card{width:400px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:12px}
+.card h1{margin:0;font:500 16px/24px var(--font-sans)}.card .t{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f{display:flex;flex-direction:column;gap:4px}.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f input{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.btn{height:32px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer;width:100%}
+.pri{background:var(--primary);color:var(--primary-foreground)}.sec{background:var(--secondary);color:var(--foreground);border-color:var(--border)}
+.al{display:flex;gap:8px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-md);background:color-mix(in srgb,var(--destructive) 10%,var(--card));font-size:13px;line-height:18px}
+.al i{color:var(--destructive);font-style:normal}
+.cells{display:flex;gap:8px;justify-content:center}.cells span{width:40px;height:40px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);display:grid;place-items:center;font:400 18px/1 var(--font-mono)}
+.cells span.on{border-color:var(--ring);outline:2px solid var(--ring);outline-offset:1px}
+.gh{text-align:center;font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.ft{text-align:center;font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+</style>
+<div class="card"><div><h1>Sign in to Graphite Admin</h1><div class="t">Graphite Microfinance Ltd · Production</div></div>
+<div class="al"><i>●</i><span>The email or password is incorrect. 2 attempts remain before a 15-minute lockout.</span></div>
+<div class="f"><label>Email</label><input value="ama@graphite.co"></div>
+<div class="f"><label>Password</label><input type="password" value="••••••••••"></div>
+<button class="btn pri">Sign in</button><button class="btn sec">Use SSO</button>
+<div class="ft">Production · v4.12.0 · eu-west-1</div></div>
+<div class="card"><div><h1>Enter your 2FA code</h1><div class="t">From your authenticator app · ama@graphite.co</div></div>
+<div class="cells"><span>4</span><span>8</span><span>1</span><span class="on"></span><span></span><span></span></div>
+<button class="btn pri">Verify</button><div class="gh">Use a recovery code</div>
+<div class="ft">Production · v4.12.0 · eu-west-1</div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>The one page outside the shell: a centred 400px `card` on `background` with the product name in `title` and the tenant in `small` above it, email and password TextFields, a full-width primary button, and a &quot;Use SSO&quot; secondary button when the tenant has it; no marketing panel, no illustration. The 2FA step replaces the form with a six-cell `mono` code input (40px cells, `radius-md`, auto-advance) and a &quot;Use a recovery code&quot; ghost link. Errors are an Alert above the form that never says which of email or password was wrong. A failed-attempt lockout shows the remaining time. Footer: a `small` `muted-foreground` line with the environment and version, so screenshots in support tickets say where they came from.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;display:flex;gap:48px;justify-content:center;align-items:flex-start;padding:24px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.card{width:400px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:12px}
+.card h1{margin:0;font:500 16px/24px var(--font-sans)}.card .t{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f{display:flex;flex-direction:column;gap:4px}.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f input{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.btn{height:32px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer;width:100%}
+.pri{background:var(--primary);color:var(--primary-foreground)}.sec{background:var(--secondary);color:var(--foreground);border-color:var(--border)}
+.al{display:flex;gap:8px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-md);background:color-mix(in srgb,var(--destructive) 10%,var(--card));font-size:13px;line-height:18px}
+.al i{color:var(--destructive);font-style:normal}
+.cells{display:flex;gap:8px;justify-content:center}.cells span{width:40px;height:40px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);display:grid;place-items:center;font:400 18px/1 var(--font-mono)}
+.cells span.on{border-color:var(--ring);outline:2px solid var(--ring);outline-offset:1px}
+.gh{text-align:center;font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.ft{text-align:center;font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;div&gt;&lt;h1&gt;Sign in to Graphite Admin&lt;/h1&gt;&lt;div class=&quot;t&quot;&gt;Graphite Microfinance Ltd · Production&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;al&quot;&gt;&lt;i&gt;●&lt;/i&gt;&lt;span&gt;The email or password is incorrect. 2 attempts remain before a 15-minute lockout.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Email&lt;/label&gt;&lt;input value=&quot;ama@graphite.co&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Password&lt;/label&gt;&lt;input type=&quot;password&quot; value=&quot;••••••••••&quot;&gt;&lt;/div&gt;
+&lt;button class=&quot;btn pri&quot;&gt;Sign in&lt;/button&gt;&lt;button class=&quot;btn sec&quot;&gt;Use SSO&lt;/button&gt;
+&lt;div class=&quot;ft&quot;&gt;Production · v4.12.0 · eu-west-1&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;div&gt;&lt;h1&gt;Enter your 2FA code&lt;/h1&gt;&lt;div class=&quot;t&quot;&gt;From your authenticator app · ama@graphite.co&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;cells&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;span&gt;8&lt;/span&gt;&lt;span&gt;1&lt;/span&gt;&lt;span class=&quot;on&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;button class=&quot;btn pri&quot;&gt;Verify&lt;/button&gt;&lt;div class=&quot;gh&quot;&gt;Use a recovery code&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;Production · v4.12.0 · eu-west-1&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

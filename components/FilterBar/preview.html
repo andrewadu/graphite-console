@@ -1,0 +1,20 @@
+<!-- @dsCard group="Data display" height=120 subtitle="search and filter chips; bulk-selection bar" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.search{display:flex;align-items:center;gap:6px;width:240px;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--muted-foreground)}
+.search svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:var(--radius-md);background:var(--accent);border:1px solid var(--border);font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.chip b{font-weight:500;color:var(--foreground)}.chip .x{cursor:pointer}
+.gh{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.gh:hover{background:var(--accent)}
+.gh.mut{color:var(--muted-foreground)}
+.bulk{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:var(--radius-md);background:var(--accent);border:1px solid var(--border)}
+.bulk b{font-weight:500;margin-right:8px}
+.des{color:var(--destructive);margin-left:auto}
+</style>
+<div class="bar"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search users…</div>
+<span class="chip">Role: <b>Administrator</b><span class="x">✕</span></span><span class="chip">Status: <b>Active</b><span class="x">✕</span></span><span class="chip">Created: <b>Last 30 days</b><span class="x">✕</span></span>
+<button class="gh">+ Add filter</button><button class="gh mut">Clear all</button></div>
+<div class="bulk"><b>3 selected</b><button class="gh">Assign role</button><button class="gh">Export</button><button class="gh">Require 2FA</button><button class="gh des">Suspend…</button></div>
+</div>
+<script>/* static */</script>

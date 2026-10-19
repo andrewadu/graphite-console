@@ -1,0 +1,3 @@
+# FilterBar
+
+The row above a DataTable: a 32px search field (240px), filter chips, and a "Add filter" ghost button; the row-count and bulk-action bar replace it while rows are selected. A chip is a `secondary` pill-less `radius-md` block showing `Field: value` in `small`, the value in `body-medium`, with a ✕ to remove; active chips are `accent` with a `border`. A "Clear all" ghost link appears after two chips. Bulk mode: `accent` ground, "3 selected" in `body-medium`, then ghost actions and a destructive one last. The consumer provides the fields, operators, values and bulk actions; the system fixes layout and the rule that filters are visible as chips, never hidden in a drawer.

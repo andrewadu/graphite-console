@@ -1,0 +1,3 @@
+# SidebarNav
+
+The left navigation rail of a console: `sidebar` ground, `sidebar-border` on its right edge, 240px wide (collapsible to 48px icons-only). Items are 32px tall, `body-medium`, 20px Lucide icon with a `space-2` gap, `radius-md`; hover and current page use `sidebar-accent`; the current item also carries a 2px `sidebar-primary` bar on its left edge so it survives a greyscale print. Group headings are `label` in `muted-foreground` with `space-4` above. A workspace switcher sits at the top and the signed-in user at the bottom, both as 40px rows. The consumer provides the groups, items, icons and current route; the system fixes every size and colour.

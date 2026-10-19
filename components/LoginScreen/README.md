@@ -1,0 +1,3 @@
+# LoginScreen
+
+The one page outside the shell: a centred 400px `card` on `background` with the product name in `title` and the tenant in `small` above it, email and password TextFields, a full-width primary button, and a "Use SSO" secondary button when the tenant has it; no marketing panel, no illustration. The 2FA step replaces the form with a six-cell `mono` code input (40px cells, `radius-md`, auto-advance) and a "Use a recovery code" ghost link. Errors are an Alert above the form that never says which of email or password was wrong. A failed-attempt lockout shows the remaining time. Footer: a `small` `muted-foreground` line with the environment and version, so screenshots in support tickets say where they came from.

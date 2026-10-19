@@ -1,0 +1,39 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Textarea · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Forms / Textarea</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Textarea</h1><p class="small muted">reason field with counter; code variant</p>
+<div class="frame" style="min-height:170px"><div id="root" style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f textarea{min-height:88px;padding:8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans);resize:vertical}
+.f textarea.code{font:400 13px/20px var(--font-mono);background:var(--background);white-space:pre}
+.f .ft{display:flex;justify-content:space-between;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+</style>
+<div class="f"><label>Reason for suspension</label><textarea>Repeated failed sign-ins from an unrecognised network; account holder confirmed by phone they did not attempt them.</textarea><div class="ft"><span>Visible to the account holder.</span><span>128 / 500</span></div></div>
+<div class="f"><label>Webhook payload (JSON)</label><textarea class="code">{
+  "event": "user.suspended",
+  "user_id": "usr_c40b5d17",
+  "actor": "usr_8f3a92c1"
+}</textarea><div class="ft"><span>Sent as application/json.</span><span>Valid</span></div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Multi-line input for notes, reasons and JSON payloads. Same chrome as TextField (`input` border, `card` fill, `radius-md`, `ring` focus), min 3 rows, grows to 10 then scrolls, `space-2` by `space-2` padding. A character counter in `small` `muted-foreground` sits bottom-right when a limit exists and turns `destructive` past it. The code variant switches to `mono` 13px, `background` fill and preserves whitespace; it is for config and payloads, not prose. A suspension or refund reason is always required and at least 10 characters, enforced inline. The consumer provides label, value, limit and the code flag.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f textarea{min-height:88px;padding:8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans);resize:vertical}
+.f textarea.code{font:400 13px/20px var(--font-mono);background:var(--background);white-space:pre}
+.f .ft{display:flex;justify-content:space-between;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Reason for suspension&lt;/label&gt;&lt;textarea&gt;Repeated failed sign-ins from an unrecognised network; account holder confirmed by phone they did not attempt them.&lt;/textarea&gt;&lt;div class=&quot;ft&quot;&gt;&lt;span&gt;Visible to the account holder.&lt;/span&gt;&lt;span&gt;128 / 500&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Webhook payload (JSON)&lt;/label&gt;&lt;textarea class=&quot;code&quot;&gt;{
+  &quot;event&quot;: &quot;user.suspended&quot;,
+  &quot;user_id&quot;: &quot;usr_c40b5d17&quot;,
+  &quot;actor&quot;: &quot;usr_8f3a92c1&quot;
+}&lt;/textarea&gt;&lt;div class=&quot;ft&quot;&gt;&lt;span&gt;Sent as application/json.&lt;/span&gt;&lt;span&gt;Valid&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

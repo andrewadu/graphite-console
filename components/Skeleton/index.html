@@ -1,0 +1,49 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Skeleton · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Feedback / Skeleton</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Skeleton</h1><p class="small muted">stat tile, table rows and a text block loading</p>
+<div class="frame" style="min-height:170px"><div id="root" style="padding:16px;display:grid;grid-template-columns:200px 1fr 220px;gap:16px;font-family:var(--font-sans);background:var(--background)">
+<style>
+.sk{background:var(--muted);border-radius:var(--radius-sm);position:relative;overflow:hidden}
+.sk::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:translateX(-100%);animation:sh 1.6s infinite}
+@keyframes sh{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.sk::after{animation:none}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;display:flex;flex-direction:column;gap:8px}
+.tbl{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.th{background:var(--secondary);border-bottom:1px solid var(--border);padding:10px 12px;font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);display:grid;grid-template-columns:2fr 1fr 1fr}
+.tr{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;padding:10px 12px;border-bottom:1px solid var(--border)}
+.tr .sk{height:14px}
+</style>
+<div class="card"><div class="sk" style="width:60%;height:12px"></div><div class="sk" style="width:80%;height:28px"></div><div class="sk" style="width:40%;height:12px"></div><div class="sk" style="height:28px;margin-top:4px"></div></div>
+<div class="tbl"><div class="th"><span>USER</span><span>ROLE</span><span>STATUS</span></div>
+<div class="tr"><div class="sk" style="width:70%"></div><div class="sk" style="width:60%"></div><div class="sk" style="width:50%"></div></div>
+<div class="tr"><div class="sk" style="width:55%"></div><div class="sk" style="width:65%"></div><div class="sk" style="width:45%"></div></div>
+<div class="tr"><div class="sk" style="width:80%"></div><div class="sk" style="width:50%"></div><div class="sk" style="width:55%"></div></div>
+<div class="tr" style="border:0"><div class="sk" style="width:62%"></div><div class="sk" style="width:58%"></div><div class="sk" style="width:48%"></div></div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><div class="sk" style="width:50%;height:20px"></div><div class="sk" style="width:90%;height:14px"></div><div class="sk" style="width:85%;height:14px"></div><div class="sk" style="width:70%;height:14px"></div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Loading placeholders that keep layout stable: `muted` blocks with `radius-sm` for text lines and `radius-lg` for cards, a slow 1.6s shimmer in `accent` at low contrast (respecting `prefers-reduced-motion`, where it becomes a static block). Text lines are the line-height of the style they replace (20px for `body`, 32px for `display`) and 60–90% wide so they read as text, not bars. A table skeleton shows the real header and 5 to 10 rows; a tile skeleton shows caption, value and sparkline shapes. Skeletons appear after 150ms (not on every fetch) and never for actions under that. The consumer provides the shape count; the system fixes colour and timing.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:200px 1fr 220px;gap:16px;font-family:var(--font-sans);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.sk{background:var(--muted);border-radius:var(--radius-sm);position:relative;overflow:hidden}
+.sk::after{content:&quot;&quot;;position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:translateX(-100%);animation:sh 1.6s infinite}
+@keyframes sh{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.sk::after{animation:none}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;display:flex;flex-direction:column;gap:8px}
+.tbl{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.th{background:var(--secondary);border-bottom:1px solid var(--border);padding:10px 12px;font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);display:grid;grid-template-columns:2fr 1fr 1fr}
+.tr{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;padding:10px 12px;border-bottom:1px solid var(--border)}
+.tr .sk{height:14px}
+&lt;/style&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:60%;height:12px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:80%;height:28px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:40%;height:12px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;height:28px;margin-top:4px&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;tbl&quot;&gt;&lt;div class=&quot;th&quot;&gt;&lt;span&gt;USER&lt;/span&gt;&lt;span&gt;ROLE&lt;/span&gt;&lt;span&gt;STATUS&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;tr&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:70%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:60%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:50%&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;tr&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:55%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:65%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:45%&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;tr&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:80%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:50%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:55%&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;tr&quot; style=&quot;border:0&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:62%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:58%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:48%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div style=&quot;display:flex;flex-direction:column;gap:8px&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:50%;height:20px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:90%;height:14px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:85%;height:14px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:70%;height:14px&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

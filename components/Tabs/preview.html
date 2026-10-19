@@ -1,0 +1,16 @@
+<!-- @dsCard group="Navigation" height=120 subtitle="underline tabs with counts; segmented control" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:20px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.tabs{display:flex;border-bottom:1px solid var(--border)}
+.tab{padding:8px 12px;font:500 14px/20px var(--font-sans);color:var(--muted-foreground);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.tab.on{color:var(--foreground);border-color:var(--primary)}
+.tab:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+.tab .n{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.seg{display:inline-flex;background:var(--secondary);border-radius:var(--radius-md);padding:2px;height:28px}
+.seg span{padding:0 10px;font:500 13px/24px var(--font-sans);color:var(--muted-foreground);border-radius:var(--radius-md);border:1px solid transparent;cursor:pointer}
+.seg span.on{background:var(--card);color:var(--foreground);border-color:var(--border)}
+</style>
+<div class="tabs"><div class="tab on">Profile</div><div class="tab">Permissions <span class="n">12</span></div><div class="tab">Sessions <span class="n">3</span></div><div class="tab">Activity</div><div class="tab">API keys <span class="n">2</span></div></div>
+<div><span class="seg"><span>7D</span><span class="on">30D</span><span>12M</span></span></div>
+</div>
+<script>/* static */</script>

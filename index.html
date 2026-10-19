@@ -1,0 +1,815 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A design system for backoffice consoles and system-admin tools."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="site.css"></head>
+<body><header class="top"><a href="./">Graphite Console</a><nav><a href="#actions">Actions</a><a href="#forms">Forms</a><a href="#data-display">Data display</a><a href="#navigation">Navigation</a><a href="#overlays">Overlays</a><a href="#feedback">Feedback</a><a href="#pages">Pages</a><a href="#tokens">Tokens</a></nav><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<div class="cover"><div id="root" style="position:relative;width:960px;height:288px;background:var(--background);font-family:var(--font-sans);overflow:hidden">
+<!--
+derivation
+blocks: chart-2 slab 240x288 (bleeds top+right) · primary 224x136 · foreground 112x136 · accent 96x136; sides are space-8 multiples, corners radius-lg (6px); the one hue takes the biggest block because it is the only colour the UI owns
+arrangement: one tall slab with satellites, flush modular grid, gaps = space-4 (16px), all right of x=480
+pattern: geometric, modular, dense UI -> tiles cut by radius tokens, some merged two-wide; chosen because the README says "data first, chrome second" and every surface is a bordered grid of cells
+scales: tile 24px (space-6) at 48px pitch (space-6 x 2), rx radius-md (4px), 28 tiles in ground colour cut into the slab, two merged two-wide like table cells
+-->
+<style>
+.cv-hue{fill:var(--chart-2)}.cv-pri{fill:var(--primary)}.cv-ink{fill:var(--foreground)}.cv-tint{fill:var(--accent)}
+.cv-ground{fill:var(--background)}
+.cv-blk{rx:var(--radius-lg)}.cv-tile{rx:var(--radius-md)}
+</style>
+<svg width="960" height="288" viewBox="0 0 960 288" aria-hidden="true" style="position:absolute;inset:0">
+  <rect class="cv-hue cv-blk" x="720" y="-8" width="248" height="304"/>
+  <rect class="cv-pri cv-blk" x="480" y="0" width="224" height="136"/>
+  <rect class="cv-ink cv-blk" x="480" y="152" width="112" height="136"/>
+  <rect class="cv-tint cv-blk" x="608" y="152" width="96" height="136"/>
+  <g class="cv-ground">
+    <rect class="cv-tile" x="744" y="24" width="24" height="24"/><rect class="cv-tile" x="792" y="24" width="24" height="24"/><rect class="cv-tile" x="840" y="24" width="24" height="24"/><rect class="cv-tile" x="888" y="24" width="24" height="24"/>
+    <rect class="cv-tile" x="744" y="72" width="72" height="24"/><rect class="cv-tile" x="840" y="72" width="24" height="24"/><rect class="cv-tile" x="888" y="72" width="24" height="24"/>
+    <rect class="cv-tile" x="744" y="120" width="24" height="24"/><rect class="cv-tile" x="792" y="120" width="24" height="24"/><rect class="cv-tile" x="840" y="120" width="24" height="24"/><rect class="cv-tile" x="888" y="120" width="24" height="24"/>
+    <rect class="cv-tile" x="744" y="168" width="24" height="24"/><rect class="cv-tile" x="792" y="168" width="24" height="24"/><rect class="cv-tile" x="840" y="168" width="72" height="24"/>
+    <rect class="cv-tile" x="744" y="216" width="24" height="24"/><rect class="cv-tile" x="792" y="216" width="24" height="24"/><rect class="cv-tile" x="840" y="216" width="24" height="24"/><rect class="cv-tile" x="888" y="216" width="24" height="24"/>
+    <rect class="cv-tile" x="744" y="264" width="24" height="24"/><rect class="cv-tile" x="792" y="264" width="24" height="24"/><rect class="cv-tile" x="840" y="264" width="24" height="24"/><rect class="cv-tile" x="888" y="264" width="24" height="24"/>
+  </g>
+</svg>
+<div style="position:absolute;left:32px;bottom:32px;max-width:440px">
+  <div style="font:600 88px/.95 var(--font-sans);letter-spacing:-.02em;color:var(--foreground)">Graphite<br>Console</div>
+  <div style="margin-top:16px;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)">Quiet chrome for backoffice consoles: colour means status, not decoration.</div>
+</div>
+</div>
+<script>/* static */</script>
+</div>
+<main class="page">
+<p class="lede">A design system for backoffice consoles and system-admin tools. 38 components, light and dark, built on shadcn/ui token names so <code>tokens.css</code> drops straight into a Next.js console. <a href="DESIGN.md">Read the brand book</a> · <a href="https://github.com/andrewadu/graphite-console">Source</a></p>
+<section id="actions"><h2 class="title">Actions</h2><article class="card" id="c-Button"><div class="card-h"><a href="components/Button/">Button</a><span class="small muted">primary, secondary, ghost, destructive; default and small</span></div><iframe class="pv" title="Button preview" loading="lazy" height="154" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.btn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.btn.sm{height:28px;padding:0 8px;font-size:13px}
+.primary{background:var(--primary);color:var(--primary-foreground)}
+.secondary{background:var(--secondary);color:var(--secondary-foreground);border-color:var(--border)}
+.ghost{background:transparent;color:var(--foreground)}.ghost:hover{background:var(--accent)}
+.destructive{background:var(--destructive);color:var(--destructive-foreground)}
+.btn[disabled]{background:var(--muted);color:var(--muted-foreground);border-color:transparent;cursor:not-allowed}
+svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75}
+&lt;/style&gt;
+&lt;div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;&gt;
+&lt;button class=&quot;btn primary&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 5v14M5 12h14&quot;/&gt;&lt;/svg&gt;Add user&lt;/button&gt;
+&lt;button class=&quot;btn secondary&quot;&gt;Export CSV&lt;/button&gt;
+&lt;button class=&quot;btn ghost&quot;&gt;Filters&lt;/button&gt;
+&lt;button class=&quot;btn destructive&quot;&gt;Suspend user&lt;/button&gt;
+&lt;button class=&quot;btn primary&quot; disabled&gt;Saving…&lt;/button&gt;
+&lt;/div&gt;
+&lt;div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;&gt;
+&lt;button class=&quot;btn sm primary&quot;&gt;Apply&lt;/button&gt;
+&lt;button class=&quot;btn sm secondary&quot;&gt;Cancel&lt;/button&gt;
+&lt;button class=&quot;btn sm ghost&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;Columns&lt;/button&gt;
+&lt;button class=&quot;btn sm destructive&quot;&gt;Revoke key&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Kbd"><div class="card-h"><a href="components/Kbd/">Kbd</a><span class="small muted">shortcut legend</span></div><iframe class="pv" title="Kbd preview" loading="lazy" height="164" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px 32px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.r{display:flex;justify-content:space-between;align-items:center;height:28px}
+kbd{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;font:400 11px/1 var(--font-mono);color:var(--muted-foreground);background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.k{display:inline-flex;gap:4px;align-items:center}.then{font:400 12px/16px var(--font-sans);color:var(--muted-foreground);margin:0 2px}
+&lt;/style&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Command palette&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;K&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Go to users&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;G&lt;/kbd&gt;&lt;span class=&quot;then&quot;&gt;then&lt;/span&gt;&lt;kbd&gt;U&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Focus search&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;/&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Select row&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;X&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Shortcuts&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;?&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Close / cancel&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;&lt;kbd&gt;Esc&lt;/kbd&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article></section><section id="forms"><h2 class="title">Forms</h2><article class="card" id="c-Combobox"><div class="card-h"><a href="components/Combobox/">Combobox</a><span class="small muted">open tenant picker with search and descriptions</span></div><iframe class="pv" title="Combobox preview" loading="lazy" height="264" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.f{width:320px;display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.trig{display:flex;align-items:center;justify-content:space-between;height:32px;padding:0 8px;border:1px solid var(--ring);border-radius:var(--radius-md);background:var(--card);outline:2px solid var(--ring);outline-offset:2px}
+.trig span:last-child{color:var(--muted-foreground)}
+.pop{margin-top:6px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.q{height:36px;padding:0 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--muted-foreground)}
+.q b{color:var(--foreground);font-weight:400}
+.o{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;margin:4px}
+.o.on{background:var(--accent);border-radius:var(--radius-md)}
+.o div{flex:1;line-height:16px}.o small{display:block;font:400 12px/14px var(--font-sans);color:var(--muted-foreground)}
+.o .ck{color:var(--foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Tenant&lt;/label&gt;&lt;div class=&quot;trig&quot;&gt;&lt;span&gt;Graphite Microfinance Ltd&lt;/span&gt;&lt;span&gt;▾&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;pop&quot;&gt;&lt;div class=&quot;q&quot;&gt;🔍 &lt;b&gt;gra&lt;/b&gt;&lt;/div&gt;
+&lt;div class=&quot;o on&quot;&gt;&lt;div&gt;Graphite Microfinance Ltd&lt;small&gt;tnt_4b9e21 · eu-west-1 · Enterprise&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;ck&quot;&gt;✓&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;o&quot;&gt;&lt;div&gt;Grand Ridge Credit Union&lt;small&gt;tnt_77c0ab · eu-west-1 · Standard&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;o&quot;&gt;&lt;div&gt;Gravity Pay Sandbox&lt;small&gt;tnt_s_19de · sandbox&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-DateRangePicker"><div class="card-h"><a href="components/DateRangePicker/">DateRangePicker</a><span class="small muted">trigger, presets and one calendar month</span></div><iframe class="pv" title="DateRangePicker preview" loading="lazy" height="334" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.trig{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);font:400 13px/20px var(--font-mono)}
+.trig svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75}
+.pop{margin-top:8px;display:inline-flex;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.pre{width:150px;padding:4px;border-right:1px solid var(--border);display:flex;flex-direction:column}
+.pre div{height:32px;padding:0 8px;border-radius:var(--radius-md);display:flex;align-items:center;cursor:pointer}.pre div:hover{background:var(--accent)}.pre .on{background:var(--accent);font-weight:500}
+.cal{padding:12px}
+.mh{display:flex;justify-content:space-between;align-items:center;font:500 14px/20px var(--font-sans);margin-bottom:8px}
+.mh span{color:var(--muted-foreground);cursor:pointer;padding:0 4px}
+.g{display:grid;grid-template-columns:repeat(7,32px);text-align:center}
+.g .w{font:500 12px/24px var(--font-sans);color:var(--muted-foreground)}
+.g .d{height:32px;line-height:32px;font-variant-numeric:tabular-nums}
+.g .o{color:var(--muted-foreground);opacity:.5}
+.g .in{background:var(--accent)}.g .e{background:var(--primary);color:var(--primary-foreground);border-radius:var(--radius-md)}
+.g .t{box-shadow:inset 0 0 0 1px var(--border);border-radius:var(--radius-md)}
+.ft{padding:8px 12px;border-top:1px solid var(--border);font:400 12px/16px var(--font-sans);color:var(--muted-foreground);display:flex;justify-content:space-between}
+&lt;/style&gt;
+&lt;span class=&quot;trig&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;16&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M3 10h18M8 3v4M16 3v4&quot;/&gt;&lt;/svg&gt;2026-10-01 → 2026-10-15&lt;/span&gt;
+&lt;div class=&quot;pop&quot;&gt;&lt;div class=&quot;pre&quot;&gt;&lt;div&gt;Today&lt;/div&gt;&lt;div&gt;Last 7 days&lt;/div&gt;&lt;div&gt;Last 30 days&lt;/div&gt;&lt;div class=&quot;on&quot;&gt;This month&lt;/div&gt;&lt;div&gt;Last month&lt;/div&gt;&lt;div&gt;Custom&lt;/div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;div class=&quot;cal&quot;&gt;&lt;div class=&quot;mh&quot;&gt;&lt;span&gt;‹&lt;/span&gt;October 2026&lt;span&gt;›&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;g&quot;&gt;&lt;span class=&quot;w&quot;&gt;Mo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;Tu&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;We&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;Th&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;Fr&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;Sa&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;Su&lt;/span&gt;
+&lt;span class=&quot;d o&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;d o&quot;&gt;29&lt;/span&gt;&lt;span class=&quot;d o&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;d e&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;d in&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;11&lt;/span&gt;
+&lt;span class=&quot;d in&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;d in&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;d e t&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;17&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;18&lt;/span&gt;
+&lt;span class=&quot;d&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;23&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;25&lt;/span&gt;
+&lt;span class=&quot;d&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;27&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;29&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;d&quot;&gt;31&lt;/span&gt;&lt;span class=&quot;d o&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;&lt;span&gt;Africa/Accra (GMT)&lt;/span&gt;&lt;span&gt;15 days&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-FileUpload"><div class="card-h"><a href="components/FileUpload/">FileUpload</a><span class="small muted">dropzone with queued, uploading and failed files</span></div><iframe class="pv" title="FileUpload preview" loading="lazy" height="274" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.dz{border:2px dashed var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.dz svg{width:20px;height:20px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75}
+.dz b{font-weight:500}.dz small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md)}
+.f svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:1.75;flex:none}
+.f .n{flex:1;display:flex;flex-direction:column;gap:2px}.f .n small{font:400 12px/14px var(--font-sans);color:var(--muted-foreground)}
+.pb{width:120px;height:4px;background:var(--muted);border-radius:2px;overflow:hidden}.pb i{display:block;height:100%;background:var(--primary)}
+.ok{color:var(--success);font:500 12px/16px var(--font-sans)}.bad{color:var(--destructive);font:400 13px/18px var(--font-sans)}
+.gh{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.gh:hover{background:var(--accent)}
+&lt;/style&gt;
+&lt;div class=&quot;dz&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 16V4M6 10l6-6 6 6&quot;/&gt;&lt;path d=&quot;M4 20h16&quot;/&gt;&lt;/svg&gt;&lt;b&gt;Drop files or browse&lt;/b&gt;&lt;small&gt;CSV or XLSX up to 20 MB · one file per import&lt;/small&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 2h9l5 5v15H6z&quot;/&gt;&lt;path d=&quot;M14 2v6h6&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;n&quot;&gt;users-october.csv&lt;small&gt;1.8 MB · 12,400 rows&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;ok&quot;&gt;✓ Validated&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 2h9l5 5v15H6z&quot;/&gt;&lt;path d=&quot;M14 2v6h6&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;n&quot;&gt;kyc-batch-07.xlsx&lt;small&gt;9.2 MB · uploading 64%&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;pb&quot;&gt;&lt;i style=&quot;width:64%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 2h9l5 5v15H6z&quot;/&gt;&lt;path d=&quot;M14 2v6h6&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;n&quot;&gt;export (1).csv&lt;small&gt;31 MB&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;bad&quot;&gt;Exceeds 20 MB limit&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Remove&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-FormControls"><div class="card-h"><a href="components/FormControls/">FormControls</a><span class="small muted">checkboxes, radios, switches, select</span></div><iframe class="pv" title="FormControls preview" loading="lazy" height="204" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.col{display:flex;flex-direction:column;gap:12px}
+.h{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.row{display:flex;gap:8px;align-items:flex-start}
+.row small{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+input[type=checkbox],input[type=radio]{width:16px;height:16px;margin:2px 0;accent-color:var(--primary)}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--muted);flex:none;margin-top:1px}
+.sw::after{content:&quot;&quot;;position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:9999px;background:var(--card);border:1px solid var(--border);box-sizing:border-box}
+.sw.on{background:var(--primary)}.sw.on::after{left:16px;border-color:transparent}
+select{height:32px;width:100%;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+&lt;/style&gt;
+&lt;div class=&quot;col&quot;&gt;&lt;span class=&quot;h&quot;&gt;PERMISSIONS&lt;/span&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt;&lt;span&gt;Read users&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt;&lt;span&gt;Edit users&lt;small&gt;Includes role changes.&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;span&gt;Delete users&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;
+&lt;div class=&quot;col&quot;&gt;&lt;span class=&quot;h&quot;&gt;ENVIRONMENT&lt;/span&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;e&quot; checked&gt;&lt;span&gt;Production&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;e&quot;&gt;&lt;span&gt;Staging&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;e&quot; disabled&gt;&lt;span style=&quot;color:var(--muted-foreground)&quot;&gt;Sandbox (disabled)&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;
+&lt;div class=&quot;col&quot;&gt;&lt;span class=&quot;h&quot;&gt;NOTIFICATIONS&lt;/span&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;sw on&quot;&gt;&lt;/span&gt;&lt;span&gt;Email on failed jobs&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;sw&quot;&gt;&lt;/span&gt;&lt;span&gt;Weekly digest&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;sw on&quot;&gt;&lt;/span&gt;&lt;span&gt;Require 2FA&lt;small&gt;Applies at next sign-in.&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;col&quot;&gt;&lt;span class=&quot;h&quot;&gt;ROLE&lt;/span&gt;
+&lt;select&gt;&lt;option&gt;Administrator&lt;/option&gt;&lt;option&gt;Operator&lt;/option&gt;&lt;option&gt;Auditor&lt;/option&gt;&lt;/select&gt;
+&lt;select disabled&gt;&lt;option&gt;Read-only (locked)&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-SettingsRow"><div class="card-h"><a href="components/SettingsRow/">SettingsRow</a><span class="small muted">a settings group and the danger zone</span></div><iframe class="pv" title="SettingsRow preview" loading="lazy" height="334" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+h3{margin:0 0 8px;font:500 16px/24px var(--font-sans)}
+.g{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg)}
+.g.danger{border-color:var(--destructive)}
+.r{display:flex;align-items:center;gap:16px;min-height:56px;padding:8px 16px;border-top:1px solid var(--border)}.g .r:first-child{border-top:0}
+.r div{flex:1}.r b{font-weight:500;display:block}.r small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--primary);flex:none}.sw::after{content:&quot;&quot;;position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:9999px;background:var(--card)}
+.sw.off{background:var(--muted)}.sw.off::after{left:2px;border:1px solid var(--border);box-sizing:border-box}
+select{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--secondary);color:var(--foreground);font:500 14px/20px var(--font-sans);cursor:pointer;white-space:nowrap}
+.btn.des{background:transparent;border-color:var(--destructive);color:var(--destructive)}
+&lt;/style&gt;
+&lt;div&gt;&lt;h3&gt;Security&lt;/h3&gt;&lt;div class=&quot;g&quot;&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;Require 2FA for administrators&lt;/b&gt;&lt;small&gt;Applies at next sign-in. Takes effect immediately.&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;sw&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;Session lifetime&lt;/b&gt;&lt;small&gt;Idle sessions are signed out after this period.&lt;/small&gt;&lt;/div&gt;&lt;select&gt;&lt;option&gt;30 days&lt;/option&gt;&lt;option&gt;7 days&lt;/option&gt;&lt;option&gt;24 hours&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;IP allowlist&lt;/b&gt;&lt;small&gt;Restrict console access to listed CIDR ranges. Off.&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;sw off&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;h3 style=&quot;color:var(--destructive)&quot;&gt;Danger zone&lt;/h3&gt;&lt;div class=&quot;g danger&quot;&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;Rotate all API keys&lt;/b&gt;&lt;small&gt;Every integration stops until it is updated with a new key.&lt;/small&gt;&lt;/div&gt;&lt;button class=&quot;btn des&quot;&gt;Rotate keys…&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;div&gt;&lt;b&gt;Delete tenant&lt;/b&gt;&lt;small&gt;Removes all users, data and audit history after a 30-day hold.&lt;/small&gt;&lt;/div&gt;&lt;button class=&quot;btn des&quot;&gt;Delete tenant…&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-TagInput"><div class="card-h"><a href="components/TagInput/">TagInput</a><span class="small muted">allowlist with one invalid entry</span></div><iframe class="pv" title="TagInput preview" loading="lazy" height="164" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.box{display:flex;flex-wrap:wrap;gap:4px;min-height:32px;padding:3px 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);align-items:center}
+.c{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 6px;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-sm);font:400 13px/18px var(--font-sans)}
+.c.bad{border-color:var(--destructive);color:var(--destructive)}
+.c .x{color:var(--muted-foreground);cursor:pointer}
+.caret{width:1px;height:16px;background:var(--foreground)}
+.hint{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}.hint.bad{color:var(--destructive)}
+&lt;/style&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Admin email allowlist&lt;/label&gt;&lt;div class=&quot;box&quot;&gt;&lt;span class=&quot;c&quot;&gt;ama@graphite.co&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;kofi@graphite.co&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;c bad&quot;&gt;esi@graphite&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;hint bad&quot;&gt;&quot;esi@graphite&quot; is not a valid email address.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Allowed IP ranges&lt;/label&gt;&lt;div class=&quot;box&quot;&gt;&lt;span class=&quot;c&quot; style=&quot;font-family:var(--font-mono);font-size:12px&quot;&gt;41.66.192.0/22&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot; style=&quot;font-family:var(--font-mono);font-size:12px&quot;&gt;196.49.0.0/16&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;hint&quot;&gt;CIDR notation. Press Enter or comma to add.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-TextField"><div class="card-h"><a href="components/TextField/">TextField</a><span class="small muted">rest, with helper, error, disabled</span></div><iframe class="pv" title="TextField preview" loading="lazy" height="174" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f input{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.f input::placeholder{color:var(--muted-foreground)}
+.f input:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-color:var(--ring)}
+.f .hint{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f.error input{border-color:var(--destructive)}.f.error .hint{color:var(--destructive)}
+.f input:disabled{background:var(--muted);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Email&lt;/label&gt;&lt;input placeholder=&quot;name@company.com&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Display name&lt;/label&gt;&lt;input value=&quot;Ama Mensah&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Shown in audit logs.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f error&quot;&gt;&lt;label&gt;API rate limit&lt;/label&gt;&lt;input value=&quot;0&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Must be at least 1 request/second.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Tenant ID&lt;/label&gt;&lt;input value=&quot;tnt_4b9e21&quot; disabled&gt;&lt;span class=&quot;hint&quot;&gt;Assigned at creation.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Textarea"><div class="card-h"><a href="components/Textarea/">Textarea</a><span class="small muted">reason field with counter; code variant</span></div><iframe class="pv" title="Textarea preview" loading="lazy" height="204" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f textarea{min-height:88px;padding:8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans);resize:vertical}
+.f textarea.code{font:400 13px/20px var(--font-mono);background:var(--background);white-space:pre}
+.f .ft{display:flex;justify-content:space-between;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Reason for suspension&lt;/label&gt;&lt;textarea&gt;Repeated failed sign-ins from an unrecognised network; account holder confirmed by phone they did not attempt them.&lt;/textarea&gt;&lt;div class=&quot;ft&quot;&gt;&lt;span&gt;Visible to the account holder.&lt;/span&gt;&lt;span&gt;128 / 500&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Webhook payload (JSON)&lt;/label&gt;&lt;textarea class=&quot;code&quot;&gt;{
+  &quot;event&quot;: &quot;user.suspended&quot;,
+  &quot;user_id&quot;: &quot;usr_c40b5d17&quot;,
+  &quot;actor&quot;: &quot;usr_8f3a92c1&quot;
+}&lt;/textarea&gt;&lt;div class=&quot;ft&quot;&gt;&lt;span&gt;Sent as application/json.&lt;/span&gt;&lt;span&gt;Valid&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article></section><section id="data-display"><h2 class="title">Data display</h2><article class="card" id="c-Avatar"><div class="card-h"><a href="components/Avatar/">Avatar</a><span class="small muted">sizes, square tenant mark, presence, stack</span></div><iframe class="pv" title="Avatar preview" loading="lazy" height="124" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;gap:24px;align-items:center;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.av{display:inline-grid;place-items:center;border-radius:9999px;background:var(--muted);color:var(--foreground);font:500 14px/1 var(--font-sans);position:relative;flex:none}
+.s20{width:20px;height:20px;font-size:11px}.s24{width:24px;height:24px;font-size:11px}.s32{width:32px;height:32px;font-size:13px}.s40{width:40px;height:40px}
+.sq{border-radius:var(--radius-sm);background:var(--primary);color:var(--primary-foreground)}
+.dot::after{content:&quot;&quot;;position:absolute;right:-1px;bottom:-1px;width:8px;height:8px;border-radius:9999px;background:var(--success);border:2px solid var(--card)}
+.stack{display:flex}.stack .av{border:2px solid var(--card);margin-left:-8px}.stack .av:first-child{margin-left:0}
+.more{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);margin-left:8px;align-self:center}
+.row{display:flex;align-items:center;gap:8px}
+&lt;/style&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;av s20&quot;&gt;AM&lt;/span&gt;&lt;span class=&quot;av s24&quot;&gt;KB&lt;/span&gt;&lt;span class=&quot;av s32&quot;&gt;EO&lt;/span&gt;&lt;span class=&quot;av s40&quot;&gt;YD&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;av s32 sq&quot;&gt;G&lt;/span&gt;&lt;span class=&quot;av s24 sq&quot;&gt;T&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;av s32 dot&quot;&gt;AM&lt;/span&gt;&lt;span class=&quot;av s40 dot&quot;&gt;KB&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;stack&quot;&gt;&lt;span class=&quot;av s32&quot;&gt;AM&lt;/span&gt;&lt;span class=&quot;av s32&quot;&gt;KB&lt;/span&gt;&lt;span class=&quot;av s32&quot;&gt;EO&lt;/span&gt;&lt;span class=&quot;more&quot;&gt;+9&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-ChartCard"><div class="card-h"><a href="components/ChartCard/">ChartCard</a><span class="small muted">revenue line vs previous period, with legend and tooltip</span></div><iframe class="pv" title="ChartCard preview" loading="lazy" height="274" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.hd h3{margin:0;font:500 16px/24px var(--font-sans)}.hd .sub{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.lg{display:flex;gap:16px;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.lg i{display:inline-block;width:12px;height:2px;vertical-align:middle;margin-right:6px}
+svg{width:100%;height:140px;font:400 11px var(--font-sans)}
+.grid{stroke:var(--border)}.tick{fill:var(--muted-foreground)}
+.s1{fill:none;stroke:var(--chart-1);stroke-width:2}.s2{fill:none;stroke:var(--chart-2);stroke-width:1.5;stroke-dasharray:4 3}
+.a1{fill:var(--chart-1);opacity:.12}
+.hl{stroke:var(--muted-foreground);stroke-dasharray:2 2}
+.tt{fill:var(--popover);stroke:var(--border)}.ttx{fill:var(--foreground);font:400 11px var(--font-mono)}.ttc{fill:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;card&quot;&gt;
+&lt;div class=&quot;hd&quot;&gt;&lt;div&gt;&lt;h3&gt;Revenue overview&lt;/h3&gt;&lt;div class=&quot;sub&quot;&gt;GH₵633,000 this period · ↗ 7.7%&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;lg&quot;&gt;&lt;span&gt;&lt;i style=&quot;background:var(--chart-1)&quot;&gt;&lt;/i&gt;This year&lt;/span&gt;&lt;span&gt;&lt;i style=&quot;background:var(--chart-2)&quot;&gt;&lt;/i&gt;Previous year&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;svg viewBox=&quot;0 0 600 140&quot; preserveAspectRatio=&quot;none&quot;&gt;
+&lt;g class=&quot;grid&quot;&gt;&lt;line x1=&quot;40&quot; y1=&quot;20&quot; x2=&quot;600&quot; y2=&quot;20&quot;/&gt;&lt;line x1=&quot;40&quot; y1=&quot;60&quot; x2=&quot;600&quot; y2=&quot;60&quot;/&gt;&lt;line x1=&quot;40&quot; y1=&quot;100&quot; x2=&quot;600&quot; y2=&quot;100&quot;/&gt;&lt;/g&gt;
+&lt;g class=&quot;tick&quot;&gt;&lt;text x=&quot;0&quot; y=&quot;24&quot;&gt;80K&lt;/text&gt;&lt;text x=&quot;0&quot; y=&quot;64&quot;&gt;40K&lt;/text&gt;&lt;text x=&quot;0&quot; y=&quot;104&quot;&gt;0&lt;/text&gt;&lt;text x=&quot;40&quot; y=&quot;132&quot;&gt;Jan&lt;/text&gt;&lt;text x=&quot;180&quot; y=&quot;132&quot;&gt;Apr&lt;/text&gt;&lt;text x=&quot;320&quot; y=&quot;132&quot;&gt;Jul&lt;/text&gt;&lt;text x=&quot;460&quot; y=&quot;132&quot;&gt;Oct&lt;/text&gt;&lt;text x=&quot;575&quot; y=&quot;132&quot;&gt;Dec&lt;/text&gt;&lt;/g&gt;
+&lt;path class=&quot;a1&quot; d=&quot;M40 80L110 72 180 76 250 58 320 62 390 44 460 40 530 30 600 24V100H40Z&quot;/&gt;
+&lt;path class=&quot;s2&quot; d=&quot;M40 90L110 84 180 88 250 76 320 78 390 66 460 64 530 58 600 54&quot;/&gt;
+&lt;path class=&quot;s1&quot; d=&quot;M40 80L110 72 180 76 250 58 320 62 390 44 460 40 530 30 600 24&quot;/&gt;
+&lt;line class=&quot;hl&quot; x1=&quot;390&quot; y1=&quot;20&quot; x2=&quot;390&quot; y2=&quot;100&quot;/&gt;
+&lt;circle cx=&quot;390&quot; cy=&quot;44&quot; r=&quot;3&quot; fill=&quot;var(--chart-1)&quot;/&gt;&lt;circle cx=&quot;390&quot; cy=&quot;66&quot; r=&quot;3&quot; fill=&quot;var(--chart-2)&quot;/&gt;
+&lt;rect class=&quot;tt&quot; x=&quot;404&quot; y=&quot;28&quot; width=&quot;132&quot; height=&quot;46&quot; rx=&quot;4&quot;/&gt;
+&lt;text class=&quot;ttc&quot; x=&quot;412&quot; y=&quot;42&quot; style=&quot;font:500 11px var(--font-sans)&quot;&gt;Aug 2026&lt;/text&gt;
+&lt;text class=&quot;ttx&quot; x=&quot;412&quot; y=&quot;56&quot;&gt;This year   62,400&lt;/text&gt;&lt;text class=&quot;ttx&quot; x=&quot;412&quot; y=&quot;68&quot;&gt;Previous   47,100&lt;/text&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-CodeBlock"><div class="card-h"><a href="components/CodeBlock/">CodeBlock</a><span class="small muted">JSON response with line numbers and a masked secret</span></div><iframe class="pv" title="CodeBlock preview" loading="lazy" height="234" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.cb{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden}
+.hd{display:flex;justify-content:space-between;align-items:center;height:32px;padding:0 12px;border-bottom:1px solid var(--border);font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.hd button{height:24px;padding:0 6px;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--foreground);font:500 12px/16px var(--font-sans);cursor:pointer}
+pre{margin:0;padding:12px;background:var(--background);font:400 13px/20px var(--font-mono);overflow-x:auto;display:grid;grid-template-columns:auto 1fr;column-gap:16px}
+pre .n{color:var(--muted-foreground);text-align:right;user-select:none}
+.k{color:var(--chart-2)}.s{color:var(--chart-2)}.m{color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;cb&quot;&gt;&lt;div class=&quot;hd&quot;&gt;&lt;span&gt;GET /v1/users/usr_8f3a92c1 · 200 · 84 ms&lt;/span&gt;&lt;button&gt;Copy&lt;/button&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;1&lt;/span&gt;&lt;span&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;2&lt;/span&gt;&lt;span&gt;  &lt;span class=&quot;k&quot;&gt;&quot;id&quot;&lt;/span&gt;: &lt;span class=&quot;s&quot;&gt;&quot;usr_8f3a92c1&quot;&lt;/span&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;3&lt;/span&gt;&lt;span&gt;  &lt;span class=&quot;k&quot;&gt;&quot;role&quot;&lt;/span&gt;: &lt;span class=&quot;s&quot;&gt;&quot;administrator&quot;&lt;/span&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;4&lt;/span&gt;&lt;span&gt;  &lt;span class=&quot;k&quot;&gt;&quot;two_factor&quot;&lt;/span&gt;: true,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;5&lt;/span&gt;&lt;span&gt;  &lt;span class=&quot;k&quot;&gt;&quot;api_key&quot;&lt;/span&gt;: &lt;span class=&quot;s&quot;&gt;&quot;sk_live_••••••••7f3a&quot;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;// masked · Reveal is logged&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;6&lt;/span&gt;&lt;span&gt;}&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-DataTable"><div class="card-h"><a href="components/DataTable/">DataTable</a><span class="small muted">users table with selection, status, amounts and row actions</span></div><iframe class="pv" title="DataTable preview" loading="lazy" height="264" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.tbl{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--card);overflow:hidden;font:400 14px/20px var(--font-sans)}
+.tbl th{background:var(--secondary);color:var(--muted-foreground);font:500 12px/16px var(--font-sans);letter-spacing:.02em;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover td{background:var(--muted)}
+.tbl tr.sel td{background:var(--accent)}
+.num{text-align:right;font-family:var(--font-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.id{font-family:var(--font-mono);font-size:13px;color:var(--muted-foreground)}
+.b{display:inline-flex;align-items:center;gap:6px;font:500 12px/16px var(--font-sans)}
+.dot{width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.ok .dot{background:var(--success)}.warn .dot{background:var(--warning)}.bad .dot{background:var(--destructive)}
+.ghost{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.ghost:hover{background:var(--accent)}
+input[type=checkbox]{width:14px;height:14px;accent-color:var(--primary);margin:0}
+&lt;/style&gt;
+&lt;table class=&quot;tbl&quot;&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;width:32px&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/th&gt;&lt;th&gt;User&lt;/th&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Logins (30d)&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;Ama Mensah&lt;/td&gt;&lt;td class=&quot;id&quot;&gt;usr_8f3a92c1&lt;/td&gt;&lt;td&gt;Administrator&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;b ok&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Active&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;1,204&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ghost&quot;&gt;Edit&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr class=&quot;sel&quot;&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot; checked&gt;&lt;/td&gt;&lt;td&gt;Kofi Boateng&lt;/td&gt;&lt;td class=&quot;id&quot;&gt;usr_2d71e0aa&lt;/td&gt;&lt;td&gt;Operator&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;b warn&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Pending review&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;87&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ghost&quot;&gt;Edit&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;Esi Owusu&lt;/td&gt;&lt;td class=&quot;id&quot;&gt;usr_c40b5d17&lt;/td&gt;&lt;td&gt;Auditor&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;b bad&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Suspended&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ghost&quot;&gt;Edit&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;Yaw Darko&lt;/td&gt;&lt;td class=&quot;id&quot;&gt;usr_91ee73f8&lt;/td&gt;&lt;td&gt;Operator&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;b&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Invited&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;—&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;ghost&quot;&gt;Edit&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-DescriptionList"><div class="card-h"><a href="components/DescriptionList/">DescriptionList</a><span class="small muted">tenant facts with copy actions</span></div><iframe class="pv" title="DescriptionList preview" loading="lazy" height="264" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.dl{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.r{display:grid;grid-template-columns:140px 1fr auto;align-items:center;min-height:36px;padding:0 16px;border-top:1px solid var(--border)}
+.dl .r:first-child{border-top:0}
+.k{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.mono{font:400 13px/20px var(--font-mono)}.empty{color:var(--muted-foreground)}
+.gh{height:24px;padding:0 6px;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--muted-foreground);font:500 12px/16px var(--font-sans);cursor:pointer}.r:hover .gh{color:var(--foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;dl&quot;&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;TENANT ID&lt;/span&gt;&lt;span class=&quot;mono&quot;&gt;tnt_4b9e21&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Copy&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;NAME&lt;/span&gt;&lt;span&gt;Graphite Microfinance Ltd&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Edit&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;REGION&lt;/span&gt;&lt;span&gt;eu-west-1&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;PLAN&lt;/span&gt;&lt;span&gt;Enterprise · annual&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;2FA POLICY&lt;/span&gt;&lt;span&gt;Required for administrators&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Edit&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;span class=&quot;k&quot;&gt;WEBHOOK URL&lt;/span&gt;&lt;span class=&quot;empty&quot;&gt;—&lt;/span&gt;&lt;button class=&quot;gh&quot;&gt;Add&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-FilterBar"><div class="card-h"><a href="components/FilterBar/">FilterBar</a><span class="small muted">search and filter chips; bulk-selection bar</span></div><iframe class="pv" title="FilterBar preview" loading="lazy" height="154" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.search{display:flex;align-items:center;gap:6px;width:240px;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--muted-foreground)}
+.search svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:var(--radius-md);background:var(--accent);border:1px solid var(--border);font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.chip b{font-weight:500;color:var(--foreground)}.chip .x{cursor:pointer}
+.gh{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.gh:hover{background:var(--accent)}
+.gh.mut{color:var(--muted-foreground)}
+.bulk{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:var(--radius-md);background:var(--accent);border:1px solid var(--border)}
+.bulk b{font-weight:500;margin-right:8px}
+.des{color:var(--destructive);margin-left:auto}
+&lt;/style&gt;
+&lt;div class=&quot;bar&quot;&gt;&lt;div class=&quot;search&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;11&quot; cy=&quot;11&quot; r=&quot;7&quot;/&gt;&lt;path d=&quot;M20 20l-4-4&quot;/&gt;&lt;/svg&gt;Search users…&lt;/div&gt;
+&lt;span class=&quot;chip&quot;&gt;Role: &lt;b&gt;Administrator&lt;/b&gt;&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;chip&quot;&gt;Status: &lt;b&gt;Active&lt;/b&gt;&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;chip&quot;&gt;Created: &lt;b&gt;Last 30 days&lt;/b&gt;&lt;span class=&quot;x&quot;&gt;✕&lt;/span&gt;&lt;/span&gt;
+&lt;button class=&quot;gh&quot;&gt;+ Add filter&lt;/button&gt;&lt;button class=&quot;gh mut&quot;&gt;Clear all&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;bulk&quot;&gt;&lt;b&gt;3 selected&lt;/b&gt;&lt;button class=&quot;gh&quot;&gt;Assign role&lt;/button&gt;&lt;button class=&quot;gh&quot;&gt;Export&lt;/button&gt;&lt;button class=&quot;gh&quot;&gt;Require 2FA&lt;/button&gt;&lt;button class=&quot;gh des&quot;&gt;Suspend…&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Pagination"><div class="card-h"><a href="components/Pagination/">Pagination</a><span class="small muted">table footer: summary, page size, prev/next</span></div><iframe class="pv" title="Pagination preview" loading="lazy" height="104" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.pg{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.pg .r{display:flex;align-items:center;gap:8px}
+.pg select{height:28px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 13px/20px var(--font-sans)}
+.pg button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.pg button:hover{background:var(--accent)}
+.pg button[disabled]{color:var(--muted-foreground);cursor:not-allowed;background:transparent}
+.pg .cur{height:28px;padding:0 10px;display:inline-grid;place-items:center;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--foreground);font:500 13px/20px var(--font-sans);font-variant-numeric:tabular-nums}
+&lt;/style&gt;
+&lt;div class=&quot;pg&quot;&gt;&lt;div class=&quot;r&quot;&gt;&lt;span&gt;Showing 26–50 of 1,204&lt;/span&gt;&lt;select&gt;&lt;option&gt;25 rows&lt;/option&gt;&lt;option&gt;50 rows&lt;/option&gt;&lt;option&gt;100 rows&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;r&quot;&gt;&lt;button&gt;‹ Previous&lt;/button&gt;&lt;span class=&quot;cur&quot;&gt;2 / 49&lt;/span&gt;&lt;button&gt;Next ›&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-StatTile"><div class="card-h"><a href="components/StatTile/">StatTile</a><span class="small muted">four tiles: up, up, down-is-bad, down-is-good</span></div><iframe class="pv" title="StatTile preview" loading="lazy" height="184" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.t{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;display:flex;flex-direction:column;gap:4px}
+.t .cap{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.t .val{font:600 24px/32px var(--font-sans);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.t .d{display:inline-flex;align-items:center;gap:2px;font:500 12px/16px var(--font-sans);color:var(--muted-foreground)}
+.t .d.up{color:var(--success)}.t .d.down{color:var(--destructive)}
+.t svg.sp{width:100%;height:28px;margin-top:4px}
+.t svg.sp path{fill:none;stroke:var(--chart-1);stroke-width:1.5}.t svg.sp line{stroke:var(--chart-5)}
+&lt;/style&gt;
+&lt;div class=&quot;t&quot;&gt;&lt;span class=&quot;cap&quot;&gt;MONTHLY REVENUE&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;GH₵189,540&lt;/span&gt;&lt;span class=&quot;d up&quot;&gt;↗ 27.9%&lt;/span&gt;&lt;svg class=&quot;sp&quot; viewBox=&quot;0 0 100 28&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;27&quot; x2=&quot;100&quot; y2=&quot;27&quot;/&gt;&lt;path d=&quot;M0 20L15 18 30 21 45 14 60 15 75 9 90 10 100 4&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;t&quot;&gt;&lt;span class=&quot;cap&quot;&gt;ORDERS FULFILLED&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;21,847&lt;/span&gt;&lt;span class=&quot;d up&quot;&gt;↗ 18.4%&lt;/span&gt;&lt;svg class=&quot;sp&quot; viewBox=&quot;0 0 100 28&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;27&quot; x2=&quot;100&quot; y2=&quot;27&quot;/&gt;&lt;path d=&quot;M0 22L15 20 30 19 45 16 60 17 75 12 90 11 100 8&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;t&quot;&gt;&lt;span class=&quot;cap&quot;&gt;ACTIVE SESSIONS&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;3,112&lt;/span&gt;&lt;span class=&quot;d down&quot;&gt;↘ 4.1%&lt;/span&gt;&lt;svg class=&quot;sp&quot; viewBox=&quot;0 0 100 28&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;27&quot; x2=&quot;100&quot; y2=&quot;27&quot;/&gt;&lt;path d=&quot;M0 8L15 10 30 9 45 14 60 13 75 17 90 18 100 20&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;t&quot;&gt;&lt;span class=&quot;cap&quot;&gt;FAILED JOBS&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;d up&quot;&gt;↘ 62%&lt;/span&gt;&lt;svg class=&quot;sp&quot; viewBox=&quot;0 0 100 28&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;27&quot; x2=&quot;100&quot; y2=&quot;27&quot;/&gt;&lt;path d=&quot;M0 6L15 9 30 8 45 15 60 14 75 19 90 22 100 23&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-StatusBadge"><div class="card-h"><a href="components/StatusBadge/">StatusBadge</a><span class="small muted">dot form and tinted form, five tones</span></div><iframe class="pv" title="StatusBadge preview" loading="lazy" height="144" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.b{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:var(--radius-sm);font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--foreground)}
+.dot{width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.ok .dot{background:var(--success)}.warn .dot{background:var(--warning)}.bad .dot{background:var(--destructive)}.info .dot{background:var(--chart-2)}
+.tint{border:1px solid var(--border);background:var(--secondary)}
+.tint.ok{background:color-mix(in srgb,var(--success) 14%,var(--background));color:var(--success);border-color:transparent}
+.tint.warn{background:color-mix(in srgb,var(--warning) 22%,var(--background));color:var(--foreground);border-color:transparent}
+.tint.bad{background:color-mix(in srgb,var(--destructive) 14%,var(--background));color:var(--destructive);border-color:transparent}
+.tint.info{background:color-mix(in srgb,var(--chart-2) 14%,var(--background));color:var(--chart-2);border-color:transparent}
+&lt;/style&gt;
+&lt;div style=&quot;display:flex;gap:12px;flex-wrap:wrap&quot;&gt;
+&lt;span class=&quot;b&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Draft&lt;/span&gt;
+&lt;span class=&quot;b ok&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Active&lt;/span&gt;
+&lt;span class=&quot;b warn&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Pending review&lt;/span&gt;
+&lt;span class=&quot;b bad&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Suspended&lt;/span&gt;
+&lt;span class=&quot;b info&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Syncing&lt;/span&gt;
+&lt;/div&gt;
+&lt;div style=&quot;display:flex;gap:12px;flex-wrap:wrap&quot;&gt;
+&lt;span class=&quot;b tint&quot;&gt;Draft&lt;/span&gt;
+&lt;span class=&quot;b tint ok&quot;&gt;Active&lt;/span&gt;
+&lt;span class=&quot;b tint warn&quot;&gt;Pending review&lt;/span&gt;
+&lt;span class=&quot;b tint bad&quot;&gt;Suspended&lt;/span&gt;
+&lt;span class=&quot;b tint info&quot;&gt;Syncing&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Timeline"><div class="card-h"><a href="components/Timeline/">Timeline</a><span class="small muted">audit entries with a date divider and an expanded diff</span></div><iframe class="pv" title="Timeline preview" loading="lazy" height="294" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.day{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);margin:0 0 8px 20px}
+.tl{position:relative;padding-left:20px}
+.tl::before{content:&quot;&quot;;position:absolute;left:3px;top:6px;bottom:6px;width:1px;background:var(--border)}
+.e{position:relative;display:flex;gap:12px;align-items:flex-start;min-height:40px;padding-bottom:8px}
+.e::before{content:&quot;&quot;;position:absolute;left:-20px;top:6px;width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.e.ok::before{background:var(--success)}.e.bad::before{background:var(--destructive)}.e.warn::before{background:var(--warning)}
+.e .t{flex:1}.e b{font-weight:500}.e code{font:400 13px/20px var(--font-mono)}
+.e .when{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);white-space:nowrap;margin-top:1px}
+.diff{margin-top:6px;display:grid;grid-template-columns:auto 1fr 1fr;gap:2px 12px;font:400 13px/18px var(--font-sans);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 12px;max-width:420px}
+.diff .k{color:var(--muted-foreground)}.diff .o{text-decoration:line-through;color:var(--muted-foreground)}.diff .n{font-family:var(--font-mono);font-size:12px}
+&lt;/style&gt;
+&lt;div class=&quot;day&quot;&gt;TODAY · 15 OCT 2026&lt;/div&gt;
+&lt;div class=&quot;tl&quot;&gt;
+&lt;div class=&quot;e&quot;&gt;&lt;div class=&quot;t&quot;&gt;&lt;b&gt;Ama Mensah&lt;/b&gt; changed role of &lt;code&gt;usr_2d71e0aa&lt;/code&gt;&lt;div class=&quot;diff&quot;&gt;&lt;span class=&quot;k&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;Operator&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Administrator&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;2fa_required&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;when&quot;&gt;14 min ago&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;e warn&quot;&gt;&lt;div class=&quot;t&quot;&gt;&lt;b&gt;Kofi Boateng&lt;/b&gt; failed sign-in (3rd attempt) from &lt;code&gt;41.66.x.x&lt;/code&gt;&lt;/div&gt;&lt;span class=&quot;when&quot;&gt;2 h ago&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;e ok&quot;&gt;&lt;div class=&quot;t&quot;&gt;&lt;b&gt;System&lt;/b&gt; created API key &lt;code&gt;key_a91f…&lt;/code&gt; for tenant &lt;code&gt;tnt_4b9e21&lt;/code&gt;&lt;/div&gt;&lt;span class=&quot;when&quot;&gt;5 h ago&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;day&quot;&gt;YESTERDAY · 14 OCT 2026&lt;/div&gt;
+&lt;div class=&quot;tl&quot;&gt;&lt;div class=&quot;e bad&quot;&gt;&lt;div class=&quot;t&quot;&gt;&lt;b&gt;Ama Mensah&lt;/b&gt; suspended &lt;code&gt;usr_c40b5d17&lt;/code&gt; · reason: policy violation&lt;/div&gt;&lt;span class=&quot;when&quot;&gt;17:42&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article></section><section id="navigation"><h2 class="title">Navigation</h2><article class="card" id="c-Accordion"><div class="card-h"><a href="components/Accordion/">Accordion</a><span class="small muted">settings groups with summaries; one open</span></div><iframe class="pv" title="Accordion preview" loading="lazy" height="254" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.ac{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.h{display:flex;align-items:center;gap:12px;height:40px;padding:0 16px;border-top:1px solid var(--border);cursor:pointer}
+.ac .h:first-child{border-top:0}
+.h b{font-weight:500}.h small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);flex:1}
+.h svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:2}
+.h.on svg{transform:rotate(180deg)}
+.c{padding:4px 16px 16px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center;color:var(--muted-foreground);font-size:13px}
+.c b{font-weight:400;font-size:14px;color:var(--foreground);display:block}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--primary)}.sw::after{content:&quot;&quot;;position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:9999px;background:var(--card)}
+.sw.off{background:var(--muted)}.sw.off::after{left:2px;border:1px solid var(--border);box-sizing:border-box}
+&lt;/style&gt;
+&lt;div class=&quot;ac&quot;&gt;
+&lt;div class=&quot;h on&quot;&gt;&lt;b&gt;Security&lt;/b&gt;&lt;small&gt;2FA required · 30-day sessions&lt;/small&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 9l6 6 6-6&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;c&quot;&gt;&lt;div&gt;&lt;b&gt;Require 2FA for administrators&lt;/b&gt;Applies at next sign-in.&lt;/div&gt;&lt;span class=&quot;sw&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;b&gt;Session lifetime&lt;/b&gt;Sign out idle sessions after 30 days.&lt;/div&gt;&lt;span style=&quot;color:var(--foreground)&quot;&gt;30 days ▾&lt;/span&gt;&lt;div&gt;&lt;b&gt;IP allowlist&lt;/b&gt;Restrict console access to listed ranges.&lt;/div&gt;&lt;span class=&quot;sw off&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;h&quot;&gt;&lt;b&gt;Notifications&lt;/b&gt;&lt;small&gt;Email on failed jobs · weekly digest off&lt;/small&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 9l6 6 6-6&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;h&quot;&gt;&lt;b&gt;Billing&lt;/b&gt;&lt;small&gt;Invoice monthly · GHS&lt;/small&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 9l6 6 6-6&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-PageHeader"><div class="card-h"><a href="components/PageHeader/">PageHeader</a><span class="small muted">list page header and object page header</span></div><iframe class="pv" title="PageHeader preview" loading="lazy" height="214" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px 24px;display:flex;flex-direction:column;gap:24px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.bc{display:flex;gap:8px;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}.bc .s{color:var(--border)}
+.hd{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-top:4px}
+h1{margin:0;font:600 24px/32px var(--font-sans);letter-spacing:-.01em;display:flex;align-items:center;gap:12px}
+.desc{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);margin-top:2px}
+.id{font:400 13px/20px var(--font-mono);color:var(--muted-foreground)}
+.acts{display:flex;gap:8px}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.pri{background:var(--primary);color:var(--primary-foreground)}.sec{background:var(--secondary);color:var(--foreground);border-color:var(--border)}.gh{background:transparent;color:var(--foreground)}
+.b{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:var(--radius-sm);font:500 12px/16px var(--font-sans);letter-spacing:.02em;background:color-mix(in srgb,var(--success) 14%,var(--background));color:var(--success)}
+hr{border:0;border-top:1px solid var(--border);margin:0}
+&lt;/style&gt;
+&lt;div&gt;&lt;div class=&quot;bc&quot;&gt;&lt;span&gt;Operations&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/&lt;/span&gt;&lt;span&gt;Users&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;hd&quot;&gt;&lt;div&gt;&lt;h1&gt;Users&lt;/h1&gt;&lt;div class=&quot;desc&quot;&gt;1,204 accounts across 3 tenants&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;acts&quot;&gt;&lt;button class=&quot;btn gh&quot;&gt;Filters&lt;/button&gt;&lt;button class=&quot;btn sec&quot;&gt;Export CSV&lt;/button&gt;&lt;button class=&quot;btn pri&quot;&gt;Add user&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;div&gt;&lt;div class=&quot;bc&quot;&gt;&lt;span&gt;Operations&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/&lt;/span&gt;&lt;span&gt;Users&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;hd&quot;&gt;&lt;div&gt;&lt;h1&gt;Ama Mensah &lt;span class=&quot;b&quot;&gt;Active&lt;/span&gt;&lt;/h1&gt;&lt;div class=&quot;id&quot;&gt;usr_8f3a92c1 · Administrator · joined 12 Mar 2025&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;acts&quot;&gt;&lt;button class=&quot;btn sec&quot;&gt;Reset password&lt;/button&gt;&lt;button class=&quot;btn sec&quot;&gt;Edit&lt;/button&gt;&lt;button class=&quot;btn gh&quot; style=&quot;color:var(--destructive)&quot;&gt;Suspend&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-SidebarNav"><div class="card-h"><a href="components/SidebarNav/">SidebarNav</a><span class="small muted">rail with workspace switcher, two groups, current item</span></div><iframe class="pv" title="SidebarNav preview" loading="lazy" height="334" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;display:flex;height:300px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.rail{width:240px;background:var(--sidebar);border-right:1px solid var(--sidebar-border);display:flex;flex-direction:column;padding:8px}
+.ws,.me{display:flex;align-items:center;gap:8px;height:40px;padding:0 8px;border-radius:var(--radius-md)}
+.mark{width:24px;height:24px;border-radius:var(--radius-sm);background:var(--sidebar-primary);color:var(--sidebar-primary-foreground);display:grid;place-items:center;font:600 12px/1 var(--font-sans)}
+.ws b{font:500 14px/20px var(--font-sans)}.ws small,.me small{display:block;font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+.grp{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);padding:16px 8px 4px}
+.it{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:var(--radius-md);font:500 14px/20px var(--font-sans);position:relative;cursor:pointer}
+.it:hover{background:var(--sidebar-accent)}
+.it.cur{background:var(--sidebar-accent)}.it.cur::before{content:&quot;&quot;;position:absolute;left:-8px;top:6px;bottom:6px;width:2px;background:var(--sidebar-primary)}
+.it svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75}
+.me{margin-top:auto;border-top:1px solid var(--sidebar-border);border-radius:0;padding-top:8px}
+.av{width:24px;height:24px;border-radius:9999px;background:var(--muted);display:grid;place-items:center;font:500 11px/1 var(--font-sans)}
+&lt;/style&gt;
+&lt;nav class=&quot;rail&quot;&gt;
+&lt;div class=&quot;ws&quot;&gt;&lt;span class=&quot;mark&quot;&gt;G&lt;/span&gt;&lt;div&gt;&lt;b&gt;Graphite Admin&lt;/b&gt;&lt;small&gt;Production&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;grp&quot;&gt;OPERATIONS&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;3&quot; width=&quot;7&quot; height=&quot;7&quot;/&gt;&lt;rect x=&quot;14&quot; y=&quot;3&quot; width=&quot;7&quot; height=&quot;7&quot;/&gt;&lt;rect x=&quot;3&quot; y=&quot;14&quot; width=&quot;7&quot; height=&quot;7&quot;/&gt;&lt;rect x=&quot;14&quot; y=&quot;14&quot; width=&quot;7&quot; height=&quot;7&quot;/&gt;&lt;/svg&gt;Dashboard&lt;/div&gt;
+&lt;div class=&quot;it cur&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M4 21c0-4 4-6 8-6s8 2 8 6&quot;/&gt;&lt;/svg&gt;Users&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 6h16M4 12h16M4 18h10&quot;/&gt;&lt;/svg&gt;Audit log&lt;/div&gt;
+&lt;div class=&quot;grp&quot;&gt;SYSTEM&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;3&quot;/&gt;&lt;path d=&quot;M12 2v3M12 19v3M2 12h3M19 12h3&quot;/&gt;&lt;/svg&gt;Settings&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 4h16v16H4z&quot;/&gt;&lt;path d=&quot;M4 9h16&quot;/&gt;&lt;/svg&gt;API keys&lt;/div&gt;
+&lt;div class=&quot;me&quot;&gt;&lt;span class=&quot;av&quot;&gt;AA&lt;/span&gt;&lt;div&gt;&lt;b style=&quot;font:500 14px/20px var(--font-sans)&quot;&gt;Andie&lt;/b&gt;&lt;small&gt;andie@example.com&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/nav&gt;
+&lt;div style=&quot;flex:1;padding:16px&quot;&gt;&lt;div style=&quot;font:600 24px/32px var(--font-sans);letter-spacing:-.01em&quot;&gt;Users&lt;/div&gt;&lt;div style=&quot;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)&quot;&gt;1,204 accounts · 3 pending review&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Stepper"><div class="card-h"><a href="components/Stepper/">Stepper</a><span class="small muted">four-step tenant setup, on step 2; compact form</span></div><iframe class="pv" title="Stepper preview" loading="lazy" height="144" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:20px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.st{display:flex;align-items:flex-start}
+.s{display:flex;align-items:flex-start;gap:8px;flex:1}
+.s .d{width:24px;height:24px;border-radius:9999px;display:grid;place-items:center;font:500 12px/1 var(--font-sans);flex:none;background:var(--secondary);color:var(--muted-foreground);border:1px solid var(--border)}
+.s.done .d,.s.cur .d{background:var(--primary);color:var(--primary-foreground);border-color:transparent}
+.s .l{font:500 14px/20px var(--font-sans);color:var(--muted-foreground)}.s.cur .l,.s.done .l{color:var(--foreground)}
+.s small{display:block;font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+.s .ln{flex:1;height:1px;background:var(--border);margin:12px 12px 0 8px}
+.s:last-child .ln{display:none}
+.cmp{display:flex;flex-direction:column;gap:4px;width:280px}
+.cmp span{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}.cmp b{font-weight:500;color:var(--foreground)}
+.pb{height:4px;background:var(--muted);border-radius:2px;overflow:hidden}.pb i{display:block;height:100%;width:50%;background:var(--primary)}
+&lt;/style&gt;
+&lt;div class=&quot;st&quot;&gt;
+&lt;div class=&quot;s done&quot;&gt;&lt;span class=&quot;d&quot;&gt;✓&lt;/span&gt;&lt;div&gt;&lt;div class=&quot;l&quot;&gt;Tenant details&lt;/div&gt;&lt;small&gt;Name, region&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;ln&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;s cur&quot;&gt;&lt;span class=&quot;d&quot;&gt;2&lt;/span&gt;&lt;div&gt;&lt;div class=&quot;l&quot;&gt;Permissions&lt;/div&gt;&lt;small&gt;Roles and admins&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;ln&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;s&quot;&gt;&lt;span class=&quot;d&quot;&gt;3&lt;/span&gt;&lt;div&gt;&lt;div class=&quot;l&quot;&gt;Integrations&lt;/div&gt;&lt;small&gt;API keys, webhooks&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;ln&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;s&quot;&gt;&lt;span class=&quot;d&quot;&gt;4&lt;/span&gt;&lt;div&gt;&lt;div class=&quot;l&quot;&gt;Review&lt;/div&gt;&lt;small&gt;Confirm and create&lt;/small&gt;&lt;/div&gt;&lt;span class=&quot;ln&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cmp&quot;&gt;&lt;span&gt;Step 2 of 4 · &lt;b&gt;Permissions&lt;/b&gt;&lt;/span&gt;&lt;div class=&quot;pb&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Tabs"><div class="card-h"><a href="components/Tabs/">Tabs</a><span class="small muted">underline tabs with counts; segmented control</span></div><iframe class="pv" title="Tabs preview" loading="lazy" height="154" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:20px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.tabs{display:flex;border-bottom:1px solid var(--border)}
+.tab{padding:8px 12px;font:500 14px/20px var(--font-sans);color:var(--muted-foreground);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.tab.on{color:var(--foreground);border-color:var(--primary)}
+.tab:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+.tab .n{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.seg{display:inline-flex;background:var(--secondary);border-radius:var(--radius-md);padding:2px;height:28px}
+.seg span{padding:0 10px;font:500 13px/24px var(--font-sans);color:var(--muted-foreground);border-radius:var(--radius-md);border:1px solid transparent;cursor:pointer}
+.seg span.on{background:var(--card);color:var(--foreground);border-color:var(--border)}
+&lt;/style&gt;
+&lt;div class=&quot;tabs&quot;&gt;&lt;div class=&quot;tab on&quot;&gt;Profile&lt;/div&gt;&lt;div class=&quot;tab&quot;&gt;Permissions &lt;span class=&quot;n&quot;&gt;12&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tab&quot;&gt;Sessions &lt;span class=&quot;n&quot;&gt;3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tab&quot;&gt;Activity&lt;/div&gt;&lt;div class=&quot;tab&quot;&gt;API keys &lt;span class=&quot;n&quot;&gt;2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span class=&quot;seg&quot;&gt;&lt;span&gt;7D&lt;/span&gt;&lt;span class=&quot;on&quot;&gt;30D&lt;/span&gt;&lt;span&gt;12M&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article></section><section id="overlays"><h2 class="title">Overlays</h2><article class="card" id="c-CommandPalette"><div class="card-h"><a href="components/CommandPalette/">CommandPalette</a><span class="small muted">open palette with a typed query</span></div><iframe class="pv" title="CommandPalette preview" loading="lazy" height="334" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;position:relative;height:300px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent);display:flex;justify-content:center;padding-top:24px}
+.cp{width:560px;height:fit-content;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden}
+.q{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-bottom:1px solid var(--border);font:400 14px/20px var(--font-sans)}
+.q svg{width:16px;height:16px;stroke:var(--muted-foreground);fill:none;stroke-width:2}
+.q .caret{display:inline-block;width:1px;height:16px;background:var(--foreground)}
+.g{padding:8px 4px 4px 12px;font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.r{display:flex;align-items:center;gap:8px;height:32px;margin:0 4px;padding:0 8px;border-radius:var(--radius-md);font:400 14px/20px var(--font-sans)}
+.r.on{background:var(--accent)}
+.r svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;color:var(--muted-foreground)}
+.r .h{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.r kbd{margin-left:auto;font:400 11px/16px var(--font-mono);padding:0 5px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--secondary);color:var(--muted-foreground)}
+.ft{display:flex;gap:12px;padding:8px 12px;border-top:1px solid var(--border);font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;scrim&quot;&gt;&lt;div class=&quot;cp&quot;&gt;
+&lt;div class=&quot;q&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;11&quot; cy=&quot;11&quot; r=&quot;7&quot;/&gt;&lt;path d=&quot;M20 20l-4-4&quot;/&gt;&lt;/svg&gt;sus&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;g&quot;&gt;ACTIONS&lt;/div&gt;
+&lt;div class=&quot;r on&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M4 21c0-4 4-6 8-6s8 2 8 6&quot;/&gt;&lt;/svg&gt;Suspend user… &lt;span class=&quot;h&quot;&gt;opens confirmation&lt;/span&gt;&lt;kbd&gt;S&lt;/kbd&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt;Suspend scheduled jobs&lt;/div&gt;
+&lt;div class=&quot;g&quot;&gt;GO TO&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 6h16M4 12h16M4 18h10&quot;/&gt;&lt;/svg&gt;Audit log &lt;span class=&quot;h&quot;&gt;filtered: suspensions&lt;/span&gt;&lt;kbd&gt;G A&lt;/kbd&gt;&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;&lt;span&gt;↑↓ navigate&lt;/span&gt;&lt;span&gt;↵ select&lt;/span&gt;&lt;span&gt;esc close&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Dialog"><div class="card-h"><a href="components/Dialog/">Dialog</a><span class="small muted">destructive confirmation with typed identifier</span></div><iframe class="pv" title="Dialog preview" loading="lazy" height="294" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;position:relative;height:260px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent);display:grid;place-items:center}
+.dlg{width:480px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:16px;display:flex;flex-direction:column;gap:12px}
+.dlg h2{margin:0;font:500 16px/24px var(--font-sans)}
+.dlg p{margin:0;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)}
+.dlg label{font:500 12px/16px var(--font-sans);letter-spacing:.02em;display:block;margin-bottom:4px}
+.dlg input{width:100%;box-sizing:border-box;height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 13px/20px var(--font-mono)}
+.ft{display:flex;justify-content:flex-end;gap:8px}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.sec{background:var(--secondary);color:var(--secondary-foreground);border-color:var(--border)}
+.des{background:var(--destructive);color:var(--destructive-foreground)}
+code{font:400 13px/20px var(--font-mono);color:var(--foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;scrim&quot;&gt;&lt;div class=&quot;dlg&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot;&gt;
+&lt;h2&gt;Suspend Kofi Boateng?&lt;/h2&gt;
+&lt;p&gt;Active sessions end immediately and API keys stop working. The account can be reinstated by an administrator. Type &lt;code&gt;usr_2d71e0aa&lt;/code&gt; to confirm.&lt;/p&gt;
+&lt;div&gt;&lt;label&gt;User ID&lt;/label&gt;&lt;input placeholder=&quot;usr_…&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;&lt;button class=&quot;btn sec&quot;&gt;Cancel&lt;/button&gt;&lt;button class=&quot;btn des&quot;&gt;Suspend user&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-DropdownMenu"><div class="card-h"><a href="components/DropdownMenu/">DropdownMenu</a><span class="small muted">row actions menu with a destructive group</span></div><iframe class="pv" title="DropdownMenu preview" loading="lazy" height="264" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;gap:16px;align-items:flex-start;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.trig{height:28px;width:28px;border:0;border-radius:var(--radius-md);background:var(--accent);color:var(--foreground);font:600 14px/1 var(--font-sans);cursor:pointer}
+.menu{min-width:200px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:4px}
+.it{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:var(--radius-md);font:400 14px/20px var(--font-sans);cursor:pointer}
+.it:hover,.it.on{background:var(--accent)}
+.it svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;color:var(--muted-foreground)}
+.it .k{margin-left:auto;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.sep{height:1px;background:var(--border);margin:4px 0}
+.des{color:var(--destructive)}.des svg{color:var(--destructive)}
+&lt;/style&gt;
+&lt;button class=&quot;trig&quot;&gt;⋯&lt;/button&gt;
+&lt;div class=&quot;menu&quot;&gt;
+&lt;div class=&quot;it on&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 20h4l10-10-4-4L4 16z&quot;/&gt;&lt;/svg&gt;Edit user&lt;span class=&quot;k&quot;&gt;E&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;3&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M8 12h8&quot;/&gt;&lt;/svg&gt;Copy user ID&lt;span class=&quot;k&quot;&gt;⌘C&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 6h16M4 12h16M4 18h10&quot;/&gt;&lt;/svg&gt;View audit log&lt;/div&gt;
+&lt;div class=&quot;sep&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt;Reset password&lt;/div&gt;
+&lt;div class=&quot;it&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z&quot;/&gt;&lt;/svg&gt;Require 2FA&lt;/div&gt;
+&lt;div class=&quot;sep&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;it des&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M5.5 5.5l13 13&quot;/&gt;&lt;/svg&gt;Suspend user…&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-NotificationPanel"><div class="card-h"><a href="components/NotificationPanel/">NotificationPanel</a><span class="small muted">bell with count and open panel</span></div><iframe class="pv" title="NotificationPanel preview" loading="lazy" height="314" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;gap:16px;align-items:flex-start;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.bell{position:relative;width:28px;height:28px;border:0;border-radius:var(--radius-md);background:var(--accent);display:grid;place-items:center}
+.bell svg{width:16px;height:16px;stroke:var(--foreground);fill:none;stroke-width:1.75}
+.bell i{position:absolute;top:-6px;right:-6px;min-width:16px;height:16px;padding:0 4px;border-radius:9999px;background:var(--primary);color:var(--primary-foreground);font:500 11px/16px var(--font-sans);font-style:normal}
+.pn{width:360px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.hd{display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 12px;border-bottom:1px solid var(--border)}
+.hd b{font:500 16px/24px var(--font-sans)}.hd span{font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.r{display:flex;gap:8px;align-items:flex-start;padding:10px 12px 10px 16px;border-bottom:1px solid var(--border);position:relative}
+.r.un{background:var(--card)}.r.un::before{content:&quot;&quot;;position:absolute;left:6px;top:18px;width:6px;height:6px;border-radius:9999px;background:var(--primary)}
+.r svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;flex:none;margin-top:2px;color:var(--muted-foreground)}
+.r.ok svg{color:var(--success)}.r.bad svg{color:var(--destructive)}
+.r div{flex:1}.r b{font-weight:500}.r small{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.ft{height:36px;display:grid;place-items:center;font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;button class=&quot;bell&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 16V11a6 6 0 0 1 12 0v5l2 2H4z&quot;/&gt;&lt;path d=&quot;M10 20a2 2 0 0 0 4 0&quot;/&gt;&lt;/svg&gt;&lt;i&gt;2&lt;/i&gt;&lt;/button&gt;
+&lt;div class=&quot;pn&quot;&gt;&lt;div class=&quot;hd&quot;&gt;&lt;b&gt;Notifications&lt;/b&gt;&lt;span&gt;Mark all read&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r un bad&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 8v5M12 16h.01&quot;/&gt;&lt;/svg&gt;&lt;div&gt;&lt;b&gt;Export failed&lt;/b&gt; · users-october.csv&lt;small&gt;Timed out after 120s · 9 min ago&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;r un ok&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M5 12l5 5L20 7&quot;/&gt;&lt;/svg&gt;&lt;div&gt;&lt;b&gt;Kofi Boateng&lt;/b&gt; completed 2FA enrolment&lt;small&gt;2 h ago&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt;&lt;div&gt;&lt;b&gt;Scheduled maintenance&lt;/b&gt; Saturday 02:00–03:00 GMT&lt;small&gt;Yesterday&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;View all notifications&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Sheet"><div class="card-h"><a href="components/Sheet/">Sheet</a><span class="small muted">user detail sheet over a table</span></div><iframe class="pv" title="Sheet preview" loading="lazy" height="334" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;position:relative;height:300px;overflow:hidden;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent)}
+.sh{position:absolute;top:0;right:0;bottom:0;width:480px;background:var(--card);border-left:1px solid var(--border);box-shadow:var(--shadow-md);display:flex;flex-direction:column}
+.hd{display:flex;align-items:flex-start;justify-content:space-between;padding:16px;border-bottom:1px solid var(--border)}
+.hd h2{margin:0;font:500 16px/24px var(--font-sans)}.hd .id{font:400 13px/20px var(--font-mono);color:var(--muted-foreground)}
+.x{width:28px;height:28px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--muted-foreground);cursor:pointer}
+.bd{padding:16px;display:grid;grid-template-columns:140px 1fr;gap:12px 16px;font:400 14px/20px var(--font-sans);flex:1}
+.bd dt{font:500 12px/20px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}.bd dd{margin:0}
+.mono{font:400 13px/20px var(--font-mono)}
+.ft{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.sec{background:var(--secondary);color:var(--foreground);border-color:var(--border)}.pri{background:var(--primary);color:var(--primary-foreground)}
+.ghost-rows{padding:16px;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;ghost-rows&quot;&gt;Users · 1,204 accounts&lt;br&gt;&lt;br&gt;Ama Mensah · Administrator&lt;br&gt;Kofi Boateng · Operator&lt;br&gt;Esi Owusu · Auditor&lt;/div&gt;
+&lt;div class=&quot;scrim&quot;&gt;&lt;/div&gt;
+&lt;aside class=&quot;sh&quot;&gt;
+&lt;div class=&quot;hd&quot;&gt;&lt;div&gt;&lt;h2&gt;Kofi Boateng&lt;/h2&gt;&lt;div class=&quot;id&quot;&gt;usr_2d71e0aa&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;x&quot;&gt;✕&lt;/button&gt;&lt;/div&gt;
+&lt;dl class=&quot;bd&quot;&gt;&lt;dt&gt;EMAIL&lt;/dt&gt;&lt;dd&gt;kofi.b@example.com&lt;/dd&gt;&lt;dt&gt;ROLE&lt;/dt&gt;&lt;dd&gt;Operator&lt;/dd&gt;&lt;dt&gt;TENANT&lt;/dt&gt;&lt;dd class=&quot;mono&quot;&gt;tnt_4b9e21&lt;/dd&gt;&lt;dt&gt;LAST SIGN-IN&lt;/dt&gt;&lt;dd&gt;14 min ago · Accra&lt;/dd&gt;&lt;dt&gt;2FA&lt;/dt&gt;&lt;dd&gt;Enabled (TOTP)&lt;/dd&gt;&lt;dt&gt;SESSIONS&lt;/dt&gt;&lt;dd&gt;3 active&lt;/dd&gt;&lt;/dl&gt;
+&lt;div class=&quot;ft&quot;&gt;&lt;button class=&quot;btn sec&quot;&gt;Close&lt;/button&gt;&lt;button class=&quot;btn pri&quot;&gt;Edit user&lt;/button&gt;&lt;/div&gt;
+&lt;/aside&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Toast"><div class="card-h"><a href="components/Toast/">Toast</a><span class="small muted">success with undo, error persistent, neutral with progress</span></div><iframe class="pv" title="Toast preview" loading="lazy" height="234" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:8px;align-items:flex-end;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.to{width:360px;box-sizing:border-box;display:flex;gap:8px;align-items:flex-start;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:12px}
+.to svg{width:16px;height:16px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.to.ok svg{color:var(--success)}.to.bad svg{color:var(--destructive)}.to.n svg{color:var(--muted-foreground)}
+.to b{display:block;font:500 14px/20px var(--font-sans)}.to span{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.to .body{flex:1}
+.to button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer}.to button:hover{background:var(--accent)}
+.x{color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;to ok&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M5 12l5 5L20 7&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Role updated&lt;/b&gt;&lt;span&gt;Ama Mensah is now an Administrator.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;Undo&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;to bad&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 8v5M12 16h.01&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Export failed&lt;/b&gt;&lt;span&gt;The job timed out after 120s. Retry with a smaller date range.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;Retry&lt;/button&gt;&lt;button class=&quot;x&quot;&gt;✕&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;to n&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Exporting 12,400 rows…&lt;/b&gt;&lt;span&gt;We&#x27;ll notify you when the CSV is ready.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Tooltip"><div class="card-h"><a href="components/Tooltip/">Tooltip</a><span class="small muted">icon button name, absolute timestamp, truncated cell</span></div><iframe class="pv" title="Tooltip preview" loading="lazy" height="144" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:40px 16px 16px;display:flex;gap:48px;align-items:center;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.w{position:relative;display:inline-flex}
+.tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:4px 8px;font:400 13px/18px var(--font-sans)}
+.ib{width:28px;height:28px;border:0;border-radius:var(--radius-md);background:var(--accent);display:grid;place-items:center}
+.ib svg{width:16px;height:16px;stroke:var(--foreground);fill:none;stroke-width:1.75}
+.rel{color:var(--muted-foreground);font-size:13px;border-bottom:1px dotted var(--muted-foreground)}
+.cell{max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;font:400 13px/20px var(--font-mono)}
+&lt;/style&gt;
+&lt;span class=&quot;w&quot;&gt;&lt;span class=&quot;tip&quot;&gt;Refresh (R)&lt;/span&gt;&lt;button class=&quot;ib&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M20 12a8 8 0 1 1-2.3-5.7&quot;/&gt;&lt;path d=&quot;M20 4v5h-5&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;&lt;span class=&quot;tip&quot;&gt;2026-10-15 09:41:07 GMT&lt;/span&gt;&lt;span class=&quot;rel&quot;&gt;14 min ago&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;&lt;span class=&quot;tip&quot;&gt;whsec_9f2a7c41e0b35d6f8a1c2e4b&lt;/span&gt;&lt;span class=&quot;cell&quot;&gt;whsec_9f2a7c41e0b35d6f8a1c2e4b&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article></section><section id="feedback"><h2 class="title">Feedback</h2><article class="card" id="c-Alert"><div class="card-h"><a href="components/Alert/">Alert</a><span class="small muted">info, warning and destructive alerts</span></div><iframe class="pv" title="Alert preview" loading="lazy" height="264" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.al{display:flex;gap:8px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px}
+.al svg{width:16px;height:16px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.al.info svg{color:var(--chart-2)}.al.warn svg{color:var(--warning)}.al.bad{background:color-mix(in srgb,var(--destructive) 10%,var(--card))}.al.bad svg{color:var(--destructive)}
+.al b{display:block;font:500 14px/20px var(--font-sans)}.al span{display:block;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)}
+.al .body{flex:1}
+.al button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer;white-space:nowrap}.al button:hover{background:var(--accent)}
+&lt;/style&gt;
+&lt;div class=&quot;al info&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 11v5M12 8h.01&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Scheduled maintenance Saturday 02:00–03:00 GMT&lt;/b&gt;&lt;span&gt;The console stays available; background jobs are paused and resume automatically.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;Details&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;al warn&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 3l10 18H2z&quot;/&gt;&lt;path d=&quot;M12 10v4M12 17h.01&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;3 users have no 2FA enrolled&lt;/b&gt;&lt;span&gt;Tenant policy requires 2FA for Administrators. They will be prompted at next sign-in.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;View users&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;al bad&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 8v5M12 16h.01&quot;/&gt;&lt;/svg&gt;&lt;div class=&quot;body&quot;&gt;&lt;b&gt;Audit log failed to load&lt;/b&gt;&lt;span&gt;The log service returned 503. Showing cached entries from 09:41.&lt;/span&gt;&lt;/div&gt;&lt;button&gt;Retry&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Banner"><div class="card-h"><a href="components/Banner/">Banner</a><span class="small muted">sandbox, read-only and impersonation banners</span></div><iframe class="pv" title="Banner preview" loading="lazy" height="174" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;display:flex;flex-direction:column;gap:12px;padding:16px 0;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.bn{display:flex;align-items:center;gap:8px;height:36px;padding:0 16px;font:400 13px/18px var(--font-sans);background:var(--secondary)}
+.bn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;flex:none}
+.bn b{font-weight:500}
+.bn.warn{background:color-mix(in srgb,var(--warning) 22%,var(--background))}
+.bn.bad{background:color-mix(in srgb,var(--destructive) 12%,var(--background));color:var(--destructive)}
+.bn button{margin-left:auto;height:24px;padding:0 8px;border:1px solid var(--border);border-radius:var(--radius-sm);background:transparent;color:var(--foreground);font:500 12px/16px var(--font-sans);cursor:pointer}
+&lt;/style&gt;
+&lt;div class=&quot;bn&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 4h16v16H4z&quot;/&gt;&lt;path d=&quot;M4 9h16&quot;/&gt;&lt;/svg&gt;&lt;b&gt;Sandbox environment.&lt;/b&gt; Data here is reset nightly and never billed.&lt;/div&gt;
+&lt;div class=&quot;bn bad&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;rect x=&quot;5&quot; y=&quot;11&quot; width=&quot;14&quot; height=&quot;10&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M8 11V7a4 4 0 0 1 8 0v4&quot;/&gt;&lt;/svg&gt;&lt;b&gt;Read-only mode.&lt;/b&gt; A database migration is running; writes are rejected until about 03:00 GMT.&lt;/div&gt;
+&lt;div class=&quot;bn warn&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M4 21c0-4 4-6 8-6s8 2 8 6&quot;/&gt;&lt;/svg&gt;Impersonating &lt;b&gt;Ama Mensah&lt;/b&gt; (usr_8f3a92c1). Every action is logged under your account.&lt;button&gt;Exit impersonation&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-EmptyState"><div class="card-h"><a href="components/EmptyState/">EmptyState</a><span class="small muted">true empty vs filtered-to-nothing</span></div><iframe class="pv" title="EmptyState preview" loading="lazy" height="234" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.es{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.es .ic{width:40px;height:40px;border-radius:9999px;background:var(--muted);display:grid;place-items:center;color:var(--muted-foreground)}
+.es svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75}
+.es h3{margin:0;font:500 16px/24px var(--font-sans)}.es p{margin:0;font:400 14px/20px var(--font-sans);color:var(--muted-foreground);max-width:320px}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer;margin-top:4px}
+.pri{background:var(--primary);color:var(--primary-foreground)}.gh{background:transparent;color:var(--foreground)}.gh:hover{background:var(--accent)}
+&lt;/style&gt;
+&lt;div class=&quot;es&quot;&gt;&lt;div class=&quot;ic&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M4 4h16v16H4z&quot;/&gt;&lt;path d=&quot;M4 9h16&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;&lt;h3&gt;No API keys yet&lt;/h3&gt;&lt;p&gt;Keys let external services call this tenant&#x27;s API. Each key is shown once at creation.&lt;/p&gt;&lt;button class=&quot;btn pri&quot;&gt;Create key&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;es&quot;&gt;&lt;div class=&quot;ic&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M3 5h18l-7 8v6l-4-2v-4z&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;&lt;h3&gt;No users match&lt;/h3&gt;&lt;p&gt;Filters: Role is Auditor, Status is Suspended, Created in last 7 days.&lt;/p&gt;&lt;button class=&quot;btn gh&quot;&gt;Clear filters&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-ProgressBar"><div class="card-h"><a href="components/ProgressBar/">ProgressBar</a><span class="small muted">job progress; quota at 83%; quota at 97%</span></div><iframe class="pv" title="ProgressBar preview" loading="lazy" height="184" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.p{display:flex;flex-direction:column;gap:6px}
+.p .l{display:flex;justify-content:space-between}.p .l span:last-child{font:400 13px/20px var(--font-mono);color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+.tr{height:4px;background:var(--muted);border-radius:9999px;overflow:hidden}.tr i{display:block;height:100%;background:var(--primary)}
+.tr.warn i{background:var(--warning)}.tr.bad i{background:var(--destructive)}
+&lt;/style&gt;
+&lt;div class=&quot;p&quot;&gt;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;Importing users-october.csv&lt;/span&gt;&lt;span&gt;64% · 7,936 / 12,400&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tr&quot;&gt;&lt;i style=&quot;width:64%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;p&quot;&gt;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;API requests this month&lt;/span&gt;&lt;span&gt;83% · 830K / 1M&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tr warn&quot;&gt;&lt;i style=&quot;width:83%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;p&quot;&gt;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;Storage&lt;/span&gt;&lt;span style=&quot;color:var(--destructive)&quot;&gt;97% · 48.5 / 50 GB&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tr bad&quot;&gt;&lt;i style=&quot;width:97%&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article><article class="card" id="c-Skeleton"><div class="card-h"><a href="components/Skeleton/">Skeleton</a><span class="small muted">stat tile, table rows and a text block loading</span></div><iframe class="pv" title="Skeleton preview" loading="lazy" height="204" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:200px 1fr 220px;gap:16px;font-family:var(--font-sans);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.sk{background:var(--muted);border-radius:var(--radius-sm);position:relative;overflow:hidden}
+.sk::after{content:&quot;&quot;;position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:translateX(-100%);animation:sh 1.6s infinite}
+@keyframes sh{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.sk::after{animation:none}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;display:flex;flex-direction:column;gap:8px}
+.tbl{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.th{background:var(--secondary);border-bottom:1px solid var(--border);padding:10px 12px;font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);display:grid;grid-template-columns:2fr 1fr 1fr}
+.tr{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;padding:10px 12px;border-bottom:1px solid var(--border)}
+.tr .sk{height:14px}
+&lt;/style&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:60%;height:12px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:80%;height:28px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:40%;height:12px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;height:28px;margin-top:4px&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;tbl&quot;&gt;&lt;div class=&quot;th&quot;&gt;&lt;span&gt;USER&lt;/span&gt;&lt;span&gt;ROLE&lt;/span&gt;&lt;span&gt;STATUS&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;tr&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:70%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:60%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:50%&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;tr&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:55%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:65%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:45%&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;tr&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:80%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:50%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:55%&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;tr&quot; style=&quot;border:0&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:62%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:58%&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:48%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div style=&quot;display:flex;flex-direction:column;gap:8px&quot;&gt;&lt;div class=&quot;sk&quot; style=&quot;width:50%;height:20px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:90%;height:14px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:85%;height:14px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sk&quot; style=&quot;width:70%;height:14px&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article></section><section id="pages"><h2 class="title">Pages</h2><article class="card" id="c-LoginScreen"><div class="card-h"><a href="components/LoginScreen/">LoginScreen</a><span class="small muted">sign-in and the 2FA step side by side</span></div><iframe class="pv" title="LoginScreen preview" loading="lazy" height="374" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;tokens.css&quot;&gt;&lt;style&gt;html,body{margin:0;background:var(--background)}body{overflow:hidden}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=&quot;root&quot; style=&quot;display:flex;gap:48px;justify-content:center;align-items:flex-start;padding:24px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.card{width:400px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:12px}
+.card h1{margin:0;font:500 16px/24px var(--font-sans)}.card .t{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.f{display:flex;flex-direction:column;gap:4px}.f label{font:500 12px/16px var(--font-sans);letter-spacing:.02em}
+.f input{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.btn{height:32px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer;width:100%}
+.pri{background:var(--primary);color:var(--primary-foreground)}.sec{background:var(--secondary);color:var(--foreground);border-color:var(--border)}
+.al{display:flex;gap:8px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-md);background:color-mix(in srgb,var(--destructive) 10%,var(--card));font-size:13px;line-height:18px}
+.al i{color:var(--destructive);font-style:normal}
+.cells{display:flex;gap:8px;justify-content:center}.cells span{width:40px;height:40px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);display:grid;place-items:center;font:400 18px/1 var(--font-mono)}
+.cells span.on{border-color:var(--ring);outline:2px solid var(--ring);outline-offset:1px}
+.gh{text-align:center;font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.ft{text-align:center;font:400 12px/16px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;div&gt;&lt;h1&gt;Sign in to Graphite Admin&lt;/h1&gt;&lt;div class=&quot;t&quot;&gt;Graphite Microfinance Ltd · Production&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;al&quot;&gt;&lt;i&gt;●&lt;/i&gt;&lt;span&gt;The email or password is incorrect. 2 attempts remain before a 15-minute lockout.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Email&lt;/label&gt;&lt;input value=&quot;ama@graphite.co&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;f&quot;&gt;&lt;label&gt;Password&lt;/label&gt;&lt;input type=&quot;password&quot; value=&quot;••••••••••&quot;&gt;&lt;/div&gt;
+&lt;button class=&quot;btn pri&quot;&gt;Sign in&lt;/button&gt;&lt;button class=&quot;btn sec&quot;&gt;Use SSO&lt;/button&gt;
+&lt;div class=&quot;ft&quot;&gt;Production · v4.12.0 · eu-west-1&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;div&gt;&lt;h1&gt;Enter your 2FA code&lt;/h1&gt;&lt;div class=&quot;t&quot;&gt;From your authenticator app · ama@graphite.co&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;cells&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;span&gt;8&lt;/span&gt;&lt;span&gt;1&lt;/span&gt;&lt;span class=&quot;on&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;button class=&quot;btn pri&quot;&gt;Verify&lt;/button&gt;&lt;div class=&quot;gh&quot;&gt;Use a recovery code&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;Production · v4.12.0 · eu-west-1&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></article></section>
+<section id="tokens"><h2 class="title">Colour tokens</h2><div class="swatches"><div class="sw"><i style="background:var(--background)"></i><b>background</b><span class="small muted">Page ground behind every console view. Content areas sit on it as card</span></div><div class="sw"><i style="background:var(--foreground)"></i><b>foreground</b><span class="small muted">Default ink: body text, table cells, icons. 10.5:1 on background (ligh</span></div><div class="sw"><i style="background:var(--card)"></i><b>card</b><span class="small muted">Panels, stat tiles, table containers, dialogs. One step lighter than b</span></div><div class="sw"><i style="background:var(--primary)"></i><b>primary</b><span class="small muted">The one emphasis colour: primary buttons, active nav item, checked con</span></div><div class="sw"><i style="background:var(--primary-foreground)"></i><b>primary-foreground</b><span class="small muted">Text and icons on primary. 5.9:1 (light), 7.5:1 (dark).</span></div><div class="sw"><i style="background:var(--secondary)"></i><b>secondary</b><span class="small muted">Secondary buttons, segmented controls at rest, table header ground.</span></div><div class="sw"><i style="background:var(--muted)"></i><b>muted</b><span class="small muted">Disabled fills, skeleton loaders, code blocks, zebra rows, row hover.</span></div><div class="sw"><i style="background:var(--muted-foreground)"></i><b>muted-foreground</b><span class="small muted">Secondary text: captions, column headers, helper text, timestamps. 5.3</span></div><div class="sw"><i style="background:var(--accent)"></i><b>accent</b><span class="small muted">Hover and selected ground for menu items, list rows, ghost buttons.</span></div><div class="sw"><i style="background:var(--destructive)"></i><b>destructive</b><span class="small muted">Delete, revoke, suspend: the destructive button fill, error text, fail</span></div><div class="sw"><i style="background:var(--destructive-foreground)"></i><b>destructive-foreground</b><span class="small muted">Text on a destructive fill. Light: white on #cc3333, 5.1:1. Dark: ink </span></div><div class="sw"><i style="background:var(--success)"></i><b>success</b><span class="small muted">Positive status: active, healthy, completed, up-trend deltas. As text </span></div><div class="sw"><i style="background:var(--warning)"></i><b>warning</b><span class="small muted">Attention status: pending, degraded, needs review. A fill or icon colo</span></div><div class="sw"><i style="background:var(--border)"></i><b>border</b><span class="small muted">Every hairline: card edges, table rules, dividers, sidebar edge. Borde</span></div><div class="sw"><i style="background:var(--input)"></i><b>input</b><span class="small muted">Border of text fields, selects and textareas at rest. Light: 1.3:1 aga</span></div><div class="sw"><i style="background:var(--sidebar)"></i><b>sidebar</b><span class="small muted">Navigation rail ground. A shade off background so the edge reads witho</span></div><div class="sw"><i style="background:var(--chart-1)"></i><b>chart-1</b><span class="small muted">First data series. The chart scale is greys plus one slate-teal so ser</span></div><div class="sw"><i style="background:var(--chart-2)"></i><b>chart-2</b><span class="small muted">Second series and comparison lines (previous period). The only hue in </span></div><div class="sw"><i style="background:var(--chart-3)"></i><b>chart-3</b><span class="small muted">Third series.</span></div><div class="sw"><i style="background:var(--chart-4)"></i><b>chart-4</b><span class="small muted">Fourth series, area fills.</span></div><div class="sw"><i style="background:var(--chart-5)"></i><b>chart-5</b><span class="small muted">Fifth series, gridlines, reference bands.</span></div></div>
+<h2 class="title">Type scale</h2><div class="types"><div class="ty"><span class="display">Store overview</span><span class="small muted">display · 24px/32px · 600</span></div><div class="ty"><span class="title">Recent orders</span><span class="small muted">title · 16px/24px · 500</span></div><div class="ty"><span class="body">Showing 25 of 1,204 users</span><span class="small muted">body · 14px/20px · 400</span></div><div class="ty"><span class="body-medium">Save changes</span><span class="small muted">body-medium · 14px/20px · 500</span></div><div class="ty"><span class="small">Updated 4 minutes ago</span><span class="small muted">small · 13px/18px · 400</span></div><div class="ty"><span class="label">STATUS</span><span class="small muted">label · 12px/16px · 500</span></div><div class="ty"><span class="mono">usr_8f3a92c1</span><span class="small muted">mono · 13px/20px · 400</span></div></div></section>
+</main><script src="site.js"></script></body></html>

@@ -1,0 +1,3 @@
+# DropdownMenu
+
+Row actions and overflow ("…") menus: a `popover` with `border`, `radius-lg`, `shadow-sm`, 4px inner padding, min 180px. Items are 32px, `body`, 16px icon in `muted-foreground`, optional shortcut in `small` `muted-foreground` on the right; hover and keyboard focus are `accent`. Groups are separated by a `border` hairline with `space-1` margins. Destructive items sit in their own last group in `destructive` text and always open a Dialog. Submenus open to the right with a chevron. A menu never has more than ~9 items; beyond that it becomes a CommandPalette or a page. The consumer provides groups, items, icons and handlers.

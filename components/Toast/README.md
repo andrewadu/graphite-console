@@ -1,0 +1,3 @@
+# Toast
+
+Transient feedback after an action, bottom-right, 360px wide, stacked newest at the bottom. A `popover` ground with `border`, `radius-lg`, `shadow-sm`, `space-3` padding; a 16px icon in the tone colour, a `body-medium` title, optional `small` description in `muted-foreground`, optional ghost action ("Undo", "View"). Tones: neutral, success, warning, destructive, mapped to the status tokens as icon colour only; the ground never changes colour, so a stack of five reads as one system. Success toasts dismiss after 5s; errors stay until dismissed. Never toast something the operator must act on; that is a Dialog or an inline error.

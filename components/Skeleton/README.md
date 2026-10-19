@@ -1,0 +1,3 @@
+# Skeleton
+
+Loading placeholders that keep layout stable: `muted` blocks with `radius-sm` for text lines and `radius-lg` for cards, a slow 1.6s shimmer in `accent` at low contrast (respecting `prefers-reduced-motion`, where it becomes a static block). Text lines are the line-height of the style they replace (20px for `body`, 32px for `display`) and 60–90% wide so they read as text, not bars. A table skeleton shows the real header and 5 to 10 rows; a tile skeleton shows caption, value and sparkline shapes. Skeletons appear after 150ms (not on every fetch) and never for actions under that. The consumer provides the shape count; the system fixes colour and timing.

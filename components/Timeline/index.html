@@ -1,0 +1,53 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>Timeline · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / Timeline</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">Timeline</h1><p class="small muted">audit entries with a date divider and an expanded diff</p>
+<div class="frame" style="min-height:260px"><div id="root" style="padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.day{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);margin:0 0 8px 20px}
+.tl{position:relative;padding-left:20px}
+.tl::before{content:"";position:absolute;left:3px;top:6px;bottom:6px;width:1px;background:var(--border)}
+.e{position:relative;display:flex;gap:12px;align-items:flex-start;min-height:40px;padding-bottom:8px}
+.e::before{content:"";position:absolute;left:-20px;top:6px;width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.e.ok::before{background:var(--success)}.e.bad::before{background:var(--destructive)}.e.warn::before{background:var(--warning)}
+.e .t{flex:1}.e b{font-weight:500}.e code{font:400 13px/20px var(--font-mono)}
+.e .when{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);white-space:nowrap;margin-top:1px}
+.diff{margin-top:6px;display:grid;grid-template-columns:auto 1fr 1fr;gap:2px 12px;font:400 13px/18px var(--font-sans);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 12px;max-width:420px}
+.diff .k{color:var(--muted-foreground)}.diff .o{text-decoration:line-through;color:var(--muted-foreground)}.diff .n{font-family:var(--font-mono);font-size:12px}
+</style>
+<div class="day">TODAY · 15 OCT 2026</div>
+<div class="tl">
+<div class="e"><div class="t"><b>Ama Mensah</b> changed role of <code>usr_2d71e0aa</code><div class="diff"><span class="k">role</span><span class="o">Operator</span><span class="n">Administrator</span><span class="k">2fa_required</span><span class="o">false</span><span class="n">true</span></div></div><span class="when">14 min ago</span></div>
+<div class="e warn"><div class="t"><b>Kofi Boateng</b> failed sign-in (3rd attempt) from <code>41.66.x.x</code></div><span class="when">2 h ago</span></div>
+<div class="e ok"><div class="t"><b>System</b> created API key <code>key_a91f…</code> for tenant <code>tnt_4b9e21</code></div><span class="when">5 h ago</span></div>
+</div>
+<div class="day">YESTERDAY · 14 OCT 2026</div>
+<div class="tl"><div class="e bad"><div class="t"><b>Ama Mensah</b> suspended <code>usr_c40b5d17</code> · reason: policy violation</div><span class="when">17:42</span></div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Audit-log detail and object history: a vertical list where each entry has an 8px dot on a 1px `border` spine, the actor in `body-medium`, the action in `body`, the target in `mono`, and the time in `small` `muted-foreground` right-aligned (relative, absolute in a tooltip). Dots are `muted-foreground` by default, `success` for creations, `destructive` for deletions and suspensions, `warning` for failed attempts. Entries with detail (a diff of changed fields) expand inline as a two-column key/value block in `small`. Days are separated by a `label` date heading. Newest at the top. The consumer provides the entries; the system fixes density (40px per entry) and colour meaning.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.day{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground);margin:0 0 8px 20px}
+.tl{position:relative;padding-left:20px}
+.tl::before{content:&quot;&quot;;position:absolute;left:3px;top:6px;bottom:6px;width:1px;background:var(--border)}
+.e{position:relative;display:flex;gap:12px;align-items:flex-start;min-height:40px;padding-bottom:8px}
+.e::before{content:&quot;&quot;;position:absolute;left:-20px;top:6px;width:8px;height:8px;border-radius:9999px;background:var(--muted-foreground)}
+.e.ok::before{background:var(--success)}.e.bad::before{background:var(--destructive)}.e.warn::before{background:var(--warning)}
+.e .t{flex:1}.e b{font-weight:500}.e code{font:400 13px/20px var(--font-mono)}
+.e .when{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);white-space:nowrap;margin-top:1px}
+.diff{margin-top:6px;display:grid;grid-template-columns:auto 1fr 1fr;gap:2px 12px;font:400 13px/18px var(--font-sans);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 12px;max-width:420px}
+.diff .k{color:var(--muted-foreground)}.diff .o{text-decoration:line-through;color:var(--muted-foreground)}.diff .n{font-family:var(--font-mono);font-size:12px}
+&lt;/style&gt;
+&lt;div class=&quot;day&quot;&gt;TODAY · 15 OCT 2026&lt;/div&gt;
+&lt;div class=&quot;tl&quot;&gt;
+&lt;div class=&quot;e&quot;&gt;&lt;div class=&quot;t&quot;&gt;&lt;b&gt;Ama Mensah&lt;/b&gt; changed role of &lt;code&gt;usr_2d71e0aa&lt;/code&gt;&lt;div class=&quot;diff&quot;&gt;&lt;span class=&quot;k&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;Operator&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Administrator&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;2fa_required&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;when&quot;&gt;14 min ago&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;e warn&quot;&gt;&lt;div class=&quot;t&quot;&gt;&lt;b&gt;Kofi Boateng&lt;/b&gt; failed sign-in (3rd attempt) from &lt;code&gt;41.66.x.x&lt;/code&gt;&lt;/div&gt;&lt;span class=&quot;when&quot;&gt;2 h ago&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;e ok&quot;&gt;&lt;div class=&quot;t&quot;&gt;&lt;b&gt;System&lt;/b&gt; created API key &lt;code&gt;key_a91f…&lt;/code&gt; for tenant &lt;code&gt;tnt_4b9e21&lt;/code&gt;&lt;/div&gt;&lt;span class=&quot;when&quot;&gt;5 h ago&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;day&quot;&gt;YESTERDAY · 14 OCT 2026&lt;/div&gt;
+&lt;div class=&quot;tl&quot;&gt;&lt;div class=&quot;e bad&quot;&gt;&lt;div class=&quot;t&quot;&gt;&lt;b&gt;Ama Mensah&lt;/b&gt; suspended &lt;code&gt;usr_c40b5d17&lt;/code&gt; · reason: policy violation&lt;/div&gt;&lt;span class=&quot;when&quot;&gt;17:42&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

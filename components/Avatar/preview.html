@@ -1,0 +1,17 @@
+<!-- @dsCard group="Data display" height=90 subtitle="sizes, square tenant mark, presence, stack" -->
+<div id="root" style="padding:16px;display:flex;gap:24px;align-items:center;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.av{display:inline-grid;place-items:center;border-radius:9999px;background:var(--muted);color:var(--foreground);font:500 14px/1 var(--font-sans);position:relative;flex:none}
+.s20{width:20px;height:20px;font-size:11px}.s24{width:24px;height:24px;font-size:11px}.s32{width:32px;height:32px;font-size:13px}.s40{width:40px;height:40px}
+.sq{border-radius:var(--radius-sm);background:var(--primary);color:var(--primary-foreground)}
+.dot::after{content:"";position:absolute;right:-1px;bottom:-1px;width:8px;height:8px;border-radius:9999px;background:var(--success);border:2px solid var(--card)}
+.stack{display:flex}.stack .av{border:2px solid var(--card);margin-left:-8px}.stack .av:first-child{margin-left:0}
+.more{font:400 13px/18px var(--font-sans);color:var(--muted-foreground);margin-left:8px;align-self:center}
+.row{display:flex;align-items:center;gap:8px}
+</style>
+<div class="row"><span class="av s20">AM</span><span class="av s24">KB</span><span class="av s32">EO</span><span class="av s40">YD</span></div>
+<div class="row"><span class="av s32 sq">G</span><span class="av s24 sq">T</span></div>
+<div class="row"><span class="av s32 dot">AM</span><span class="av s40 dot">KB</span></div>
+<div class="stack"><span class="av s32">AM</span><span class="av s32">KB</span><span class="av s32">EO</span><span class="more">+9</span></div>
+</div>
+<script>/* static */</script>

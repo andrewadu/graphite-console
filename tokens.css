@@ -1,0 +1,97 @@
+/* Graphite Console. Generated from tokens.json by build.py; edit tokens.json, not this file. */
+:root, [data-theme="light"] {
+  color-scheme: light;
+  --background: #f0f0f0;
+  --foreground: #333333;
+  --card: #f5f5f5;
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: #606060;
+  --primary-foreground: #ffffff;
+  --secondary: #e0e0e0;
+  --secondary-foreground: var(--foreground);
+  --muted: #d9d9d9;
+  --muted-foreground: #666666;
+  --accent: #c0c0c0;
+  --accent-foreground: var(--foreground);
+  --destructive: #cc3333;
+  --destructive-foreground: #ffffff;
+  --success: lab(49.3501% -55.1663 26.0176);
+  --warning: lab(71.5961% 15.2223 108.578);
+  --border: #d0d0d0;
+  --input: #e0e0e0;
+  --ring: var(--primary);
+  --sidebar: #eaeaea;
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --chart-1: #606060;
+  --chart-2: #476666;
+  --chart-3: #909090;
+  --chart-4: #a8a8a8;
+  --chart-5: #c0c0c0;
+  --shadow-sm: 0px 2px 0px 0px rgba(51, 51, 51, 0.10);
+  --shadow-md: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #1a1a1a;
+  --foreground: #d9d9d9;
+  --card: #202020;
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: #a0a0a0;
+  --primary-foreground: #1a1a1a;
+  --secondary: #303030;
+  --secondary-foreground: var(--foreground);
+  --muted: #2a2a2a;
+  --muted-foreground: #808080;
+  --accent: #404040;
+  --accent-foreground: var(--foreground);
+  --destructive: #e06666;
+  --destructive-foreground: #1a1a1a;
+  --success: lab(69.8922% -48.9815 15.6709);
+  --warning: lab(78.0351% 8.71122 72.7221);
+  --border: #353535;
+  --input: #303030;
+  --ring: var(--primary);
+  --sidebar: #1f1f1f;
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --chart-1: #a0a0a0;
+  --chart-2: #7e9ca0;
+  --chart-3: #707070;
+  --chart-4: #585858;
+  --chart-5: #404040;
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 10px;
+  --radius-full: 9999px;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.display { font: 600 24px/32px var(--font-sans); letter-spacing: -0.01em; }
+.title { font: 500 16px/24px var(--font-sans); }
+.body { font: 400 14px/20px var(--font-sans); }
+.body-medium { font: 500 14px/20px var(--font-sans); }
+.small { font: 400 13px/18px var(--font-sans); }
+.label { font: 500 12px/16px var(--font-sans); letter-spacing: 0.02em; }
+.mono { font: 400 13px/20px var(--font-mono); }

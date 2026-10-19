@@ -1,0 +1,53 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>NotificationPanel · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Overlays / NotificationPanel</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">NotificationPanel</h1><p class="small muted">bell with count and open panel</p>
+<div class="frame" style="min-height:280px"><div id="root" style="padding:16px;display:flex;gap:16px;align-items:flex-start;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.bell{position:relative;width:28px;height:28px;border:0;border-radius:var(--radius-md);background:var(--accent);display:grid;place-items:center}
+.bell svg{width:16px;height:16px;stroke:var(--foreground);fill:none;stroke-width:1.75}
+.bell i{position:absolute;top:-6px;right:-6px;min-width:16px;height:16px;padding:0 4px;border-radius:9999px;background:var(--primary);color:var(--primary-foreground);font:500 11px/16px var(--font-sans);font-style:normal}
+.pn{width:360px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.hd{display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 12px;border-bottom:1px solid var(--border)}
+.hd b{font:500 16px/24px var(--font-sans)}.hd span{font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.r{display:flex;gap:8px;align-items:flex-start;padding:10px 12px 10px 16px;border-bottom:1px solid var(--border);position:relative}
+.r.un{background:var(--card)}.r.un::before{content:"";position:absolute;left:6px;top:18px;width:6px;height:6px;border-radius:9999px;background:var(--primary)}
+.r svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;flex:none;margin-top:2px;color:var(--muted-foreground)}
+.r.ok svg{color:var(--success)}.r.bad svg{color:var(--destructive)}
+.r div{flex:1}.r b{font-weight:500}.r small{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.ft{height:36px;display:grid;place-items:center;font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+</style>
+<button class="bell"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><i>2</i></button>
+<div class="pn"><div class="hd"><b>Notifications</b><span>Mark all read</span></div>
+<div class="r un bad"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div><b>Export failed</b> · users-october.csv<small>Timed out after 120s · 9 min ago</small></div></div>
+<div class="r un ok"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><div><b>Kofi Boateng</b> completed 2FA enrolment<small>2 h ago</small></div></div>
+<div class="r"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Scheduled maintenance</b> Saturday 02:00–03:00 GMT<small>Yesterday</small></div></div>
+<div class="ft">View all notifications</div></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>The bell: a 28px ghost icon button with an unread count badge (16px, `primary` ground, `primary-foreground` 11px text; never red, because red means failure), opening a 360px `popover` panel. Rows are 56px: a 16px tone icon, a `body` title with the actor in `body-medium`, a `small` time in `muted-foreground`; unread rows have a 6px `primary` dot on the left and sit on `card`; read rows sit on `popover`. A header with &quot;Notifications&quot; in `title` and a &quot;Mark all read&quot; ghost link; a footer link to the full inbox. Notifications are about things that happened to the operator&#x27;s objects, never marketing. The consumer provides the list and handlers.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:flex;gap:16px;align-items:flex-start;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.bell{position:relative;width:28px;height:28px;border:0;border-radius:var(--radius-md);background:var(--accent);display:grid;place-items:center}
+.bell svg{width:16px;height:16px;stroke:var(--foreground);fill:none;stroke-width:1.75}
+.bell i{position:absolute;top:-6px;right:-6px;min-width:16px;height:16px;padding:0 4px;border-radius:9999px;background:var(--primary);color:var(--primary-foreground);font:500 11px/16px var(--font-sans);font-style:normal}
+.pn{width:360px;background:var(--popover);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.hd{display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 12px;border-bottom:1px solid var(--border)}
+.hd b{font:500 16px/24px var(--font-sans)}.hd span{font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.r{display:flex;gap:8px;align-items:flex-start;padding:10px 12px 10px 16px;border-bottom:1px solid var(--border);position:relative}
+.r.un{background:var(--card)}.r.un::before{content:&quot;&quot;;position:absolute;left:6px;top:18px;width:6px;height:6px;border-radius:9999px;background:var(--primary)}
+.r svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;flex:none;margin-top:2px;color:var(--muted-foreground)}
+.r.ok svg{color:var(--success)}.r.bad svg{color:var(--destructive)}
+.r div{flex:1}.r b{font-weight:500}.r small{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.ft{height:36px;display:grid;place-items:center;font:500 13px/18px var(--font-sans);color:var(--muted-foreground)}
+&lt;/style&gt;
+&lt;button class=&quot;bell&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 16V11a6 6 0 0 1 12 0v5l2 2H4z&quot;/&gt;&lt;path d=&quot;M10 20a2 2 0 0 0 4 0&quot;/&gt;&lt;/svg&gt;&lt;i&gt;2&lt;/i&gt;&lt;/button&gt;
+&lt;div class=&quot;pn&quot;&gt;&lt;div class=&quot;hd&quot;&gt;&lt;b&gt;Notifications&lt;/b&gt;&lt;span&gt;Mark all read&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;r un bad&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 8v5M12 16h.01&quot;/&gt;&lt;/svg&gt;&lt;div&gt;&lt;b&gt;Export failed&lt;/b&gt; · users-october.csv&lt;small&gt;Timed out after 120s · 9 min ago&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;r un ok&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M5 12l5 5L20 7&quot;/&gt;&lt;/svg&gt;&lt;div&gt;&lt;b&gt;Kofi Boateng&lt;/b&gt; completed 2FA enrolment&lt;small&gt;2 h ago&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;r&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 7v5l3 2&quot;/&gt;&lt;/svg&gt;&lt;div&gt;&lt;b&gt;Scheduled maintenance&lt;/b&gt; Saturday 02:00–03:00 GMT&lt;small&gt;Yesterday&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;ft&quot;&gt;View all notifications&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

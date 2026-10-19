@@ -1,0 +1,39 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>StatTile · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Data display / StatTile</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">StatTile</h1><p class="small muted">four tiles: up, up, down-is-bad, down-is-good</p>
+<div class="frame" style="min-height:150px"><div id="root" style="padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.t{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;display:flex;flex-direction:column;gap:4px}
+.t .cap{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.t .val{font:600 24px/32px var(--font-sans);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.t .d{display:inline-flex;align-items:center;gap:2px;font:500 12px/16px var(--font-sans);color:var(--muted-foreground)}
+.t .d.up{color:var(--success)}.t .d.down{color:var(--destructive)}
+.t svg.sp{width:100%;height:28px;margin-top:4px}
+.t svg.sp path{fill:none;stroke:var(--chart-1);stroke-width:1.5}.t svg.sp line{stroke:var(--chart-5)}
+</style>
+<div class="t"><span class="cap">MONTHLY REVENUE</span><span class="val">GH₵189,540</span><span class="d up">↗ 27.9%</span><svg class="sp" viewBox="0 0 100 28" preserveAspectRatio="none"><line x1="0" y1="27" x2="100" y2="27"/><path d="M0 20L15 18 30 21 45 14 60 15 75 9 90 10 100 4"/></svg></div>
+<div class="t"><span class="cap">ORDERS FULFILLED</span><span class="val">21,847</span><span class="d up">↗ 18.4%</span><svg class="sp" viewBox="0 0 100 28" preserveAspectRatio="none"><line x1="0" y1="27" x2="100" y2="27"/><path d="M0 22L15 20 30 19 45 16 60 17 75 12 90 11 100 8"/></svg></div>
+<div class="t"><span class="cap">ACTIVE SESSIONS</span><span class="val">3,112</span><span class="d down">↘ 4.1%</span><svg class="sp" viewBox="0 0 100 28" preserveAspectRatio="none"><line x1="0" y1="27" x2="100" y2="27"/><path d="M0 8L15 10 30 9 45 14 60 13 75 17 90 18 100 20"/></svg></div>
+<div class="t"><span class="cap">FAILED JOBS</span><span class="val">14</span><span class="d up">↘ 62%</span><svg class="sp" viewBox="0 0 100 28" preserveAspectRatio="none"><line x1="0" y1="27" x2="100" y2="27"/><path d="M0 6L15 9 30 8 45 15 60 14 75 19 90 22 100 23"/></svg></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>A KPI card for dashboard headers: a `label`-style caption in `muted-foreground`, the value in `display` with tabular figures, and an optional delta. The delta is a small chip: up-trend in `success`, down-trend in `destructive`, flat in `muted-foreground`, always with an arrow so colour is not the only cue; for metrics where down is good (refunds, errors) the consumer passes `invert` and the colours swap while the arrow stays truthful. An optional sparkline sits below in `chart-1` with a `chart-5` baseline. The tile is a `card` with `border`, `radius-lg`, `space-4` padding; tiles sit in a grid `space-6` apart. The consumer provides caption, value, delta, invert flag and the series; the system fixes everything visual.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)&quot;&gt;
+&lt;style&gt;
+.t{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;display:flex;flex-direction:column;gap:4px}
+.t .cap{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.t .val{font:600 24px/32px var(--font-sans);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.t .d{display:inline-flex;align-items:center;gap:2px;font:500 12px/16px var(--font-sans);color:var(--muted-foreground)}
+.t .d.up{color:var(--success)}.t .d.down{color:var(--destructive)}
+.t svg.sp{width:100%;height:28px;margin-top:4px}
+.t svg.sp path{fill:none;stroke:var(--chart-1);stroke-width:1.5}.t svg.sp line{stroke:var(--chart-5)}
+&lt;/style&gt;
+&lt;div class=&quot;t&quot;&gt;&lt;span class=&quot;cap&quot;&gt;MONTHLY REVENUE&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;GH₵189,540&lt;/span&gt;&lt;span class=&quot;d up&quot;&gt;↗ 27.9%&lt;/span&gt;&lt;svg class=&quot;sp&quot; viewBox=&quot;0 0 100 28&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;27&quot; x2=&quot;100&quot; y2=&quot;27&quot;/&gt;&lt;path d=&quot;M0 20L15 18 30 21 45 14 60 15 75 9 90 10 100 4&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;t&quot;&gt;&lt;span class=&quot;cap&quot;&gt;ORDERS FULFILLED&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;21,847&lt;/span&gt;&lt;span class=&quot;d up&quot;&gt;↗ 18.4%&lt;/span&gt;&lt;svg class=&quot;sp&quot; viewBox=&quot;0 0 100 28&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;27&quot; x2=&quot;100&quot; y2=&quot;27&quot;/&gt;&lt;path d=&quot;M0 22L15 20 30 19 45 16 60 17 75 12 90 11 100 8&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;t&quot;&gt;&lt;span class=&quot;cap&quot;&gt;ACTIVE SESSIONS&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;3,112&lt;/span&gt;&lt;span class=&quot;d down&quot;&gt;↘ 4.1%&lt;/span&gt;&lt;svg class=&quot;sp&quot; viewBox=&quot;0 0 100 28&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;27&quot; x2=&quot;100&quot; y2=&quot;27&quot;/&gt;&lt;path d=&quot;M0 8L15 10 30 9 45 14 60 13 75 17 90 18 100 20&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;t&quot;&gt;&lt;span class=&quot;cap&quot;&gt;FAILED JOBS&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;d up&quot;&gt;↘ 62%&lt;/span&gt;&lt;svg class=&quot;sp&quot; viewBox=&quot;0 0 100 28&quot; preserveAspectRatio=&quot;none&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;27&quot; x2=&quot;100&quot; y2=&quot;27&quot;/&gt;&lt;path d=&quot;M0 6L15 9 30 8 45 15 60 14 75 19 90 22 100 23&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

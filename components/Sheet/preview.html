@@ -1,0 +1,25 @@
+<!-- @dsCard group="Overlays" height=300 subtitle="user detail sheet over a table" -->
+<div id="root" style="position:relative;height:300px;overflow:hidden;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--foreground) 40%,transparent)}
+.sh{position:absolute;top:0;right:0;bottom:0;width:480px;background:var(--card);border-left:1px solid var(--border);box-shadow:var(--shadow-md);display:flex;flex-direction:column}
+.hd{display:flex;align-items:flex-start;justify-content:space-between;padding:16px;border-bottom:1px solid var(--border)}
+.hd h2{margin:0;font:500 16px/24px var(--font-sans)}.hd .id{font:400 13px/20px var(--font-mono);color:var(--muted-foreground)}
+.x{width:28px;height:28px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--muted-foreground);cursor:pointer}
+.bd{padding:16px;display:grid;grid-template-columns:140px 1fr;gap:12px 16px;font:400 14px/20px var(--font-sans);flex:1}
+.bd dt{font:500 12px/20px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}.bd dd{margin:0}
+.mono{font:400 13px/20px var(--font-mono)}
+.ft{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.sec{background:var(--secondary);color:var(--foreground);border-color:var(--border)}.pri{background:var(--primary);color:var(--primary-foreground)}
+.ghost-rows{padding:16px;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+</style>
+<div class="ghost-rows">Users · 1,204 accounts<br><br>Ama Mensah · Administrator<br>Kofi Boateng · Operator<br>Esi Owusu · Auditor</div>
+<div class="scrim"></div>
+<aside class="sh">
+<div class="hd"><div><h2>Kofi Boateng</h2><div class="id">usr_2d71e0aa</div></div><button class="x">✕</button></div>
+<dl class="bd"><dt>EMAIL</dt><dd>kofi.b@example.com</dd><dt>ROLE</dt><dd>Operator</dd><dt>TENANT</dt><dd class="mono">tnt_4b9e21</dd><dt>LAST SIGN-IN</dt><dd>14 min ago · Accra</dd><dt>2FA</dt><dd>Enabled (TOTP)</dd><dt>SESSIONS</dt><dd>3 active</dd></dl>
+<div class="ft"><button class="btn sec">Close</button><button class="btn pri">Edit user</button></div>
+</aside>
+</div>
+<script>/* static */</script>

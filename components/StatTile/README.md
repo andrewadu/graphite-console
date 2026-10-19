@@ -1,0 +1,3 @@
+# StatTile
+
+A KPI card for dashboard headers: a `label`-style caption in `muted-foreground`, the value in `display` with tabular figures, and an optional delta. The delta is a small chip: up-trend in `success`, down-trend in `destructive`, flat in `muted-foreground`, always with an arrow so colour is not the only cue; for metrics where down is good (refunds, errors) the consumer passes `invert` and the colours swap while the arrow stays truthful. An optional sparkline sits below in `chart-1` with a `chart-5` baseline. The tile is a `card` with `border`, `radius-lg`, `space-4` padding; tiles sit in a grid `space-6` apart. The consumer provides caption, value, delta, invert flag and the series; the system fixes everything visual.

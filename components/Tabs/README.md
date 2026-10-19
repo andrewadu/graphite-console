@@ -1,0 +1,3 @@
+# Tabs
+
+Switch between views of one object (a user's Profile, Permissions, Activity) without leaving the page. Two forms: underline tabs for page sections and a segmented control for small toggles like 7D/30D/12M. Underline tabs: `body-medium` labels in `muted-foreground`, the active one in `foreground` with a 2px `primary` underline, `space-3` horizontal padding, a `border` hairline under the whole row. Segmented: a `secondary` track with `radius-md`, 28px high, the active segment raised in `card` with a `border`. Optional count badges use the `small` style in `muted-foreground`. The consumer provides labels, counts and the active index; it never puts more than seven tabs in a row (overflow goes to a select).

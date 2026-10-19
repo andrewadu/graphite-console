@@ -1,0 +1,28 @@
+<!-- @dsCard group="Actions" height=120 subtitle="primary, secondary, ghost, destructive; default and small" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.btn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer}
+.btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.btn.sm{height:28px;padding:0 8px;font-size:13px}
+.primary{background:var(--primary);color:var(--primary-foreground)}
+.secondary{background:var(--secondary);color:var(--secondary-foreground);border-color:var(--border)}
+.ghost{background:transparent;color:var(--foreground)}.ghost:hover{background:var(--accent)}
+.destructive{background:var(--destructive);color:var(--destructive-foreground)}
+.btn[disabled]{background:var(--muted);color:var(--muted-foreground);border-color:transparent;cursor:not-allowed}
+svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75}
+</style>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn primary"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Add user</button>
+<button class="btn secondary">Export CSV</button>
+<button class="btn ghost">Filters</button>
+<button class="btn destructive">Suspend user</button>
+<button class="btn primary" disabled>Saving…</button>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn sm primary">Apply</button>
+<button class="btn sm secondary">Cancel</button>
+<button class="btn sm ghost"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Columns</button>
+<button class="btn sm destructive">Revoke key</button>
+</div>
+</div>
+<script>/* static */</script>

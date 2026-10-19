@@ -1,0 +1,14 @@
+<!-- @dsCard group="Feedback" height=200 subtitle="true empty vs filtered-to-nothing" -->
+<div id="root" style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.es{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.es .ic{width:40px;height:40px;border-radius:9999px;background:var(--muted);display:grid;place-items:center;color:var(--muted-foreground)}
+.es svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75}
+.es h3{margin:0;font:500 16px/24px var(--font-sans)}.es p{margin:0;font:400 14px/20px var(--font-sans);color:var(--muted-foreground);max-width:320px}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid transparent;font:500 14px/20px var(--font-sans);cursor:pointer;margin-top:4px}
+.pri{background:var(--primary);color:var(--primary-foreground)}.gh{background:transparent;color:var(--foreground)}.gh:hover{background:var(--accent)}
+</style>
+<div class="es"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/></svg></div><h3>No API keys yet</h3><p>Keys let external services call this tenant's API. Each key is shown once at creation.</p><button class="btn pri">Create key</button></div>
+<div class="es"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></svg></div><h3>No users match</h3><p>Filters: Role is Auditor, Status is Suspended, Created in last 7 days.</p><button class="btn gh">Clear filters</button></div>
+</div>
+<script>/* static */</script>

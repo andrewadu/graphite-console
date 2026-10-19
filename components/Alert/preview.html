@@ -1,0 +1,15 @@
+<!-- @dsCard group="Feedback" height=230 subtitle="info, warning and destructive alerts" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-family:var(--font-sans);color:var(--foreground);background:var(--background)">
+<style>
+.al{display:flex;gap:8px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px}
+.al svg{width:16px;height:16px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.al.info svg{color:var(--chart-2)}.al.warn svg{color:var(--warning)}.al.bad{background:color-mix(in srgb,var(--destructive) 10%,var(--card))}.al.bad svg{color:var(--destructive)}
+.al b{display:block;font:500 14px/20px var(--font-sans)}.al span{display:block;font:400 14px/20px var(--font-sans);color:var(--muted-foreground)}
+.al .body{flex:1}
+.al button{height:28px;padding:0 8px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--foreground);font:500 13px/20px var(--font-sans);cursor:pointer;white-space:nowrap}.al button:hover{background:var(--accent)}
+</style>
+<div class="al info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><div class="body"><b>Scheduled maintenance Saturday 02:00–03:00 GMT</b><span>The console stays available; background jobs are paused and resume automatically.</span></div><button>Details</button></div>
+<div class="al warn"><svg viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></svg><div class="body"><b>3 users have no 2FA enrolled</b><span>Tenant policy requires 2FA for Administrators. They will be prompted at next sign-in.</span></div><button>View users</button></div>
+<div class="al bad"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div class="body"><b>Audit log failed to load</b><span>The log service returned 503. Showing cached entries from 09:41.</span></div><button>Retry</button></div>
+</div>
+<script>/* static */</script>

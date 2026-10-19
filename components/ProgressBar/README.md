@@ -1,0 +1,3 @@
+# ProgressBar
+
+Determinate progress for imports, exports, migrations and quota usage. A 4px track in `muted` with `radius-full`, fill in `primary`; 8px tall when it is the main content of a card. A label row above: what is happening in `body` on the left, the figure in `mono` on the right (64% · 7,936 / 12,400). Quota bars switch the fill to `warning` past 80% and `destructive` past 95%, with the percentage stated in text so colour is not the only signal. Indeterminate progress is a 30%-wide `primary` segment sweeping the track; use it only under 10s, then show a count. The consumer provides value, max and the label.

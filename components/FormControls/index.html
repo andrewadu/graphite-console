@@ -1,0 +1,65 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>FormControls · Graphite Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../tokens.css"><link rel="stylesheet" href="../../site.css"></head>
+<body><header class="top"><a href="../../">Graphite Console</a><span class="crumb">/ Forms / FormControls</span><button class="btn" onclick="toggle()">Toggle theme</button></header>
+<main class="page"><h1 class="display">FormControls</h1><p class="small muted">checkboxes, radios, switches, select</p>
+<div class="frame" style="min-height:170px"><div id="root" style="padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+.col{display:flex;flex-direction:column;gap:12px}
+.h{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.row{display:flex;gap:8px;align-items:flex-start}
+.row small{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+input[type=checkbox],input[type=radio]{width:16px;height:16px;margin:2px 0;accent-color:var(--primary)}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--muted);flex:none;margin-top:1px}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:9999px;background:var(--card);border:1px solid var(--border);box-sizing:border-box}
+.sw.on{background:var(--primary)}.sw.on::after{left:16px;border-color:transparent}
+select{height:32px;width:100%;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+</style>
+<div class="col"><span class="h">PERMISSIONS</span>
+<label class="row"><input type="checkbox" checked><span>Read users</span></label>
+<label class="row"><input type="checkbox" checked><span>Edit users<small>Includes role changes.</small></span></label>
+<label class="row"><input type="checkbox"><span>Delete users</span></label></div>
+<div class="col"><span class="h">ENVIRONMENT</span>
+<label class="row"><input type="radio" name="e" checked><span>Production</span></label>
+<label class="row"><input type="radio" name="e"><span>Staging</span></label>
+<label class="row"><input type="radio" name="e" disabled><span style="color:var(--muted-foreground)">Sandbox (disabled)</span></label></div>
+<div class="col"><span class="h">NOTIFICATIONS</span>
+<div class="row"><span class="sw on"></span><span>Email on failed jobs</span></div>
+<div class="row"><span class="sw"></span><span>Weekly digest</span></div>
+<div class="row"><span class="sw on"></span><span>Require 2FA<small>Applies at next sign-in.</small></span></div></div>
+<div class="col"><span class="h">ROLE</span>
+<select><option>Administrator</option><option>Operator</option><option>Auditor</option></select>
+<select disabled><option>Read-only (locked)</option></select></div>
+</div>
+<script>/* static */</script>
+</div>
+<h2 class="title">Guidelines</h2><p>Checkbox, radio, switch and select, sized to the 32px control row. Checkbox and radio are 16px with a `input` border at rest, `primary` fill when checked, `radius-sm` (radio: `radius-full`), label in `body` with a `space-2` gap; a description line in `small` `muted-foreground` sits under the label. Switch is 32×18px, `muted` track off and `primary` on, a `card` thumb; use it only for settings that apply immediately, otherwise a checkbox plus Save. Select matches TextField (32px, `input` border, `card` fill, `radius-md`) with a chevron in `muted-foreground`. All show the `ring` focus style. The consumer provides labels, options and state; indeterminate checkboxes are reserved for &quot;select all&quot; in tables.</p>
+<h2 class="title">Markup</h2><pre class="code"><code>&lt;div id=&quot;root&quot; style=&quot;padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)&quot;&gt;
+&lt;style&gt;
+.col{display:flex;flex-direction:column;gap:12px}
+.h{font:500 12px/16px var(--font-sans);letter-spacing:.02em;color:var(--muted-foreground)}
+.row{display:flex;gap:8px;align-items:flex-start}
+.row small{display:block;font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+input[type=checkbox],input[type=radio]{width:16px;height:16px;margin:2px 0;accent-color:var(--primary)}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--muted);flex:none;margin-top:1px}
+.sw::after{content:&quot;&quot;;position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:9999px;background:var(--card);border:1px solid var(--border);box-sizing:border-box}
+.sw.on{background:var(--primary)}.sw.on::after{left:16px;border-color:transparent}
+select{height:32px;width:100%;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--card);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+&lt;/style&gt;
+&lt;div class=&quot;col&quot;&gt;&lt;span class=&quot;h&quot;&gt;PERMISSIONS&lt;/span&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt;&lt;span&gt;Read users&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt;&lt;span&gt;Edit users&lt;small&gt;Includes role changes.&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;span&gt;Delete users&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;
+&lt;div class=&quot;col&quot;&gt;&lt;span class=&quot;h&quot;&gt;ENVIRONMENT&lt;/span&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;e&quot; checked&gt;&lt;span&gt;Production&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;e&quot;&gt;&lt;span&gt;Staging&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;row&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;e&quot; disabled&gt;&lt;span style=&quot;color:var(--muted-foreground)&quot;&gt;Sandbox (disabled)&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;
+&lt;div class=&quot;col&quot;&gt;&lt;span class=&quot;h&quot;&gt;NOTIFICATIONS&lt;/span&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;sw on&quot;&gt;&lt;/span&gt;&lt;span&gt;Email on failed jobs&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;sw&quot;&gt;&lt;/span&gt;&lt;span&gt;Weekly digest&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;sw on&quot;&gt;&lt;/span&gt;&lt;span&gt;Require 2FA&lt;small&gt;Applies at next sign-in.&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;col&quot;&gt;&lt;span class=&quot;h&quot;&gt;ROLE&lt;/span&gt;
+&lt;select&gt;&lt;option&gt;Administrator&lt;/option&gt;&lt;option&gt;Operator&lt;/option&gt;&lt;option&gt;Auditor&lt;/option&gt;&lt;/select&gt;
+&lt;select disabled&gt;&lt;option&gt;Read-only (locked)&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;/* static */&lt;/script&gt;</code></pre></main>
+<script src="../../site.js"></script></body></html>

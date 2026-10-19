@@ -1,0 +1,25 @@
+<!-- @dsCard group="Forms" height=300 subtitle="a settings group and the danger zone" -->
+<div id="root" style="padding:16px;display:flex;flex-direction:column;gap:16px;font-family:var(--font-sans);color:var(--foreground);background:var(--background);font:400 14px/20px var(--font-sans)">
+<style>
+h3{margin:0 0 8px;font:500 16px/24px var(--font-sans)}
+.g{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg)}
+.g.danger{border-color:var(--destructive)}
+.r{display:flex;align-items:center;gap:16px;min-height:56px;padding:8px 16px;border-top:1px solid var(--border)}.g .r:first-child{border-top:0}
+.r div{flex:1}.r b{font-weight:500;display:block}.r small{font:400 13px/18px var(--font-sans);color:var(--muted-foreground)}
+.sw{position:relative;width:32px;height:18px;border-radius:9999px;background:var(--primary);flex:none}.sw::after{content:"";position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:9999px;background:var(--card)}
+.sw.off{background:var(--muted)}.sw.off::after{left:2px;border:1px solid var(--border);box-sizing:border-box}
+select{height:32px;padding:0 8px;border:1px solid var(--input);border-radius:var(--radius-md);background:var(--background);color:var(--foreground);font:400 14px/20px var(--font-sans)}
+.btn{height:32px;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--secondary);color:var(--foreground);font:500 14px/20px var(--font-sans);cursor:pointer;white-space:nowrap}
+.btn.des{background:transparent;border-color:var(--destructive);color:var(--destructive)}
+</style>
+<div><h3>Security</h3><div class="g">
+<div class="r"><div><b>Require 2FA for administrators</b><small>Applies at next sign-in. Takes effect immediately.</small></div><span class="sw"></span></div>
+<div class="r"><div><b>Session lifetime</b><small>Idle sessions are signed out after this period.</small></div><select><option>30 days</option><option>7 days</option><option>24 hours</option></select></div>
+<div class="r"><div><b>IP allowlist</b><small>Restrict console access to listed CIDR ranges. Off.</small></div><span class="sw off"></span></div>
+</div></div>
+<div><h3 style="color:var(--destructive)">Danger zone</h3><div class="g danger">
+<div class="r"><div><b>Rotate all API keys</b><small>Every integration stops until it is updated with a new key.</small></div><button class="btn des">Rotate keys…</button></div>
+<div class="r"><div><b>Delete tenant</b><small>Removes all users, data and audit history after a 30-day hold.</small></div><button class="btn des">Delete tenant…</button></div>
+</div></div>
+</div>
+<script>/* static */</script>
